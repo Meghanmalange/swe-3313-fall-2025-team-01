@@ -1,30 +1,88 @@
-# swe-3313-fall-2025-team-01
-The Royal African Baddies
+<a id="readme-top"></a>
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
-# Introduction
+<br />
+<div align="center">
+  <a href="https://github.com/Meghanmalange/swe-3313-fall-2025-team-01">
+    <img src="images/pwdgenerator.png" width="180" height="180"/>
+  </a>
+
+  <h3 align="center">African Royals Jewellery Store</h3>
+
+  <p align="center">
+    Jewellery made for royalty.
+    <br />
+    <a href="https://github.com/Meghanmalange/swe-3313-fall-2025-team-01"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+  </p>
+</div>
 
 
-# Team Resumes
-
-## Meghan
-
-## Nyasha
-
-## Zion
-
-## Aaliyah
-
-## Douglas
-
-
-# Team Assignments
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#project-plan">Project Plan</a></li>
+    <li><a href="#Team"></a>Team</li>
+    <li><a href="#team-assignments">Team Assignmment</a></li>
+    <li><a href="#tech-stack">Tech Stack</a></li>
+    <li><a href="#gantt-chart">Gantt Chart</a></li>
+    <li><a href="#loom-video">Loom Video</a></li>
+  </ol>
+</details>
 
 
-# Tech Stack
+# :book: Project Plan
 
 
-# Gant Chart
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-# Loom Video
+# :atom_symbol: Team
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+# :people_holding_hands: Team Assignments
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+# :link: Tech Stack
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+# :bar_chart: Gantt Chart
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+# :wheel: Loom Video
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/douglasjnr/password-generator.svg?style=for-the-badge
+[contributors-url]: https://github.com/douglasjnr/password-generator/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/douglasjnr/password-generator.svg?style=for-the-badge
+[forks-url]: https://github.com/douglasjnr/password-generator/network/members
+[stars-shield]: https://img.shields.io/github/stars/douglasjnr/password-generator.svg?style=for-the-badge
+[stars-url]: https://github.com/douglasjnr/password-generator/stargazers
+[issues-shield]: https://img.shields.io/github/issues/douglasjnr/password-generator.svg?style=for-the-badge
+[issues-url]: https://github.com/douglasjnr/password-generator/issues
+[license-shield]: https://img.shields.io/github/license/douglasjnr/password-generator.svg?style=for-the-badge
