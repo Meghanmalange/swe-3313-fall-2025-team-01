@@ -5,55 +5,52 @@
 
 <span class="iconify" data-icon="charm:person"></span> [example.com](https://example.com/)
   : <span class="iconify" data-icon="tabler:brand-github"></span> [github.com/example](https://github.com/example)
-  : <span class="iconify" data-icon="tabler:phone"></span> [(+1) 123-456-7890](https://wa.me/11234567890)
 
-<span class="iconify" data-icon="ic:outline-location-on"></span> 1234 Abc Street, Example, EX 01234
-  : <span class="iconify" data-icon="tabler:brand-linkedin"></span> [linkedin.com/in/example](https://linkedin.com/in/example/)
-  : <span class="iconify" data-icon="tabler:mail"></span> [email@example.com](mailto:mail@example.com)
+  : <span class="iconify" data-icon="tabler:brand-linkedin"></span> [linkedin.com/in/example](https://linkedin.com/in/douglas-junior-tanyanyiwa/)
+  : <span class="iconify" data-icon="tabler:mail"></span> [email@example.com](mailto:junior.dougyt@gmail.com)
 
 ## Skills
 
-**Programming Languages:** <span class="iconify" data-icon="vscode-icons:file-type-python"></span> Python, <span class="iconify" data-icon="vscode-icons:file-type-js-official"></span> JavaScript / <span class="iconify" data-icon="vscode-icons:file-type-typescript-official"></span> TypeScript, <span class="iconify" data-icon="vscode-icons:file-type-html"></span> HTML / <span class="iconify" data-icon="vscode-icons:file-type-css"></span> CSS, <span class="iconify" data-icon="logos:java" data-inline="false"></span> Java
+**Programming Languages:** <span class="iconify" data-icon="vscode-icons:file-type-python"></span> Python,<span class="iconify" data-icon="logos:java" data-inline="false"></span> Java
 
-**Tools and Frameworks:** Git, PyTorch, Keras, scikit-learn, Linux, Vue, React, Django, $\LaTeX$
+**Tools and Frameworks:** Anaconda, Git, PyCharm, IntelliJ, VS Code, Visual Studio, NumPy, Pandas, Scikit-learn, Matplotlib, TensorFlow, PyTorch
 
-**Languages:** English (proficient), Indonesia (native)
+**Certifications:** Oracle Cloud Infrastructure 2025 Certified AI Foundations
 
 ## Experience
 
-**Machine Learning Engineer Intern**
-  : **Slow Feet Technology**
-  : **Jul 2021 - Present**
+**Nestle Flavor Trend Analysis**
+  : **Break Through Tech**
+  : **Aug 2025 - Present**
 
-- Devised a new food-agnostic formulation for fine-grained cross-ingredient meal cooking and subsumed the recent popular works into the proposed scheme
-- Proposed a cream of mushroom soup recipe which is competitive when compared with the SOTA recipes with complex steps by only altering the way of cutting mushroom, published in NeurIPS 2099 (see [~P1])
-- Developed a pan for meal cooking which is benefiting the group members' research work
-
-
-**Research Intern**
-  : **Paddling University**
-  : **Aug 2020 - Present**
-
-- Designed an efficient method for mapo tofu quality estimation via thermometer
-- Proposed a fast stir-frying algorithm for tofu cooking problems, which specifies the amount of the hot sauce instead of using terms like "as much as you can", published in CVPR 2077 (see [~P2])
-- Outperformed SOTA methods while cooking much more efficient in experiments on popular tofu
+- Collaborating with a cross-functional team to uncover emerging flavor trends for Nestlé by analyzing 10,000+ consumer posts
+and industry data sources.
+- Applying clustering to group co-occurring flavors by region, and everaging NLP sentiment analysis to evaluate consumer
+attitudes toward flavors, aiming to improve forecasting accuracy of market success.
+- Developing a ranking framework that combines trend growth, sentiment, and regional relevance to guide data-driven product
+development decisions
 
 
-**Research Assistant**
-  : **Huangdu Institute of Technology**
-  : **Mar 2020 - Jun 2020**
+**Twitter Sentiment Analysis**
+  : **Personal Project**
+  : **July 2025 - Aug 2025**
 
-- Proposed a novel framework consisting of a spoon and a pair of chopsticks for eating mapo toufu
-- Designed a tofu filtering strategy inspired by beans grinding method for building a dataset for this new task
-- Designed two new evaluation criteria to assess the novelty and diversity of the eating plans
-- Outperformed baselines and existed methods substantially in terms of diversity, novelty and coherence
+- Built a real-time Twitter sentiment analysis pipeline using Python, Tweepy, and a RNN model in TensorFlow for multiclass
+classification of tweets, enabling scalable social media monitoring.
+- Developed a modular Streamlit interface integrated with a RESTful API and a trained RNN model, facilitating live inference, user
+interaction, and deployment-ready UX for data-driven NLP applications.
+- Engineered a full ML workflow including EDA, data cleaning, text preprocessing, and multi-class
+classification; evaluated model performance, and stored artifacts for reproducible inference.
 
 
-**Reseach Intern**
-  : **Paddling University**
-  : **Jul 2018 - Aug 2018**
+**Password Generator**
+  : **Personal Project**
+  : **Jun 2024 - July 2024**
 
-- Designed two sandwiches consisting of breads and meat of two traditional bacon cheese burgers to make use of unused ingredients
-- Utilized the structure duality to boost the cooking speed of two dual tasks based on shared ingredients
-- Outperformed strong baselines on QWE'15 and ASDF'14 dataset
+- Developed a secure password generator in Python with automated monthly rotation and encrypted storage using Fernet reducing
+manual security overhead and improving compliance with best practices.
+- Integrated SQLite to maintain password history and added logging to track generation events thereby enabling traceability and
+support for future auditing features.
+- Automated deployment across macOS and Windows via cron and Task Scheduler, resulting in enhanced usability and platform
+independence for long-term scheduling tasks.
 
