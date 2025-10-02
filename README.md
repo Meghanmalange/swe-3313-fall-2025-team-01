@@ -4,8 +4,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
 
 
 <br />
@@ -79,12 +78,11 @@
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/douglasjnr/password-generator.svg?style=for-the-badge
-[contributors-url]: https://github.com/douglasjnr/password-generator/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/douglasjnr/password-generator.svg?style=for-the-badge
-[forks-url]: https://github.com/douglasjnr/password-generator/network/members
-[stars-shield]: https://img.shields.io/github/stars/douglasjnr/password-generator.svg?style=for-the-badge
-[stars-url]: https://github.com/douglasjnr/password-generator/stargazers
-[issues-shield]: https://img.shields.io/github/issues/douglasjnr/password-generator.svg?style=for-the-badge
-[issues-url]: https://github.com/douglasjnr/password-generator/issues
-[license-shield]: https://img.shields.io/github/license/douglasjnr/password-generator.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Meghanmalange/swe-3313-fall-2025-team-01.svg?style=for-the-badge
+[contributors-url]: https://github.com/Meghanmalange/swe-3313-fall-2025-team-01/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Meghanmalange/swe-3313-fall-2025-team-01.svg?style=for-the-badge
+[forks-url]: https://github.com/Meghanmalange/swe-3313-fall-2025-team-01/network/members
+[stars-shield]: https://img.shields.io/github/stars/Meghanmalange/swe-3313-fall-2025-team-01.svg?style=for-the-badge
+[stars-url]: https://github.com/Meghanmalange/swe-3313-fall-2025-team-01/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Meghanmalange/swe-3313-fall-2025-team-01.svg?style=for-the-badge
+[issues-url]: https://github.com/Meghanmalange/swe-3313-fall-2025-team-01/issues
