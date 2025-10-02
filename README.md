@@ -47,7 +47,9 @@
 
 
 # :atom_symbol: Team
+ Meet our team:
 
+ [Douglas Tanyanyiwa](https://www.github.com/Meghanmalange/swe-3313-fall-2025-team-01/project-plan/resumes/Douglas_Resume.md/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
