@@ -16,7 +16,7 @@
   <h3 align="center">African Royals Jewellery Store</h3>
 
   <p align="center">
-    Jewellery made for royalty.
+    Jewelery made for royalty.
     <br />
     <a href="https://github.com/Meghanmalange/swe-3313-fall-2025-team-01"><strong>Explore the docs »</strong></a>
     <br />
