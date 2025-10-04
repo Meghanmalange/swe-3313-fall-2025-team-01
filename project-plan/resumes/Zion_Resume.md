@@ -16,7 +16,7 @@
 
 **Brick Breaker Game (Team Project) – Python, PyGame | Programming & Problem Solving I**
 
-- Collaborated with a 4-person team to design and develop a fully functional Brick Breaker game
+- Led a 4-person team to design and develop a fully functional Brick Breaker game
 - Implemented core gameplay mechanics (ball physics, collision detection, score tracking) in Python using PyGame
 - Delivered the project under tight deadlines and presented it to the class
 
