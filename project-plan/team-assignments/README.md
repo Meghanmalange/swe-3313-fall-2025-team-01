@@ -18,7 +18,7 @@
 ## Responsibilities: Create user interface mockups, implement UI in Thymeleaf. Ensures usability and a good presentation layer.
 
 
-# Douglas Tanyanyiwa - [Resume](./project-plan/resumes/Douglas_Resume/)  
+# <img src="./img/team-pictures/douglas.jpg" alt="douglas" width="80" height="80" style="border-radius:50%; vertical-align:middle; margin-right:10px;"/> Douglas Tanyanyiwa - [Resume](./project-plan/resumes/Douglas_Resume/)  
 ## Role: Backend Developer (Database & Services)
 ## Responsibilities: Designs ERD, database schema, and manages Database integration. Implements Spring Boot services for inventory, users, and sales, and manages sales system logic.
 
