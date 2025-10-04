@@ -13,7 +13,7 @@
     <img src="img/GoldCrown.JPG" width="180" height="180"/>
   </a>
 
-  <h3 align="center">African Royals Jewelry Store</h3>
+  <h3 align="center">The African Royals Jewelry Store</h3>
 
   <p align="center">
     A web-based shopping cart and sales system tailored for the sale of unique African jewelry. Each piece of jewelry in the inventory is one-of-a-kind, and once sold, it is no longer available for purchase.
@@ -29,24 +29,26 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#project-plan">Project Plan</a></li>
-    <li><a href="#team"></a>Team</li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#meet-our-team">Meet Our Team</a></li>
     <li><a href="#team-assignments">Team Assignmment</a></li>
     <li><a href="#tech-stack">Tech Stack</a></li>
-    <li><a href="#gantt-chart">Gantt Chart</a></li>
-    <li><a href="#loom-video">Loom Video</a></li>
+    <li><a href="#project-plan">Project Plan</a></li>
+    <li><a href="#project-plan-video-presentation">Project Plan Video Presentation</a></li>
   </ol>
 </details>
 
 
-# :book: Project Plan
+# :book: Introduction
 
+Welcome to the project repository for **Team 01 - The African Royals**. Here you will find all of the artifacts, presentations, documentation, and source code for our SWE 3313 class project.
+
+We will create a small e-commerce website using Java, SpringBoot, and SQLite to sell one-of-a-kind African jewelry.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-# :atom_symbol: Team
- Meet our team:
+# :atom_symbol: Meet Our Team
 
 [Aaaliyah Uchendu](./project-plan/resumes/Aaliyah_Resume.md/)
 
@@ -70,7 +72,7 @@ Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / Q
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-# :link: Tech Stack
+# :link: Technology Selection
 
 - To build our application, we will be coding in Java, utilizing the Spring Boot framework. We will use SQLite as our database to store user and item attributes.
 - For a detailed explanation of our tool choices and reasoning for them, click [here](./project-plan/technology-selection/README.md/)
@@ -78,13 +80,13 @@ Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / Q
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-# :bar_chart: Gantt Chart
+# :bar_chart: Project Plan
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-# :wheel: Loom Video
+# :movie_camera: Project Plan Video Presentation
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
