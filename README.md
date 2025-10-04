@@ -65,9 +65,7 @@
 
 - To distribute work efficiently for this project, we allocated our team of five into specific roles: Project Leader / Coordinator, 
 Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / QA Lead, and Documentation & Presentation Lead
-
-
-- For a comprehensive view of our team members' roles, click [here](./project-plan/team-assignments/)
+- For a comprehensive view of our team members' roles, click [here](./project-plan/team-assignments/README.md/)
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -75,7 +73,7 @@ Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / Q
 # :link: Tech Stack
 
 - To build our application, we will be coding in Java, utilizing the Spring Boot framework. We will use SQLite as our database to store user and item attributes.
-- For a detailed explanation of our tool choices and reasoning for them, click [here](./project-plan/technology-selection/)
+- For a detailed explanation of our tool choices and reasoning for them, click [here](./project-plan/technology-selection/README.md/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
