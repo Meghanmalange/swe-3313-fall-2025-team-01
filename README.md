@@ -10,7 +10,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Meghanmalange/swe-3313-fall-2025-team-01">
-    <img src="images/pwdgenerator.png" width="180" height="180"/>
+    <img src="img/GoldCrown.JPG" width="180" height="180"/>
   </a>
 
   <h3 align="center">African Royals Jewelry Store</h3>
