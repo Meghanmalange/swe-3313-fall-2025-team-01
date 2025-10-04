@@ -1,4 +1,4 @@
-# We carefully selected technologies that balance reliability, simplicity, and educational value:
+## We carefully selected technologies that balance reliability, simplicity, and educational value:
 # Language: Java
 - Strongly typed, widely used in enterprise web applications.
 - Great ecosystem and support for Spring Boot.
