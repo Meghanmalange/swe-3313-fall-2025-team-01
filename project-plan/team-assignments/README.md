@@ -1,26 +1,86 @@
-# Aaliyah Uchendu - [Resume](./project-plan/resumes/Aaliyah_Resume/)  
-## Role: Project Leader / Coordinator
-## Responsibilities: Keeps the team on track, organizes meetings, manages the GitHub repo. Helps with requirements and documentation.
+ <div align="center">
+  <img src="../../img/team-pictures/" 
+       alt="Aaliyah Uchendu" 
+       width="130" 
+       style="border-radius: 50%; margin-bottom: 10px;" />
+  
+  <h1>Aaliyah Uchendu - <a href="./project-plan/resumes/Aaliyah_Resume/">Resume</a></h1>
+
+  <h3>Role: Project Leader / Coordinator </h3>
+
+  <p>
+    <strong>Responsibilities:</strong> Keeps the team on track, organizes meetings, manages the GitHub repo. Helps with requirements and documentation.
+  </p>
+</div>
 
 
-# Zion Clark - [Resume Link](./project-plan/resumes/Zion_Resume/)  
-## Role: Documentation & Presentation Lead
-## Responsibilities: Compiles requirements, project plan, and design documents. Produces professional README and written deliverables. Coordinates and edits video presentations.
+
+<div align="center">
+  <img src="../../img/team-pictures/" 
+       alt="Zion Clark" 
+       width="130" 
+       style="border-radius: 50%; margin-bottom: 10px;" />
+  
+  <h1>Zion Clark - <a href="./project-plan/resumes/Zion_Resume/">Resume</a></h1>
+
+  <h3>Role: Documentation & Presentation Lead </h3>
+
+  <p>
+    <strong>Responsibilities:</strong> Compiles requirements, project plan, and design documents. Produces professional README and written deliverables. Coordinates and edits video presentations.
+  </p>
+</div>
 
 
-# Nyasha Muzerengi - [Resume](./project-plan/resumes/Nyasha_Resume/)  
-## Role: Tester / QA Lead
-## Responsibilities: Writes unit and integration tests. Runs user acceptance testing. Helps validate requirements vs implementation.
+
+<div align="center">
+  <img src="../../img/team-pictures/" 
+       alt="Nyasha Muzerengi" 
+       width="130" 
+       style="border-radius: 50%; margin-bottom: 10px;" />
+  
+  <h1>Nyasha Muzerengi - <a href="./project-plan/resumes/Nyasha_Resume/">Resume</a></h1>
+
+  <h3>Role: Tester / QA Lead </h3>
+
+  <p>
+    <strong>Responsibilities:</strong> Writes unit and integration tests. Runs user acceptance testing. Helps validate requirements vs implementation.
+  </p>
+</div>
 
 
-# Meghan Malange - [Resume Link](./project-plan/resumes/Meghan_Resume/)  
-## Role: Frontend/UI Designer
-## Responsibilities: Create user interface mockups, implement UI in Thymeleaf. Ensures usability and a good presentation layer.
+
+<div align="center">
+  <img src="../../img/team-pictures/" 
+       alt="Meghan Malange" 
+       width="130" 
+       style="border-radius: 50%; margin-bottom: 10px;" />
+  
+  <h1>Meghan Malange - <a href="./project-plan/resumes/Meghan_Resume/">Resume</a></h1>
+
+  <h3>Role: Frontend/UI Designer </h3>
+
+  <p>
+    <strong>Responsibilities:</strong> Create user interface mockups, implement UI in Thymeleaf. Ensures usability and a good presentation layer.
+  </p>
+</div>
 
 
-# <img src=".../img/team-pictures/douglas.jpg" alt="douglas" width="80" height="80" style="border-radius:50%; vertical-align:middle; margin-right:10px;"/> Douglas Tanyanyiwa - [Resume](./project-plan/resumes/Douglas_Resume/)  
-## Role: Backend Developer (Database & Services)
-## Responsibilities: Designs ERD, database schema, and manages Database integration. Implements Spring Boot services for inventory, users, and sales, and manages sales system logic.
+
+<div align="center">
+  <img src="../../img/team-pictures/douglasjr.png" 
+       alt="Douglas Tanyanyiwa" 
+       width="130" 
+       style="border-radius: 50%; margin-bottom: 10px;" />
+  
+  <h1>Douglas Tanyanyiwa - <a href="./project-plan/resumes/Douglas_Resume/">Resume</a></h1>
+
+  <h3>Role: Backend Developer (Database & Services)</h3>
+
+  <p>
+    <strong>Responsibilities:</strong> Designs ERD, database schema, and manages database integration.
+    Implements Spring Boot services for inventory, users, and sales, and manages sales system logic.
+  </p>
+</div>
 
 
 
