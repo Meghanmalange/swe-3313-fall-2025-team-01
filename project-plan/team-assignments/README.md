@@ -33,7 +33,7 @@
 
 
 <div align="center">
-  <img src="../../img/team-pictures/" 
+  <img src="../../img/team-pictures/nyasha.png/" 
        alt="Nyasha Muzerengi" 
        width="130" 
        style="border-radius: 50%; margin-bottom: 10px;" />
