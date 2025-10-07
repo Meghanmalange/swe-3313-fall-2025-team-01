@@ -17,6 +17,8 @@
   <a href="https://www.github.com/douglasjnr">DouglasJnr</a>
 </div>
 
+---
+
 ## Skills
 
 **Programming Languages:** <span class="iconify" data-icon="vscode-icons:file-type-python"></span> Python,<span class="iconify" data-icon="logos:java" data-inline="false"></span> Java
@@ -24,6 +26,8 @@
 **Tools and Frameworks:** Anaconda, Git, PyCharm, IntelliJ, VS Code, Visual Studio, NumPy, Pandas, Scikit-learn, Matplotlib, TensorFlow, PyTorch
 
 **Certifications:** Oracle Cloud Infrastructure 2025 Certified AI Foundations
+
+---
 
 ## Experience
 
@@ -61,6 +65,8 @@ manual security overhead and improving compliance with best practices.
 support for future auditing features.
 - Automated deployment across macOS and Windows via cron and Task Scheduler, resulting in enhanced usability and platform
 independence for long-term scheduling tasks.
+
+---
 
 
 [email]: mailto:junior.dougyt@gmail.com
