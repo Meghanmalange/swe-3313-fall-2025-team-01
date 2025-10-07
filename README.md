@@ -87,6 +87,7 @@ Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / Q
 
 
 # :movie_camera: Project Plan Video Presentation
+- Watch project presentation video [here](https://www.loom.com/share/a04db9b23f6e470ebd6952a73105ab56?sid=b12b09db-2c36-48de-80d7-f6bb64b91035)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
