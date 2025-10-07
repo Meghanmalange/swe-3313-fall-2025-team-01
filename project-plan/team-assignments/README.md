@@ -1,5 +1,5 @@
  <div align="center">
-  <img src="../../img/team-pictures/" 
+  <img src="../../img/team-pictures/Aaliyah.png" 
        alt="Aaliyah Uchendu" 
        width="130" 
        style="margin-bottom: 10px;" />
@@ -15,7 +15,7 @@
 
 
 <div align="center">
-  <img src="../../img/team-pictures/" 
+  <img src="../../img/team-pictures/Zion.png" 
        alt="Zion Clark" 
        width="130" 
        style="margin-bottom: 10px;" />
