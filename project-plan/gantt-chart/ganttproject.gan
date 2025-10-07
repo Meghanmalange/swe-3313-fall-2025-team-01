@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="African Royals Chart" company="African Royals Jewelry Store" webLink="http://" view-date="2025-09-07" view-index="0" gantt-divider-location="462" resource-divider-location="322" version="3.3.3316" locale="en_ZW">
+    <description/>
+    <view zooming-state="default:6" id="gantt-chart">
+        <field id="tpd12" name="Cost" width="25" order="0"/>
+        <field id="tpd3" name="Name" width="231" order="1"/>
+        <field id="tpd4" name="Begin date" width="95" order="2"/>
+        <field id="tpd5" name="End date" width="95" order="3"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+        <timeline><![CDATA[0]]></timeline>
+        <option id="color.recent"><![CDATA[#ff0066]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="220" order="0"/>
+        <field id="1" name="Default role" width="96" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" uid="020a40f59ba44ae5b02c1688d6aadf31" name="Project Planning &amp; Team Assignments" meeting="false" start="2025-09-11" duration="19" complete="0" expand="true">
+            <task id="2" uid="3a9700b0ab8e4a739dabb198e4f24bec" name="Establish version control (GitHub repo) and communication channels." meeting="false" start="2025-10-01" duration="5" complete="0" expand="true"/>
+            <task id="1" uid="f2f5b8e56e8f4a22810b2f9942611aa8" name="Define roles, responsibilities, and deliverables for each member." meeting="false" start="2025-09-11" duration="14" complete="0" expand="true"/>
+        </task>
+        <task id="4" uid="eeacbd402ae241828967dc74e653c1da" name="Requirements Gathering &amp; Analysis" meeting="false" start="2025-10-08" duration="7" complete="0" expand="true">
+            <task id="5" uid="573c818313ec4b98881c21c4584a6362" name="Identify functional and non-functional requirements." meeting="false" start="2025-10-08" duration="4" complete="0" expand="true"/>
+            <task id="6" uid="9e23c5a0087c457e96341b0bdebe75a5" name="Define system use cases (Customer, Admin)." meeting="false" start="2025-10-13" duration="4" complete="0" expand="true"/>
+            <task id="7" uid="ae98c41fb45a41459e8d7681a54c6399" name="Deliverable: Requirements Document." meeting="false" start="2025-10-14" duration="3" complete="0" expand="true"/>
+        </task>
+        <task id="12" uid="7fdd8385c22d4998a2bd602a34b4a468" name="User Interface Design" meeting="false" start="2025-10-17" duration="8" complete="0" expand="true">
+            <task id="13" uid="74fb757c04874fa0bbd03fcfd41c51fd" name="Wireframe customer and admin views (inventory browsing, shopping cart, checkout, admin management dashboard)." meeting="false" start="2025-10-17" duration="3" complete="0" expand="true"/>
+            <task id="14" uid="57aee18641ee406ba9764d1917ac63d7" name="Ensure responsive design for web usability." meeting="false" start="2025-10-22" duration="5" complete="0" expand="true"/>
+            <task id="15" uid="56bba4426cf84e39b89c9c0f01b13397" name="Deliverable: UI Mockups and Design Document." meeting="false" start="2025-10-24" duration="3" complete="0" expand="true"/>
+        </task>
+        <task id="8" uid="bba23a2ed26b4dab8974e4ba46094dcf" name="System &amp; Database Design" meeting="false" start="2025-10-29" duration="15" complete="0" expand="true">
+            <task id="9" uid="873751bfb7c04d6a8a31e379104ae416" name="Create Entity-Relationship Diagram (ERD) with four+ tables (Users, Inventory, Sales, SalesInventoryItem, plus optional Images table)." meeting="false" start="2025-10-29" duration="7" complete="0" expand="true"/>
+            <task id="10" uid="6d954d99c7164aa78ac892c1fba3c97b" name="Draft UML diagrams for system design." meeting="false" start="2025-11-06" duration="9" complete="0" expand="true"/>
+            <task id="11" uid="9093d32a14a142b983fef1e27e5e44df" name="Deliverable: Technical Design Document." meeting="false" start="2025-11-10" duration="7" complete="0" expand="true"/>
+        </task>
+        <task id="16" uid="8159f4c588114e53be663e869c6b657b" name="Implementation &amp; Coding" meeting="false" start="2025-11-11" duration="20" complete="0" expand="true">
+            <task id="17" uid="cdcc486ea0e24266ad4193abeeea23a2" name="Backend using Java Spring Framework." meeting="false" start="2025-11-11" duration="14" complete="0" expand="true"/>
+            <task id="18" uid="6b87cada9e564048af0f1f63c784b2f7" name="Frontend served via Spring MVC (Thymeleaf templates) or REST API with lightweight UI." meeting="false" start="2025-11-13" duration="12" complete="0" expand="true"/>
+            <task id="19" uid="1671716e21b44db1a8a6cef1b9d42ae2" name="SQLite database for persistence." meeting="false" start="2025-11-17" duration="10" complete="0" expand="true"/>
+            <task id="20" uid="95d99aa059204f6aa8b8798098acb9e4" name="Deliverable: Fully functional web application" meeting="false" start="2025-11-28" duration="7" complete="0" expand="true"/>
+        </task>
+        <task id="21" uid="9241b5190b3c469681dd7fcf88865b17" name="Testing &amp; Validation" meeting="false" start="2025-11-17" duration="13" complete="0" expand="true">
+            <task id="22" uid="c3f8cc1a8f1041b6a2ac0396d3afeaaa" name="Unit tests for controllers and models." meeting="false" start="2025-11-17" duration="12" complete="0" expand="true"/>
+            <task id="23" uid="93740101b41f43b3b70b9eaaf3be5fe3" name="Integration tests for database queries." meeting="false" start="2025-11-17" duration="12" complete="0" expand="true"/>
+            <task id="24" uid="eac4fce535cb417fb1f2af8b1121ab59" name="System acceptance testing with sample data." meeting="false" start="2025-11-24" duration="7" complete="0" expand="true"/>
+            <task id="25" uid="665d7802ca2c46c385f88f23ce585471" name="Deliverable: Test Plan and Test Results." meeting="false" start="2025-11-24" duration="8" complete="0" expand="true"/>
+        </task>
+        <task id="26" uid="e416d59174704feab324d80ff5552b5b" name="Final Presentation &amp; Delivery" meeting="false" start="2025-12-01" duration="6" complete="0" expand="true">
+            <task id="27" uid="5cfae0b274a84ccb8d890ad3145db061" name="Prepare 5–6 minute video walkthrough of the system." meeting="false" start="2025-12-01" duration="6" complete="0" expand="true"/>
+            <task id="28" uid="80de774380a647819f127a4ac5489b94" name="Demonstrate features: Browsing, registration, purchasing, inventory management, and sales reports." meeting="false" start="2025-12-01" duration="6" complete="0" expand="true"/>
+            <task id="29" uid="76719c0aeab64547b8e5b8cfaf02e69c" name="Deliverable: Final Presentation + GitHub repository submission." meeting="false" start="2025-12-01" duration="6" complete="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
