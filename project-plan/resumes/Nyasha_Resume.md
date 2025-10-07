@@ -1,12 +1,21 @@
----
----
-
-# Nyasha Demean Muzerengi
-
-<span class="iconify" data-icon="charm:person"></span> [Portfolio/Website](https://example.com/)  
-: <span class="iconify" data-icon="tabler:brand-github"></span> [github.com/nyashademean](https://github.com/nyashademean)  
-: <span class="iconify" data-icon="tabler:brand-linkedin"></span> [linkedin.com/in/nyashademean](https://linkedin.com/in/nyashademean)  
-: <span class="iconify" data-icon="tabler:mail"></span> [youremail@example.com](mailto:youremail@example.com)  
+<div align="center">
+  <h1>Nyasha Demean Muzerengi</h1>
+  
+  <a href="mailto:nmuzeren@students.kennesaw.edu">
+    <img alt="Email" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/microsoftoutlook.svg" style="vertical-align: middle;" />
+  </a>
+  <a href="mailto:nmuzeren@students.kennesaw.edu">nmuzeren@students.kennesaw.edu</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/nyashademean">
+    <img alt="LinkedIn" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" style="vertical-align: middle;" />
+  </a>
+  <a href="https://www.linkedin.com/in/nyashademean">Nyasha (Demean) Muzerengi</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://www.github.com/nyashademean">
+    <img alt="GitHub" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/github.svg" style="vertical-align: middle;" />
+  </a>
+  <a href="https://www.github.com/nyashademean">Nyasha Demean</a>
+</div>
 
 ---
 
