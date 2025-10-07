@@ -1,6 +1,23 @@
-# Meghan Malange
-### US Citizen ● (724) - 939 - 0874  ●  Atlanta, Georgia  ●  mmalange@students.kennesaw.edu ●  [linkedin.com/in/meghan-malange/](linkedin.com/in/meghan-malange/)  
+<div align="center">
+  <h1>Meghan Malange</h1>
+  
+  <a href="mailto:mmalange@students.kennesaw.edu">
+    <img alt="Email" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/microsoftoutlook.svg" style="vertical-align: middle;" />
+  </a>
+  <a href="mailto:mmalange@students.kennesaw.edu">mmalange@students.kennesaw.edu</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/meghan-malange">
+    <img alt="LinkedIn" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" style="vertical-align: middle;" />
+  </a>
+  <a href="https://www.linkedin.com/in/meghan malange">Meghan Malange</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://www.github.com/Meghanmalange">
+    <img alt="GitHub" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/github.svg" style="vertical-align: middle;" />
+  </a>
+  <a href="https://www.github.com/Meghanmalange">Meghanmalange</a>
+</div>
 
+---
 
 ## EDUCATION
 ### Kennesaw State University
@@ -13,12 +30,16 @@ GPA: 3.88 | Dean’s List: Spring 2025 | President’s List: Fall 2024
 **Courses:** Discrete Structures, Intro to Software Engineering, Object Oriented Programming II, Calculus-Based Physics I, Calculus II  
 **Awards:** Honors Scholarship, Bobbie Bailey Foundation Honors/CCSE Scholarship 2x, HOPE Scholarship 3x  
 
+---
+
 ## SKILLS
 ### Programming Languages:
 - JavaScript (Advanced), Python (Advanced), Java (Intermediate), C# (Beginner)
 - React Native (Advanced), HTML+CSS(Advanced)
 ### Technologies & Tools:
 - Expo, Visual Studio Code, IntelliJ, PyCharm, GitHub
+
+---
 
 ## EXPERIENCE
 ### ColorStack Secretary	September 2025 - Present
@@ -47,6 +68,8 @@ Girls Who Code | Remote
 - Learned Python, HTML, CSS, and JavaScript, applying skills to assignments and projects with a social impact.
 - Created first website, The Real Americans, honoring Native American culture, history, and ways to support the community.
 - Learned from panels of women in tech who shared how they overcame barriers to succeed in their careers.
+
+---
 
 ## PROJECTS 
 ### Beatitudes — Personal Project | React Native, JavaScript | Expo, Visual Studio Code	 July 2025 - Present
