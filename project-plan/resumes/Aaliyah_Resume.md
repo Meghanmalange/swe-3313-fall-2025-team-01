@@ -21,27 +21,27 @@
 
 ## Skills
 
-**Programming Languages:** <span class="iconify" data-icon="vscode-icons:file-type-python"></span> Python,<span class="iconify" data-icon="logos:java" data-inline="false"></span> Java
+**Programming Languages:** <span class="iconify" data-icon="vscode-icons:file-type-python"></span> Javascript,<span class="iconify" data-icon="logos:java" data-inline="false"></span> Java, <span class="iconify" data-icon="logos:sql" data-inline="false"></span>  SQL
 
-**Tools and Frameworks:** PyCharm, IntelliJ, GitHub
+**Tools and Frameworks:** IntelliJ, GitHub
 
-**Databases:** MySQL, MicrosftAccess
+**Databases:** MySQL, Firebase
 
 ---
 
 ## Projects
 
-**Brick Breaker Game (Team Project) – Python, PyGame | Programming & Problem Solving I**
+**HopeFlow VR Company – Javascript, Html, CSS,  | Fist Year Scholars Program**
+-	Contributed to the development of a mobile app for blood donation, utilzing UI/UX design and backend coding to ensure	
+user-friendly functionality.
+- Participated in weekly team meetings to coordinate progress.
+- Implemented backend logic using Firebase to securely store and retrieve user data
 
-- Led a 4-person team to design and develop a fully functional Brick Breaker game
-- Implemented core gameplay mechanics (ball physics, collision detection, score tracking) in Python using PyGame
-- Delivered the project under tight deadlines and presented it to the class
-
-**Order Queue Simulator (Individual Project) – Java | Programming & Problem Solving II**
-- Designed and implemented a multithreaded order queue simulator to model real-world order processing
-- Applied object-oriented programming principles with custom classes, linked lists, and synchronized queues
-- Managed concurrent tasks using Java threads, ensuring thread-safe operations and efficient order handling
-- Enhanced program performance by optimizing data structures and workflow logic
+**Paul Duke STEM TV Internship | Paul Duke STEM Highschool**
+- Led production of **21 broadcasted shows** averaging **300+ viewers**, coordinating scripting, directing, and editing.
+- Executive Producer/ Organizer
+- Improved team efficiency by fostering open collaboration and conducting one-on-one creative check-ins.  
+- Managed a team of high level film students, applying organization and technical planning to maintain consistent release schedules.  
 
 ---
 
@@ -49,3 +49,10 @@
 
 - Kennesaw State University — Kennesaw, GA
 - Bachelor of Science in Computer Science (Expected May 2028)
+  
+## Relevant Coursework
+- Introduction to Programming (Java)  
+- Data Structures and Algorithms  
+- Database Systems (SQL & ER Modeling)  
+- Software Engineering Fundamentals  
+- Computer Organization and Architecture  
