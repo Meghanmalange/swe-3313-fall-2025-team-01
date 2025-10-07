@@ -1,13 +1,21 @@
----
---
-
-# Douglas Junior Tanyanyiwa
-
-<span class="iconify" data-icon="charm:person"></span> [example.com](https://example.com/)
-  : <span class="iconify" data-icon="tabler:brand-github"></span> [github.com/example](https://github.com/example)
-
-  : <span class="iconify" data-icon="tabler:brand-linkedin"></span> [linkedin.com/in/example](https://linkedin.com/in/douglas-junior-tanyanyiwa/)
-  : <span class="iconify" data-icon="tabler:mail"></span> [email@example.com](mailto:junior.dougyt@gmail.com)
+<div align="center">
+  <h1>Douglas Junior Tanyanyiwa</h1>
+  
+  <a href="mailto:dtanyany@students.kennesaw.edu">
+    <img alt="Email" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/microsoftoutlook.svg" style="vertical-align: middle;" />
+  </a>
+  <a href="mailto:dtanyany@students.kennesaw.edu">junior.dougyt@gmail.com</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/douglas-junior-tanyanyiwa">
+    <img alt="LinkedIn" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" style="vertical-align: middle;" />
+  </a>
+  <a href="https://www.linkedin.com/in/douglas-junior-tanyanyiwa">Douglas Junior Tanyanyiwa</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://www.github.com/douglasjnr">
+    <img alt="GitHub" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/github.svg" style="vertical-align: middle;" />
+  </a>
+  <a href="https://www.github.com/douglasjnr">DouglasJnr</a>
+</div>
 
 ## Skills
 
@@ -54,3 +62,7 @@ support for future auditing features.
 - Automated deployment across macOS and Windows via cron and Task Scheduler, resulting in enhanced usability and platform
 independence for long-term scheduling tasks.
 
+
+[email]: mailto:junior.dougyt@gmail.com
+[linkedin]: https://www.linkedin.com/in/douglas-junior-tanyanyiwa
+[github]: https://www.github.com/douglasjnr
