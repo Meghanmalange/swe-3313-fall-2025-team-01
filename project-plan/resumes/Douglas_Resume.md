@@ -4,7 +4,7 @@
   <a href="mailto:dtanyany@students.kennesaw.edu">
     <img alt="Email" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/microsoftoutlook.svg" style="vertical-align: middle;" />
   </a>
-  <a href="mailto:dtanyany@students.kennesaw.edu">junior.dougyt@gmail.com</a>
+  <a href="mailto:dtanyany@students.kennesaw.edu">dtanyany@students.kennesaw.edu</a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="https://www.linkedin.com/in/douglas-junior-tanyanyiwa">
     <img alt="LinkedIn" width="22" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" style="vertical-align: middle;" />
