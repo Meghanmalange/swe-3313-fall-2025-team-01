@@ -50,10 +50,13 @@
 
 
 <div align="center">
-  <img src="../../img/team-pictures/" 
-       alt="Meghan Malange" 
-       width="130" 
-       style="border-radius: 50%; margin-bottom: 10px;" />
+  <img 
+   src="../../img/team-pictures/Headshot_MeghanMalange.jpg" 
+   alt="Meghan Malange" 
+   width="130" 
+   style="border-radius: 50%; margin-bottom: 10px;" 
+  />
+
   
   <h1>Meghan Malange - <a href="./project-plan/resumes/Meghan_Resume/">Resume</a></h1>
 
