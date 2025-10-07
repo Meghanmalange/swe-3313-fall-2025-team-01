@@ -2,7 +2,7 @@
   <img src="../../img/team-pictures/" 
        alt="Aaliyah Uchendu" 
        width="130" 
-       style="border-radius: 50%; margin-bottom: 10px;" />
+       style="margin-bottom: 10px;" />
   
   <h1>Aaliyah Uchendu - <a href="./project-plan/resumes/Aaliyah_Resume/">Resume</a></h1>
 
@@ -14,12 +14,11 @@
 </div>
 
 
-
 <div align="center">
   <img src="../../img/team-pictures/" 
        alt="Zion Clark" 
        width="130" 
-       style="border-radius: 50%; margin-bottom: 10px;" />
+       style="margin-bottom: 10px;" />
   
   <h1>Zion Clark - <a href="./project-plan/resumes/Zion_Resume/">Resume</a></h1>
 
@@ -31,12 +30,11 @@
 </div>
 
 
-
 <div align="center">
   <img src="../../img/team-pictures/nyasha.png/" 
        alt="Nyasha Muzerengi" 
        width="130" 
-       style="border-radius: 50%; margin-bottom: 10px;" />
+       style="margin-bottom: 10px;" />
   
   <h1>Nyasha Muzerengi - <a href="./project-plan/resumes/Nyasha_Resume/">Resume</a></h1>
 
@@ -48,16 +46,14 @@
 </div>
 
 
-
 <div align="center">
   <img 
-   src="../../img/team-pictures/Headshot_MeghanMalange.jpg" 
+   src="../../img/team-pictures/Meghan.png" 
    alt="Meghan Malange" 
    width="130" 
-   style="border-radius: 50%; margin-bottom: 10px;" 
+   style="margin-bottom: 10px;" 
   />
 
-  
   <h1>Meghan Malange - <a href="./project-plan/resumes/Meghan_Resume/">Resume</a></h1>
 
   <h3>Role: Frontend/UI Designer </h3>
@@ -68,12 +64,11 @@
 </div>
 
 
-
 <div align="center">
   <img src="../../img/team-pictures/douglasjr.png" 
        alt="Douglas Tanyanyiwa" 
        width="130" 
-       style="border-radius: 50%; margin-bottom: 10px;" />
+       style="margin-bottom: 10px;" />
   
   <h1>Douglas Tanyanyiwa - <a href="./project-plan/resumes/Douglas_Resume/">Resume</a></h1>
 
