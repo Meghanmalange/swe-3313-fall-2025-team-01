@@ -31,8 +31,8 @@
   <ol>
     <li><a href="#introduction">Introduction</a></li>
     <li><a href="#meet-our-team">Meet Our Team</a></li>
-    <li><a href="#team-assignments">Team Assignmment</a></li>
-    <li><a href="#tech-stack">Tech Stack</a></li>
+    <li><a href="#team-assignments">Team Assignmments</a></li>
+    <li><a href="#technology-selection">Technology Selection</a></li>
     <li><a href="#project-plan">Project Plan</a></li>
     <li><a href="#project-plan-video-presentation">Project Plan Video Presentation</a></li>
   </ol>
@@ -82,11 +82,14 @@ Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / Q
 
 # :bar_chart: Project Plan
 
+- We broke down our project plan into deliverables with timelines.
+- For a more detailed view of it, click [here](./project-plan-README.md)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 # :movie_camera: Project Plan Video Presentation
+- To go over our entire project plan in detail, we created a video presentation covering all the sections.
 - Watch project presentation video [here](https://www.loom.com/share/a04db9b23f6e470ebd6952a73105ab56?sid=b12b09db-2c36-48de-80d7-f6bb64b91035)
 
 
