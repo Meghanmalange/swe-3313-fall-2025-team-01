@@ -29,12 +29,12 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#meet-our-team">Meet Our Team</a></li>
-    <li><a href="#team-assignments">Team Assignmments</a></li>
-    <li><a href="#technology-selection">Technology Selection</a></li>
-    <li><a href="#project-plan">Project Plan</a></li>
-    <li><a href="#project-plan-video-presentation">Project Plan Video Presentation</a></li>
+    <li><a href="#-introduction">Introduction</a></li>
+    <li><a href="#-meet-our-team">Meet Our Team</a></li>
+    <li><a href="#-team-assignments">Team Assignmments</a></li>
+    <li><a href="#-technology-selection">Technology Selection</a></li>
+    <li><a href="#-project-plan">Project Plan</a></li>
+    <li><a href="#-project-plan-video-presentation">Project Plan Video Presentation</a></li>
   </ol>
 </details>
 
