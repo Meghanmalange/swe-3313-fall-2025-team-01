@@ -83,7 +83,7 @@ Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / Q
 # :bar_chart: Project Plan
 
 - We broke down our project plan into deliverables with timelines.
-- For a more detailed view of it, click [here](./project-plan-README.md)
+- For a more detailed view of it, click [here](./project-plan/README.md)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
