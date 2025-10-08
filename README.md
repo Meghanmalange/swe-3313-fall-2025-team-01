@@ -29,16 +29,17 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#-introduction">Introduction</a></li>
-    <li><a href="#-meet-our-team">Meet Our Team</a></li>
-    <li><a href="#-team-assignments">Team Assignmments</a></li>
-    <li><a href="#-technology-selection">Technology Selection</a></li>
-    <li><a href="#-project-plan">Project Plan</a></li>
-    <li><a href="#-project-plan-video-presentation">Project Plan Video Presentation</a></li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#meet-our-team">Meet Our Team</a></li>
+    <li><a href="#team-assignments">Team Assignmments</a></li>
+    <li><a href="#technology-selection">Technology Selection</a></li>
+    <li><a href="#project-plan">Project Plan</a></li>
+    <li><a href="#project-plan-video-presentation">Project Plan Video Presentation</a></li>
   </ol>
 </details>
 
 
+<a id="introduction"></a>
 # :book: Introduction
 
 Welcome to the project repository for **Team 01 - The African Royals**. Here you will find all of the artifacts, presentations, documentation, and source code for our SWE 3313 class project.
@@ -48,6 +49,7 @@ We will create a small e-commerce website using Java, SpringBoot, and SQLite to 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<a id="meet-our-team"></a>
 # :atom_symbol: Meet Our Team
 
 [Aaaliyah Uchendu](./project-plan/resumes/Aaliyah_Resume.md/)
@@ -63,6 +65,7 @@ We will create a small e-commerce website using Java, SpringBoot, and SQLite to 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<a id="team-assignments"></a>
 # :people_holding_hands: Team Assignments
 
 - To distribute work efficiently for this project, we allocated our team of five into specific roles: Project Leader / Coordinator, 
@@ -72,6 +75,7 @@ Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / Q
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<a id="technology-selection"></a>
 # :link: Technology Selection
 
 - To build our application, we will be coding in Java, utilizing the Spring Boot framework. We will use SQLite as our database to store user and item attributes.
@@ -79,7 +83,7 @@ Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / Q
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+<a id="project-plan"></a>
 # :bar_chart: Project Plan
 
 - We broke down our project plan into deliverables with timelines.
@@ -88,6 +92,7 @@ Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / Q
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<a id="project-plan-video-presentation"></a>
 # :movie_camera: Project Plan Video Presentation
 - To go over our entire project plan in detail, we created a video presentation covering all the sections.
 - Watch project presentation video [here](https://www.loom.com/share/a04db9b23f6e470ebd6952a73105ab56?sid=b12b09db-2c36-48de-80d7-f6bb64b91035)
