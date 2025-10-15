@@ -111,3 +111,17 @@ Backend Developer (Database & Services), Frontend Developer (UI/UX),  Tester / Q
 [stars-url]: https://github.com/Meghanmalange/swe-3313-fall-2025-team-01/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Meghanmalange/swe-3313-fall-2025-team-01.svg?style=for-the-badge
 [issues-url]: https://github.com/Meghanmalange/swe-3313-fall-2025-team-01/issues
+
+<a id="requirements"></a>
+# :memo: Requirements
+
+We gathered the functional and non-functional requirements for our jewelry store system.  
+You can view all requirement artifacts below:
+
+- [Requirements Overview](./requirements/README.md)
+- [Use Case Diagram](./requirements/use-case-diagram.md)
+- [Decision Table](./requirements/decision-table.md)
+- [Requirements Presentation](./requirements/presentation.md)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
