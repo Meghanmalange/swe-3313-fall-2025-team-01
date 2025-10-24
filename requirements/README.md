@@ -18,15 +18,15 @@ The system aims to provide customers with a simple, beautiful shopping experienc
 
 ## ⚙️ Requirements — Version 1  
 
-### 🧍‍♀️ T8E-1: User Account Management  
+### 🧍‍♀️ T1E-1: User Account Management  
 
-#### 🪪 T8S-1: Register a New User  
+#### 🪪 T1S-1: Register a New User  
 - **Priority:** Must Have  
 - **Effort:** 1 day  
 - **Type:** Functional  
 - The user must be able to self-register by creating an account with a unique username and a password that is at least 6 characters long. Admins cannot self-register.  
 
-#### 🔐 T8S-2: Log in as a Registered User  
+#### 🔐 T1S-2: Log in as a Registered User  
 - **Priority:** Must Have  
 - **Effort:** 0.5 day  
 - **Type:** Functional  
@@ -34,7 +34,7 @@ The system aims to provide customers with a simple, beautiful shopping experienc
 
 ---
 
-### 💍 T8E-2: Jewelry Inventory & Browsing  
+### 💍 T1E-2: Jewelry Inventory & Browsing  
 
 #### 🧭 T8S-3: View Jewelry Inventory  
 - **Priority:** Must Have  
@@ -42,7 +42,7 @@ The system aims to provide customers with a simple, beautiful shopping experienc
 - **Type:** Functional  
 - After login, the user must see all available jewelry items sorted by price from highest to lowest. Sold items must not appear in this list.  
 
-#### 🔎 T8S-4: Search by Jewelry Name  
+#### 🔎 T1S-4: Search by Jewelry Name  
 - **Priority:** Must Have  
 - **Effort:** 0.5 day  
 - **Type:** Functional  
@@ -50,21 +50,21 @@ The system aims to provide customers with a simple, beautiful shopping experienc
 
 ---
 
-### 🛒 T8E-3: Shopping Cart & Checkout  
+### 🛒 T1E-3: Shopping Cart & Checkout  
 
-#### ➕ T8S-5: Add Item to Cart  
+#### ➕ T1S-5: Add Item to Cart  
 - **Priority:** Must Have  
 - **Effort:** 0.5 day  
 - **Type:** Functional  
 - The user must be able to add one or more jewelry items to their cart.  
 
-#### 💳 T8S-6: Checkout (Mock Payment)  
+#### 💳 T1S-6: Checkout (Mock Payment)  
 - **Priority:** Must Have  
 - **Effort:** 1 day  
 - **Type:** Functional  
 - The checkout must collect the user’s shipping and mock payment details. Payment processing is simulated (no real transaction).  
 
-#### 🧮 T8S-7: Calculate Total with Tax and Shipping  
+#### 🧮 T1S-7: Calculate Total with Tax and Shipping  
 - **Priority:** Must Have  
 - **Effort:** 0.5 day  
 - **Type:** Functional  
@@ -73,7 +73,7 @@ The system aims to provide customers with a simple, beautiful shopping experienc
   - 3-Day – $19  
   - Ground – Free  
 
-#### 🧾 T8S-8: Generate and Display Receipt  
+#### 🧾 T1S-8: Generate and Display Receipt  
 - **Priority:** Must Have  
 - **Effort:** 1 day  
 - **Type:** Functional  
@@ -81,27 +81,27 @@ The system aims to provide customers with a simple, beautiful shopping experienc
 
 ---
 
-### 👑 T8E-4: Admin Management & Reports  
+### 👑 T1E-4: Admin Management & Reports  
 
-#### 🔐 T8S-9: Admin Login  
+#### 🔐 T1S-9: Admin Login  
 - **Priority:** Must Have  
 - **Effort:** 0.5 day  
 - **Type:** Functional  
 - Only existing admins can log in and transform a regular user into an admin.  
 
-#### 🧰 T8S-10: Add Inventory (Manual Entry)  
+#### 🧰 T1S-10: Add Inventory (Manual Entry)  
 - **Priority:** Must Have  
 - **Effort:** 1 day  
 - **Type:** Functional  
 - For Version 1, admins will manually add jewelry items directly into the database.  
 
-#### 📊 T8S-11: View Sales Report  
+#### 📊 T1S-11: View Sales Report  
 - **Priority:** Must Have  
 - **Effort:** 1 day  
 - **Type:** Functional  
 - Admins can view a list of all completed transactions in their dashboard. Each record includes customer name, items purchased, and total price.  
 
-#### 🧾 T8S-12: View Individual Receipts  
+#### 🧾 T1S-12: View Individual Receipts  
 - **Priority:** Must Have  
 - **Effort:** 0.5 day  
 - **Type:** Functional  
