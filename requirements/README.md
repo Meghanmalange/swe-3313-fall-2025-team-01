@@ -16,30 +16,96 @@ The system aims to provide customers with a simple, beautiful shopping experienc
 
 ---
 
-## ⚙️ Version 1 Scope  
+## ⚙️ Requirements — Version 1  
 
-Version 1 focuses on all **MUST HAVE** functionalities required to make the store operational.  
-These include user management, jewelry browsing, cart handling, checkout, and basic admin control.  
+### 🧍‍♀️ T8E-1: User Account Management  
 
-### 👥 User Features  
-- **Account Registration & Login** — users can create an account and log in securely.  
-- **Unique Credentials** — usernames must be unique with a minimum 6-character password.  
-- **View Inventory** — users can browse all available jewelry items, sorted by price (high → low).  
-- **Search** — search by **item name** only (description search will be added later).  
-- **Add to Cart** — users can add multiple jewelry items to their cart.  
-- **Checkout** — mock checkout form to collect shipping and payment details (not a real transaction).  
-- **Cost Calculations** — subtotal, 6 % tax, and shipping options:  
+#### 🪪 T8S-1: Register a New User  
+- **Priority:** Must Have  
+- **Effort:** 1 day  
+- **Type:** Functional  
+- The user must be able to self-register by creating an account with a unique username and a password that is at least 6 characters long. Admins cannot self-register.  
+
+#### 🔐 T8S-2: Log in as a Registered User  
+- **Priority:** Must Have  
+- **Effort:** 0.5 day  
+- **Type:** Functional  
+- The user must be able to log in using their registered credentials. Login must validate credentials and direct the user to the main inventory screen upon success.  
+
+---
+
+### 💍 T8E-2: Jewelry Inventory & Browsing  
+
+#### 🧭 T8S-3: View Jewelry Inventory  
+- **Priority:** Must Have  
+- **Effort:** 1 day  
+- **Type:** Functional  
+- After login, the user must see all available jewelry items sorted by price from highest to lowest. Sold items must not appear in this list.  
+
+#### 🔎 T8S-4: Search by Jewelry Name  
+- **Priority:** Must Have  
+- **Effort:** 0.5 day  
+- **Type:** Functional  
+- The system must allow users to search jewelry items by **name only**. Description search will be included in a future version.  
+
+---
+
+### 🛒 T8E-3: Shopping Cart & Checkout  
+
+#### ➕ T8S-5: Add Item to Cart  
+- **Priority:** Must Have  
+- **Effort:** 0.5 day  
+- **Type:** Functional  
+- The user must be able to add one or more jewelry items to their cart.  
+
+#### 💳 T8S-6: Checkout (Mock Payment)  
+- **Priority:** Must Have  
+- **Effort:** 1 day  
+- **Type:** Functional  
+- The checkout must collect the user’s shipping and mock payment details. Payment processing is simulated (no real transaction).  
+
+#### 🧮 T8S-7: Calculate Total with Tax and Shipping  
+- **Priority:** Must Have  
+- **Effort:** 0.5 day  
+- **Type:** Functional  
+- The system must apply a 6% tax to the subtotal and add a shipping fee based on the selected option:  
   - Overnight – $29  
   - 3-Day – $19  
   - Ground – Free  
-- **Order Confirmation & Receipt** — displays a breakdown of total cost and shipping info.  
-- **Automatic Inventory Update** — purchased items are removed from inventory.  
 
-### 👑 Admin Features  
-- **Admin Login** — only existing admins can transform a user into an admin.  
-- **Add Inventory (Manual)** — for Version 1, admins will manually add items into the database.  
-- **View Sales Report** — admins can see all completed transactions in the admin dashboard.  
-- **View Receipts** — admins can click on sold items to view related receipts.  
+#### 🧾 T8S-8: Generate and Display Receipt  
+- **Priority:** Must Have  
+- **Effort:** 1 day  
+- **Type:** Functional  
+- After payment confirmation, the system must show an on-screen receipt summarizing the items, subtotal, tax, shipping, and grand total. Purchased items must be automatically removed from inventory.  
+
+---
+
+### 👑 T8E-4: Admin Management & Reports  
+
+#### 🔐 T8S-9: Admin Login  
+- **Priority:** Must Have  
+- **Effort:** 0.5 day  
+- **Type:** Functional  
+- Only existing admins can log in and transform a regular user into an admin.  
+
+#### 🧰 T8S-10: Add Inventory (Manual Entry)  
+- **Priority:** Must Have  
+- **Effort:** 1 day  
+- **Type:** Functional  
+- For Version 1, admins will manually add jewelry items directly into the database.  
+
+#### 📊 T8S-11: View Sales Report  
+- **Priority:** Must Have  
+- **Effort:** 1 day  
+- **Type:** Functional  
+- Admins can view a list of all completed transactions in their dashboard. Each record includes customer name, items purchased, and total price.  
+
+#### 🧾 T8S-12: View Individual Receipts  
+- **Priority:** Must Have  
+- **Effort:** 0.5 day  
+- **Type:** Functional  
+- Admins can click on any sold item in the sales report to view the full related receipt.  
 
 ---
 
