@@ -4,8 +4,8 @@
 
 ### 🧾 Requirements Analysis & Elicitation — Version 1  
 
-After a detailed elicitation session with our customer, we identified the core features, goals, and constraints for **The African Royals Jewelry Store** application.  
-This document summarizes the agreed-upon Version 1 scope and outlines the vision for future development.  
+After a detailed elicitation session with our customer, we identified the core features, goals, and constraints for **The African Royals Jewelry Store** application. For this stage of the project, our group — **Team 1** — is responsible for defining and developing the system’s **epics and stories** that make up **Version 1**. Each epic and story follows our team’s naming convention, where **T1E-1** represents our team’s first epic and **T1S-1** represents the related stories under that epic. This document outlines the agreed-upon scope for this version and sets the foundation for future development phases. **We hope you enjoy our wonderful and extraordinary work!**
+ 
 
 ---
 
