@@ -125,3 +125,14 @@ You can view all requirement artifacts below:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<a id="user-interface-design"></a>
+# :computer: User Interface Design
+
+We designed a user interface that is not only simplistic and elegant, but incorporates our core functionalities while focusing on simplicity for the best user experience.
+You can view the prototype of our design here:
+- [User Inteface Design](./requirements/README.md)
+
+You can also find the presentation of our UI design here:
+- [UI Presentation](./requirements/use-case-diagram.md)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
