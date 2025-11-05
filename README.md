@@ -133,6 +133,6 @@ You can view the prototype of our design here:
 - [User Inteface Design](https://marvelapp.com/prototype/agh5e5g)
 
 You can also find the presentation of our UI design here:
-- [UI Presentation](./requirements/use-case-diagram.md)
+- [UI Presentation](https://www.loom.com/share/0f586c76309f4b9b9a8f3f37fba346c8)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
