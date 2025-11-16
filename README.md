@@ -136,3 +136,8 @@ You can also find the presentation of our UI design here:
 - [UI Presentation](https://www.loom.com/share/0f586c76309f4b9b9a8f3f37fba346c8)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a id="technical-design"></a>
+# :apple: Technical Design
+
+blah blah write something here
