@@ -98,12 +98,14 @@ Security: Spring Security (or a light custom equivalent), HTTP session-based for
 
 | Column              | Type             |   Notes                                    |
 | ------------------- | ---------------- | -----------------------------------------  |
-| id                  | INTEGER PK       | Auto_Increment primary key                 |
+| Userid              | INTEGER PK       | Auto_Increment primary key                 |
 | Username            | TEXT UNIQUE      | Required, Unique                           |
+| email               | BOOLEAN          | For account reference    |
+| Full name           | TEXT             | User's full name    |
 | password_hash       | TEXT             | BCrypt hash of password (min 6 chars)      |
 | role                | TEXT             | 'USER' or 'ADMIN'                          |
 | created_at          | DATETIME         | Creation Timestamp                         |
-| enabled             | BOOLEAN          | For future account disabling (optional)    |
+| email               | BOOLEAN          | For future account disabling (optional)    |
 
 ### 2.2 Java Domain Model
 ```sh
