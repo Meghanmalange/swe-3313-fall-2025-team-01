@@ -79,9 +79,35 @@
 
 <a id="data-storage-plan"></a>
 # :people_holding_hands: Data Storage Plan
+Our chosen data storage is SQLite 
+
+#### Why we chose SQLite
+- SQLite is database engine that stores data in a singular file, making it simpler and more efficient to manage.
+- It does require a server, meaning that it can be handled directly through a function call
+- Recommended by many software developers and has been used across many web and mobile applications
+
+#### Libraries and technologies to store data?
+- SQLite 
+- SQLite JDBC to allow Java to connect with the database
+- Spring Boot to manage the connection between database and view
+
+#### Step by step data storage
+1. Create a new file [name].db 
+- This file is the database that will store all information
 
 
-  
+2. Turn Java classes into tables
+- Example: the item class will become a table containing the id, item name, and price
+
+
+3. Use Spring Boot repositories to write new information into the database
+- Example: itemRepository.save(item) will allow the admin to add a new item into the inventory and database
+<br>
+Documentation and useful tutorials for SQLite
+
+- Main website: https://sqlite.org/index.html
+- Tutorial: https://www.geeksforgeeks.org/sqlite/sqlite-tutorial/
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
