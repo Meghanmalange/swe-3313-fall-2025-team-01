@@ -437,19 +437,22 @@ This directly implements the “transform regular user into admin” requirement
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
 <a id="coding-style-guide"></a>
 # :people_holding_hands: Coding Style Guide
 
 To ensure that our application is maintainable, consistent, and easy for all team members to understand, we will follow a standard coding style. We also reference Cornell’s Java Style Guide for additional clarity and examples:
  Source: Cornell University Java Programming & Style Guide
  https://www.cs.cornell.edu/courses/JavaAndDS/JavaStyle.html
-General Principles
+
+## General Principles
 - Code should be written so another beginner could read and understand it.
 - Use clear, descriptive names for all variables, classes, and methods.
 -Keep each function or method focused on one purpose.
 -Add comments whenever logic is not obvious.
 -Do not leave unused code or debug print statements in submitted versions.
-Naming Conventions
+
+### Naming Conventions
 - Classes: PascalCase
 User, InventoryItem, SaleManager
 - Methods: camelCase
@@ -458,7 +461,8 @@ calculateTotal(), addItemToCart(), loginUser()
 userName, itemPrice, shippingMethod
 - Constants: UPPER_CASE
 TAX_RATE, MAX_CART_SIZE
-Formatting
+
+### Formatting
 - Indentation: 2 spaces.
 - Use single quotes for strings: 'example'.
 - Use semicolons at the end of each statement.
@@ -467,69 +471,87 @@ Formatting
  if (isValid) {
   return true;
 }
-Comments
+
+### Comments
 - Use comments to explain why, not what.
 - Use JavaDoc comments for functions:
  /**
  * Calculates tax for a subtotal
  */
-Database (SQLite / SQL) Style Guide
-	Referencing “https://www.sqlstyle.guide/”
-Table Names
+
+
+## Database (SQLite / SQL) Style Guide
+	Referencing “https://www.sqlstyle.guide/"
+	
+### Table Names
 - Use PascalCase for table names: User, InventoryItem, Sale, SaleInventoryItem
 - Keep names singular, not plural
-Column Names
+
+### Column Names
 - Use camelCase for columns: userId, fullName, isSold, shippingAddress
 - Primary keys always use Id suffix: UserId, ItemId, SaleId
 - Foreign keys match the referenced table name: UserId, ItemId
-Data Types
+  
+### Data Types
 - Use INTEGER for IDs and whole numbers
 - Use REAL for prices or decimal values (REAL is SQLite’s closest to decimal/currency)
 - Use TEXT for strings, including names, descriptions, and addresses
 - Use BOOLEAN (stored as 0 or 1) for true/false fields like isAdmin or isSold
-Constraints
+  
+### Constraints
 - Required fields: NOT NULL (e.g., username, password, shippingAddress)
 - Primary key: PRIMARY KEY
 - Foreign keys: REFERENCES OtherTable(columnName)
 - SQLite does not enforce types strictly, so naming conventions and NOT NULL constraints are important
 
 
-Junction / Linking Tables
+### Junction / Linking Tables
 - Use a combination of the two related tables’ names: SaleInventoryItem
 - Include both foreign keys: SaleId and ItemId
-Version Control & Repository Management
- Platform
+
+
+## Version Control & Repository Management
+
+### Platform
 - GitHub
-Repository Structure
+
+### Repository Structure
 Main repository example:
  swe-3313-fall-2025-team-01
-Branches
-main – final, stable project code
-dev – where all features are combined and tested
-feature branches – one branch per task (e.g., feature/T1S-1-registration)
-database – database schema and ERD updates (optional)
-Workflow
-All changes must go through a Pull Request (PR)
-PRs require at least one team member approval
-Fix merge conflicts before requesting approval
-Delete feature branch after merging
-Commit Conventions
-Format:
+
+### Branches
+- main – final, stable project code
+- dev – where all features are combined and tested
+- feature branches – one branch per task (e.g., feature/T1S-1-registration)
+- database – database schema and ERD updates (optional)
+
+### Workflow
+- All changes must go through a Pull Request (PR)
+- PRs require at least one team member approval
+= Fix merge conflicts before requesting approval
+- Delete feature branch after merging
+
+### Commit Conventions
+#### Format:
  [Type] Short description
- Types:
-feat – new feature
-fix – bug fix
-refactor – code clean-up
-test – adding tests
-Example:
- [feat] Implement jewelry search by name
-Code Review Requirements
+ 
+#### Types:
+- feat – new feature
+- fix – bug fix
+- refactor – code clean-up
+- test – adding tests
+
+### Example:
+-  [feat] Implement jewelry search by name
+
+## Code Review Requirements
+
 Before approving a Pull Request:
-Check if naming conventions were followed
-Ensure code is readable and commented where needed
-Verify the code matches the requirements for its epic/story
-Ensure no debugging outputs are left
-Confirm no broken formatting or unused variables
+- Check if naming conventions were followed
+- Ensure code is readable and commented where needed
+- Verify the code matches the requirements for its epic/story
+- Ensure no debugging outputs are left
+- Confirm no broken formatting or unused variables
 
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
