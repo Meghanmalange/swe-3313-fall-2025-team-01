@@ -139,9 +139,35 @@ erDiagram
 <a id="entity/field-descriptions"></a>
 # :book: Entity/Field Descriptions
 
-Welcome to the project repository for **Team 01 - The African Royals**. Here you will find all of the artifacts, presentations, documentation, and source code for our SWE 3313 class project.
+| Property            | Type             | Required      | Key Type     |  Notes                                              |
+| ------------------- | ---------------- | --------------|-------------|----------------------------------------------------  |
+| UserId           | INTEGER            | ✔️             | PK           | Unique identifier for each user. Auto-incremented.        |
+| Username         | NVARCHAR(100)      | ✔️             | —            | Required and unique username for each user.               |
+| Email            | NVARCHAR(100)      | ✔️             | —            | User email address for contact.                           |
+| Passwordhash     | NVARCHAR(255)      | ✔️             | —            | Hashed password for authentication.                       |
+| FullName         | NVARCHAR(50)       | ✔️             | —            | User’s full name (first + last).                          |
+| Role             | CHAR               | ✔️             | —            | Indicates if user is an admin ('admin') or customer ('user'). |
+| ItemId           | INTEGER            | ✔️             | PK           | Unique identifier for each jewelry item. Auto-incremented. |
+| Name             | NVARCHAR(100)      | ✔️             | —            | Jewelry item name.                                       |
+| Description      | NVARCHAR(255)      | ⬜             | —            | Description of the jewelry item.                         |
+| Price            | NVARCHAR(50)       | ✔️             | —            | Item price in USD.                                       |
+| ImageURL         | BOOLEAN            | ✔️             | —            | URL to item's image.                                     |
+| IsSold           | BOOLEAN            | ✔️             | —            | Indicates if the item has been sold.                     |
+| SaleId               | INTEGER            | ✔️             | PK           | Unique identifier for each sale. Auto-incremented.           |
+| UserId               | INTEGER            | ✔️             | —            | ID of the user who made the purchase.                        |
+| SubTotal             | Decimal            | ✔️             | —            | Total cost of items before tax and shipping.                 |
+| Tax                  | Decimal            | ✔️             | —            | Tax applied to the sale.                                     |
+| ShippingMethod       | NVARCHAR(255)      | ✔️             | —            | Shipping option chosen (Overnight, 3-Day, Ground).           |
+| ShippingCost         | Decimal            | ✔️             | —            | Cost of the selected shipping method.                        |
+| ShippingDetails      | NVARCHAR(255)      | ⬜             | —            | Optional instructions or delivery notes.                     |
+| ShippingAddress      | NVARCHAR(255)      | ✔️             | —            | Street address for shipping.                                 |
+| ShippingCity         | NVARCHAR(255)      | ✔️             | —            | City for shipping.                                           |
+| ShippingState        | NVARCHAR(255)      | ✔️             | —            | State for shipping.                                          |
+| ShippingZip          | NVARCHAR(255)      | ✔️             | —            | ZIP code for shipping.                                       |
+| Total                | Decimal            | ✔️             | —            | Final total including items, tax, and shipping.              |
+| SaleId         | INTEGER       | ✔️             | FK → Sale(SaleId)              | References the Sale table.            |
+| ItemId         | INTEGER       | ✔️             | FK → InventoryItem(ItemId)     | References the InventoryItem table.   |
 
-We will create a small e-commerce website using Java, SpringBoot, and SQLite to sell one-of-a-kind African jewelry.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -189,7 +215,6 @@ Security: Spring Security (or a light custom equivalent), HTTP session-based for
 | Full name           | TEXT             | User's full name                           |
 | password_hash       | TEXT             | BCrypt hash of password (min 6 chars)      |
 | role                | TEXT             | 'USER' or 'ADMIN'                          |
-| created_at          | DATETIME         | Auto-generated timestamp at user creation  |
 
 
 ### 2.2 Java Domain Model
