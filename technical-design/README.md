@@ -88,8 +88,55 @@
 <a id="entity-relationship-diagram"></a>
 # :link: Entity Relationship Diagram
 
-- To build our application, we will be coding in Java, utilizing the Spring Boot framework. We will use SQLite as our database to store user and item attributes.
-- For a detailed explanation of our tool choices and reasoning for them, click [here](./project-plan/technology-selection/README.md/)
+```mermaid
+  info
+```
+
+```mermaid
+erDiagram
+
+    USER ||--o{ SALE : makes
+    SALE ||--o{ SALE_INVENTORY_ITEM : includes
+    INVENTORYITEM ||--o| SALE_INVENTORY_ITEM : sold_in
+
+    USER {
+        int UserId
+        string Username
+        string Email
+        string PasswordHash
+        string FullName
+        string Role
+    }
+
+    INVENTORYITEM {
+        int ItemId
+        string Name
+        string Description
+        double Price
+        string ImageUrl
+        boolean IsSold
+    }
+
+    SALE {
+        int SaleId
+        int UserId
+        double SubTotal
+        double Tax
+        string ShippingMethod
+        double ShippingCost
+        string ShippingDetails
+        string ShippingAddress
+        string ShippingCity
+        string ShippingState
+        string ShippingZip
+        double Total
+    }
+
+    SALE_INVENTORY_ITEM {
+        int SaleId
+        int ItemId
+    }
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
