@@ -21,6 +21,7 @@
 
 <a id="implementation-language"></a>
 # :book: Implementation Language
+### The implementation languages we chose are Java, HTML, and CSS
 #### Why we selected Java 
 - Our members have strong experience in programming in Java
 - It is very resourceful, and it includes many libraires, Q&A support, and debugging tools
@@ -50,7 +51,7 @@
 
 <a id="#implementation-framework"></a>
 # :atom_symbol: Implementation Framework
-
+### The implementation frameworks we chose are Spring Boot and Thymeleaf
 #### Why we selected Spring Boot
 - Provides a programming model for Java-based applications
 - Supports web apps, REST APIs, microservices, security and cloud deployment
@@ -79,8 +80,7 @@
 
 <a id="data-storage-plan"></a>
 # :people_holding_hands: Data Storage Plan
-Our chosen data storage is SQLite 
-
+### The storage mechanism we chose is SQLite
 #### Why we chose SQLite
 - SQLite is database engine that stores data in a singular file, making it simpler and more efficient to manage.
 - It does require a server, meaning that it can be handled directly through a function call
@@ -200,15 +200,14 @@ erDiagram
 
 <a id="#data-examples"></a>
 # :atom_symbol: Data Examples
-
-
+![Data Example Image](img/technical-design-img/Example Data - Sheet1_page-0001.jpg)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <a id="database-seed-data"></a>
 # :people_holding_hands: Database Seed Data
-
+![Database Seed Image](img/technical-design-img/Database Seed Diagram - Sheet1_page-0001.jpg)
 
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
