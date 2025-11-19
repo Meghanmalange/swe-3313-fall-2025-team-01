@@ -200,14 +200,14 @@ erDiagram
 
 <a id="#data-examples"></a>
 # :atom_symbol: Data Examples
-![Data Example Image](img/technical-design-img/Example Data - Sheet1_page-0001.jpg)
+![Data Example Image](img/technical-design-img/.jpg)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <a id="database-seed-data"></a>
 # :people_holding_hands: Database Seed Data
-![Database Seed Image](img/technical-design-img/Database Seed Diagram - Sheet1_page-0001.jpg)
+![Database Seed Data Image](img/technical-design-img/.jpg)
 
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
