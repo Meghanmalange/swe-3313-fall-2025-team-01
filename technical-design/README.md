@@ -89,10 +89,6 @@
 # :link: Entity Relationship Diagram
 
 ```mermaid
-  info
-```
-
-```mermaid
 erDiagram
 
     USER ||--o{ SALE : makes
@@ -189,12 +185,12 @@ Security: Spring Security (or a light custom equivalent), HTTP session-based for
 | ------------------- | ---------------- | -----------------------------------------  |
 | Userid              | INTEGER PK       | Auto_Increment primary key                 |
 | Username            | TEXT UNIQUE      | Required, Unique                           |
-| email               | BOOLEAN          | For account reference    |
-| Full name           | TEXT             | User's full name    |
+| email               | TEXT             | Required for account recovery              |
+| Full name           | TEXT             | User's full name                           |
 | password_hash       | TEXT             | BCrypt hash of password (min 6 chars)      |
 | role                | TEXT             | 'USER' or 'ADMIN'                          |
-| created_at          | DATETIME         | Creation Timestamp                         |
-| email               | BOOLEAN          | For future account disabling (optional)    |
+| created_at          | DATETIME         | Auto-generated timestamp at user creation  |
+
 
 ### 2.2 Java Domain Model
 ```sh
