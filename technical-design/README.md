@@ -584,7 +584,7 @@ Before approving a Pull Request:
 
 <a id="technical-design-presentation"></a>
 # :link: Technical Design Presentation
-
+Click the link to watch our presentation about the technical design of the African Jewelry Shop: [Watch Here]()
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
