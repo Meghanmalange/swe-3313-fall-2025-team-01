@@ -21,8 +21,29 @@
 
 <a id="implementation-language"></a>
 # :book: Implementation Language
+#### Why we selected Java 
+- Our members have strong experience in programming in Java
+- It is very resourceful, and it includes many libraires, Q&A support, and debugging tools
+- Java is a common language used by developers to build web applications
+- Reliable language to share code and work in groups
 
+#### Ways we will implement it
+- Developing the backend logic such as adding inventory items
+- Set up and manage data models like Item, Sale, and Category, and connect them to the database with respitories.
+- Powers the server side of the online thrift store with Spring Boot
 
+#### Documentation and useful tutorials for Java
+- Main website: https://dev.java/
+- Java tutorial: https://www.w3schools.com/java/
+- Java APIs: https://devdocs.io/openjdk~17/?utm_source=chatgpt.com
+
+#### Why and how we will use HTML and CSS
+- Create the frontend of the African Jewelry Shop using HTML for structure and CSS for styling
+- Apply the UI/UX design that was created through Marvel to the HTML pages for good user experience.
+
+#### Documentation and useful tutorials for HTML + CSS
+- HTML:  https://www.w3schools.com/html/
+- CSS:  https://www.w3schools.com/Css/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -30,7 +51,28 @@
 <a id="#implementation-framework"></a>
 # :atom_symbol: Implementation Framework
 
+#### Why we selected Spring Boot
+- Provides a programming model for Java-based applications
+- Supports web apps, REST APIs, microservices, security and cloud deployment
+- Creates stand-alone application
+- Handles required internal dependencies
 
+#### Ways we will implement it
+- Use Spring's controllers to return HTML pages
+- Receive requests from user such as changing screens and completing purchase
+- Create and store items as objects and sends information to database
+
+#### Documentation and useful tutorials for Spring Boot
+- Main website: https://spring.io/projects/spring-boot
+- Spring Boot Tutorial: https://www.geeksforgeeks.org/advance-java/spring-boot/
+
+#### Why and how we will use Thymeleaf
+- Allows the HTML to display data from Java such as item information (name, image, price), sales, and user type (user, admin)
+- Integrates Java and Spring Boot 
+
+#### Documentation and useful tutorials for Thymeleaf
+- Main website: https://www.thymeleaf.org/
+- Thymeleaf tutorial: https://www.geeksforgeeks.org/java/spring-boot-thymeleaf-with-example/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
