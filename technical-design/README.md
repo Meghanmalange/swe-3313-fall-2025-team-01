@@ -49,7 +49,7 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<a id="#implementation-framework"></a>
+<a id="implementation-framework"></a>
 # :atom_symbol: Implementation Framework
 ### The implementation frameworks we chose are Spring Boot and Thymeleaf
 #### Why we selected Spring Boot
@@ -198,16 +198,16 @@ erDiagram
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<a id="#data-examples"></a>
+<a id="data-examples"></a>
 # :atom_symbol: Data Examples
-![Data Example Image](img/technical-design-img/.jpg)
+![Data Example Image](/img/technical-design-img/example-data-img.jpg)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <a id="database-seed-data"></a>
 # :people_holding_hands: Database Seed Data
-![Database Seed Data Image](img/technical-design-img/.jpg)
+![Database Seed Data Image](/img/technical-design-img/database-seed-img.jpg)
 
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
