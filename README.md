@@ -140,4 +140,7 @@ You can also find the presentation of our UI design here:
 <a id="technical-design"></a>
 # :apple: Technical Design
 
-blah blah write something here
+Having gathered our requirements and creating a user interface design, we created the technical design of our project which includes an ERD, entity/field descriptions,data storage plan, authentication and authorization plan and more. This sets out to give a more detailed and clear picture of the design of our project.
+
+For detailed information on each aspect of these technical design elements click here:
+- [Technical Design](./technical-design/README.md)
