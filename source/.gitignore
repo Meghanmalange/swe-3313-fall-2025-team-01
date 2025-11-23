@@ -1,0 +1,47 @@
+# Maven build directories
+target/
+bin/
+out/
+
+# IntelliJ idea files
+.idea/
+*.iml
+
+# Eclipse files
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# JAR/WAR artifacts
+*.jar
+*.war
+*.zip
+
+# Temporary files
+*.tmp
+*.cache
+
+# SQLite database files
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+
+# Java compiled classes
+*.class
+
+# Spring Boot devtools
+spring-boot-devtools.properties
+
+# Maven wrapper
+.mvn/
+mvnw
+mvnw.cmd
