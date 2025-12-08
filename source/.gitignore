@@ -45,3 +45,4 @@ spring-boot-devtools.properties
 .mvn/
 mvnw
 mvnw.cmd
+node_modules/
