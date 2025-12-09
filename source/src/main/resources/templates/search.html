@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="search-body">
+
+<!-- Navigation -->
+<h2><a th:href="@{/catalog}">Catalog</a></h2>
+<h1>The African Jewelry Shop</h1>
+
+<!-- If you want admin redirect, later add <a th:href="@{/admin/catalog}"> instead -->
+<h2><a th:href="@{/checkout}">Checkout</a></h2>
+
+<br>
+
+<!-- SEARCH FORM -->
+<form th:action="@{/search}" method="get">
+    <input name="q" placeholder="Search" autocomplete="off"
+           th:value="${query}">
+    <button type="submit">Search</button>
+</form>
+
+<br>
+
+<!-- SEARCH RESULTS -->
+<div th:if="${#lists.isEmpty(results)}">
+    <p>No items found.</p>
+</div>
+
+<div th:each="product : ${results}">
+
+    <img alt="product image"
+         th:src="@{${product.imagePath}}">
+
+    <h5 th:text="${product.name}">Diamond Necklace</h5>
+    <h6 th:text="'$' + ${product.price}">2000</h6>
+
+    <form th:action="@{/cart/add}" method="post">
+        <input type="hidden" name="productId" th:value="${product.id}">
+        <button type="submit">Add to Cart</button>
+    </form>
+
+    <br>
+</div>
+
+</body>
+</html>

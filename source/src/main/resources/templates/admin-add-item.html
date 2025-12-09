@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Item</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="admin-add-item-body">
+
+<h1>Add New Product</h1>
+
+<form th:action="@{/admin/add-item}" method="post">
+    <label>
+        Name:
+        <input type="text" name="name" required>
+    </label>
+
+    <label>
+        Price (number only):
+        <input type="number" name="price" required>
+    </label>
+
+    <label>
+        Image path (ex: /images/diamond-necklace.png):
+        <input type="text" name="imagePath" required>
+    </label>
+
+    <button type="submit">Add Product</button>
+</form>
+
+<p><a th:href="@{/admin/catalog}">Back to Catalog</a></p>
+
+</body>
+</html>

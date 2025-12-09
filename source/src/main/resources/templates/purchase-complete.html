@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Purchase Confirmation</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="confirmation-body">
+
+<h1>The African Jewelry Shop</h1>
+<h2>Thank you for shopping. Your order is confirmed.</h2>
+
+<!-- Continue Shopping -->
+<!-- If you later track admin vs regular in the model, this supports both -->
+<button type="button"
+        th:if="${isAdmin}"
+        th:onclick="|window.location.href='@{/admin/catalog}'|">
+    Continue Shopping
+</button>
+
+<button type="button"
+        th:unless="${isAdmin}"
+        th:onclick="|window.location.href='@{/catalog}'|">
+    Continue Shopping
+</button>
+
+<!-- Log Out -->
+<button type="button"
+        th:onclick="|window.location.href='@{/logout}'|">
+    Log Out
+</button>
+
+</body>
+</html>

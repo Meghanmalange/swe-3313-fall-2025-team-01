@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sales Report</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="sales-report-body">
+
+<h1>The African Jewelry Shop – Sales Report</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Buyer</th>
+        <th>Date Sold</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sale : ${sales}">
+        <td th:text="${sale.itemName}">Item Name</td>
+        <td th:text="${sale.buyerName}">Buyer Name</td>
+        <td th:text="${#temporals.format(sale.dateSold, 'yyyy-MM-dd HH:mm')}">
+            2025-01-01 12:00
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

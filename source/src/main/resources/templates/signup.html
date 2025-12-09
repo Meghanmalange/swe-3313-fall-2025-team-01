@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Signup Screen</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="signup-body">
+
+<button onclick="window.location.href='index.html'">Back to Home Page</button>
+
+<h1>Sign Up</h1>
+
+<form th:action="@{/signup}" method="post">
+
+    <input name="email" placeholder="Email" autocomplete="off" required>
+    <input name="username" placeholder="Username" autocomplete="off" required>
+    <input name="fullName" placeholder="Full name" autocomplete="off" required>
+    <input name="password" type="password" placeholder="Password" autocomplete="off" required>
+
+    <button type="submit">Sign Up</button>
+</form>
+
+<h3>Already have an account? <a href="login.html">Login</a></h3>
+
+</body>
+</html>
