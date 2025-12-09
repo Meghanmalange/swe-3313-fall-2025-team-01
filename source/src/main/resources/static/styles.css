@@ -1,0 +1,68 @@
+/* Universal CSS */
+body{
+    margin:0;
+    padding:0;
+    background-color: black;
+}
+
+h1{
+    color: white;
+    font-family: "Playfair", "Times New Roman", serif;
+
+}
+
+h2{
+    color:#F2E8C9;
+    font-family: "Merriweather", "Verdana", sans-serif;
+}
+
+h3{
+    color:#F2E8C9;
+    font-family: "Playfair", "Times New Roman", serif;
+}
+
+button{
+    background-color: rgba(226, 197, 114, 0.32);
+    color:#E2C572;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    font-family:"Montserrat","Helvetica", sans-Serif;
+    border: 2px solid #E2C572;
+    border-radius:0;
+    padding:20px;
+}
+
+label{
+    display: flex;
+    flex-direction: column; /* stacks children vertically */
+}
+
+input{
+    color:#E2C572;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    font-family:"Montserrat","Helvetica","Sans-Serif";
+    background: transparent;
+    border: 2px solid #E2C572;
+    border-radius:0;
+}
+
+input::placeholder{
+    color:#E2C572;
+    font-style: italic;
+}
+
+a{
+    color:#F2E8C9;
+}
+
+
+/* Index */
+
+/*Login*/
+#login-button{
+    padding: 10px;
+}
+
+/*Signup*/
+#signup-button{
+    padding: 10px;
+}

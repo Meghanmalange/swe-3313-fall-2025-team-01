@@ -24,6 +24,12 @@ public class AuthController {
     public String registerAdmin(@RequestBody RegisterRequest request) {
         return authService.registerAdmin(request);
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();          // clear user, cart, etc.
+        return "redirect:/";           // index page
+    }
 }
 
 

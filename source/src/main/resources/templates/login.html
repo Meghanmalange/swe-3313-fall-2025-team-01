@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Screen</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<button onclick="window.location.href='index.html'">Back to Home Page</button>
+<h1>Login</h1>
+<form th:action="@{/login}" method="post">
+    <input name="username" placeholder="Email/Username" autocomplete="off">
+    <input name="password" type="password" placeholder="Password" autocomplete="off">
+
+    <button type="submit">Login</button>
+</form>
+
+<!-- Error Message -->
+<p th:if="${param.error}" style="color:red">Invalid username or password</p>
+
+<h3>Don't have an account? <a href="signup.html">Sign up</a></h3>
+
+</body>
+</html>

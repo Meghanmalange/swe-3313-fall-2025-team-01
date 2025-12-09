@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Catalog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="catalog-body">
+
+<!-- Top Navigation -->
+<div class="catalog-header">
+    <h2><a th:href="@{/search}">Search</a></h2>
+    <h1>The African Jewelry Shop</h1>
+    <h2><a th:href="@{/checkout}">Checkout</a></h2>
+</div>
+
+<!-- Hero Image -->
+<img alt="African man and woman header"
+     th:src="@{/images/african-duo(2).png}">
+
+<h4>Shop Collection</h4>
+
+<!-- Product Grid: 3 per row handled by CSS -->
+<div class="catalog-grid">
+    <div class="product-card" th:each="product : ${products}">
+        <img th:alt="${product.name}"
+             th:src="@{${product.imagePath}}">
+
+        <h5 th:text="${product.name}">Diamond Necklace</h5>
+        <h6 th:text="${'$' + product.price}">$2,000</h6>
+
+        <!-- Add to Cart button -->
+        <form th:action="@{/cart/add}" method="post">
+            <!-- productId now comes from product.id -->
+            <input type="hidden" name="productId" th:value="${product.id}">
+
+            <button type="submit"
+                    th:text="${cart != null and cart.contains(product.id)} ? 'In Cart' : 'Add to Cart'"
+                    th:disabled="${cart != null and cart.contains(product.id)}">
+            </button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

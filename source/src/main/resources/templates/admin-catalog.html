@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Catalog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="admin-catalog-body">
+
+<!-- Top bar -->
+<div class="admin-header">
+    <!-- Menu button to show overlay -->
+    <button type="button" onclick="toggleMenu()">☰ Menu</button>
+
+    <h1>The African Jewelry Shop</h1>
+
+    <h2><a th:href="@{/checkout}">Checkout</a></h2>
+</div>
+
+<h2>Admin</h2>
+
+<!-- Overlay menu (hidden by default via CSS) -->
+<div id="admin-menu" class="admin-menu-overlay">
+    <h2><a th:href="@{/admin/catalog}" onclick="toggleMenu()">Catalog</a></h2>
+    <h2><a th:href="@{/admin/search}" onclick="toggleMenu()">Search</a></h2>
+    <h2><a th:href="@{/admin/add-item}" onclick="toggleMenu()">Add Item</a></h2>
+    <h2><a th:href="@{/admin/sales-report}" onclick="toggleMenu()">Sales Report</a></h2>
+    <h2><a th:href="@{/admin/admin-promote}" onclick="toggleMenu()">Promote to Admin</a></h2>
+</div>
+
+<h4>Shop Collection</h4>
+
+<!-- Grid of products: 3 per row handled by CSS -->
+<div class="catalog-grid">
+    <div class="product-card" th:each="product : ${products}">
+        <img th:alt="${product.name}"
+             th:src="@{${product.imagePath}}">
+        <h3 th:text="${product.name}">Diamond Necklace</h3>
+        <h4 th:text="${'$' + product.price}">$2000</h4>
+
+        <!-- Admin could still add to cart if you want -->
+        <form th:action="@{/cart/add}" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('admin-menu');
+        menu.classList.toggle('open');
+    }
+</script>
+
+</body>
+</html>

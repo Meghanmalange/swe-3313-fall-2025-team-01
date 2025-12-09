@@ -7,26 +7,26 @@ import africanroyals.entity.User;
 import africanroyals.repository.InventoryItemRepository;
 import africanroyals.repository.SaleRepository;
 import africanroyals.repository.UserRepository;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/admin/api")
+public class AdminApiController {
 
     private final UserRepository userRepo;
     private final InventoryItemRepository itemRepo;
     private final SaleRepository saleRepo;
 
-    public AdminController(UserRepository userRepo,
-                           InventoryItemRepository itemRepo,
-                           SaleRepository saleRepo) {
+    public AdminApiController(UserRepository userRepo,
+                              InventoryItemRepository itemRepo,
+                              SaleRepository saleRepo) {
         this.userRepo = userRepo;
         this.itemRepo = itemRepo;
         this.saleRepo = saleRepo;
@@ -44,15 +44,13 @@ public class AdminController {
         User user = userRepo.findById(id).orElse(null);
         if (user == null) return "USER NOT FOUND";
 
-        user.setAdmin(true);
+        user.setAdmin(true);   // assuming your entity has setAdmin(boolean)
         userRepo.save(user);
 
         return "USER PROMOTED TO ADMIN";
     }
 
-
     // INVENTORY MANAGEMENT
-
 
     @PostMapping("/add-item")
     public String addItem(@RequestBody InventoryItem item) {
@@ -85,7 +83,6 @@ public class AdminController {
     public List<InventoryItem> search(@RequestParam String name) {
         return itemRepo.searchByName(name);
     }
-
 
     // SALES REPORTING
 
@@ -128,6 +125,3 @@ public class AdminController {
         return result;
     }
 }
-
-
-
