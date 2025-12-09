@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Promote Admin</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<h2><a th:href="@{/admin/catalog}">Catalog</a></h2>
+<h1>African Jewelry Shop</h1>
+
+<br>
+
+<!-- SEARCH USER -->
+<form th:action="@{/admin/promote-admin}" method="get">
+    <h3>Enter username or email</h3>
+    <input name="query" placeholder="Username or Email" autocomplete="off"
+           th:value="${query}">
+    <button type="submit">Search</button>
+</form>
+
+<br>
+
+<!-- WHEN a user was found -->
+<div th:if="${foundUser != null}">
+    <h3 th:text="${foundUser.fullName}">Full Name</h3>
+
+    <form th:action="@{/admin/promote-admin}" method="post">
+        <input type="hidden" name="userId" th:value="${foundUser.id}">
+        <button type="submit">Promote to admin</button>
+    </form>
+</div>
+
+<!-- AFTER promotion -->
+<div th:if="${promoted != null}">
+    <h3 th:text="${promoted.fullName} + ' has been promoted to admin'"></h3>
+</div>
+
+</body>
+</html>

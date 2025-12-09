@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="checkout-body">
+
+<!-- if admin later, you can conditionally change this to /admin/catalog -->
+<h2><a th:href="@{/catalog}">Back to Catalog</a></h2>
+<h1>The African Jewelry Shop</h1>
+
+<!-- STEP INDICATOR -->
+<div class="checkout-steps">
+    <h3 class="step-title active" data-step-label="1">Items</h3>
+    <h3 class="step-title" data-step-label="2">Shipping</h3>
+    <h3 class="step-title" data-step-label="3">Payment</h3>
+    <h3 class="step-title" data-step-label="4">Confirmation</h3>
+</div>
+
+<!-- ONE BIG FORM: final submit creates sales -->
+<form th:action="@{/checkout/complete}" method="post" id="checkout-form">
+
+    <!-- ========== STEP 1: ITEMS (NO ITEMS) ========== -->
+    <div class="checkout-step" data-step="1" th:if="${#lists.isEmpty(cartProducts)}">
+        <h4>Must add items to checkout</h4>
+        <!-- if admin later: change href to /admin/catalog based on a model flag -->
+        <button type="button" onclick="window.location.href='/catalog'">
+            Continue Shopping
+        </button>
+    </div>
+
+    <!-- ========== STEP 1: ITEMS (HAS ITEMS) ========== -->
+    <div class="checkout-step" data-step="1" th:unless="${#lists.isEmpty(cartProducts)}">
+        <!-- SCREEN 2 items in your design -->
+        <div th:each="product : ${cartProducts}">
+            <img alt="item-image" th:src="@{${product.imagePath}}">
+            <h5 th:text="${product.name}">Item Name</h5>
+            <h6 th:text="${'$' + product.price}">Price</h6>
+
+            <!-- Remove item (GET to /cart/remove?productId=...) -->
+            <a th:href="@{/cart/remove(productId=${product.itemId})}">Remove</a>
+        </div>
+
+        <br>
+        <h5>Subtotal: $<span th:text="${subtotal}">0</span></h5>
+        <h5>Tax: $<span th:text="${tax}">0</span></h5>
+        <h5>Shipping: TBD</h5>
+        <br>
+        <h5>Total: $<span th:text="${totalBeforeShipping}">0</span></h5>
+
+        <!-- Only shown when there ARE items -->
+        <button type="button" onclick="goForwardFromStep1()">
+            Proceed to Shipping
+        </button>
+    </div>
+
+    <!-- ========== STEP 2: SHIPPING ========== -->
+    <div class="checkout-step" data-step="2" style="display:none;">
+        <!-- changes components to screen 2 -->
+        <button type="button" onclick="showStep(1)">Previous</button>
+
+        <h3>Enter Delivery Address</h3>
+        <label>
+            <input name="shipAddress" placeholder="Address" required>
+            <input name="shipCity" placeholder="City" required>
+            <input name="shipState" placeholder="State" required>
+            <input name="shipZip" placeholder="Zip Code" required>
+            <input name="shipCountry" placeholder="Country/Region" required>
+        </label>
+        <br>
+
+        <label for="shipping">Shipping Method</label>
+        <select id="shipping" name="shippingMethod" onchange="updateShipping()" required>
+            <option value="OVERNIGHT">Overnight (+$29)</option>
+            <option value="THREE_DAY">3-Day (+$19)</option>
+            <option value="GROUND" selected>Ground (Free)</option>
+        </select>
+
+        <!-- Order summary -->
+        <div th:each="product : ${cartProducts}">
+            <img alt="item-image" th:src="@{${product.imagePath}}">
+            <h5 th:text="${product.name}">Item Name</h5>
+            <h6 th:text="${'$' + product.price}">Price</h6>
+        </div>
+
+        <br>
+        <h5>Subtotal: $<span id="ship-subtotal" th:text="${subtotal}">0</span></h5>
+        <h5>Tax: $<span id="ship-tax" th:text="${tax}">0</span></h5>
+        <h5>Shipping: $<span id="ship-shipping">0</span></h5>
+        <br>
+        <h5>Total: $<span id="ship-total" th:text="${totalBeforeShipping}">0</span></h5>
+
+        <button type="button" onclick="goForwardFromStep2()">
+            Proceed to Payment
+        </button>
+    </div>
+
+    <!-- ========== STEP 3: PAYMENT ========== -->
+    <div class="checkout-step" data-step="3" style="display:none;">
+        <button type="button" onclick="showStep(2)">Previous</button>
+
+        <h3>Card Information</h3>
+        <label>
+            <input id="card-number" placeholder="Credit Card Information" required>
+            <!-- This will be used as buyer name for sales report -->
+            <input id="card-name" name="fullName" placeholder="Name of Cardholder" required>
+            <input id="card-exp" placeholder="Expiration Date MM/YY" required>
+            <input id="card-cvv" placeholder="Security Code" required>
+        </label>
+        <br>
+
+        <h3>Billing Address</h3>
+        <label>
+            <input name="billAddress" placeholder="Address" required>
+            <input name="billCity" placeholder="City" required>
+            <input name="billState" placeholder="State" required>
+            <input name="billZip" placeholder="Zip Code" required>
+            <input name="billCountry" placeholder="Country/Region" required>
+        </label>
+
+        <!-- Summary -->
+        <div th:each="product : ${cartProducts}">
+            <img alt="item-image" th:src="@{${product.imagePath}}">
+            <h5 th:text="${product.name}">Item Name</h5>
+            <h6 th:text="${'$' + product.price}">Price</h6>
+        </div>
+
+        <br>
+        <h5>Subtotal: $<span id="pay-subtotal" th:text="${subtotal}">0</span></h5>
+        <h5>Tax: $<span id="pay-tax" th:text="${tax}">0</span></h5>
+        <h5>Shipping: $<span id="pay-shipping">0</span></h5>
+        <br>
+        <h5>Total: $<span id="pay-total" th:text="${totalBeforeShipping}">0</span></h5>
+
+        <button type="button" onclick="goForwardFromStep3()">
+            Proceed to Checkout
+        </button>
+    </div>
+
+    <!-- ========== STEP 4: CONFIRMATION ========== -->
+    <div class="checkout-step" data-step="4" style="display:none;">
+        <button type="button" onclick="showStep(3)">Previous</button>
+
+        <h3>Items</h3>
+        <div th:each="product : ${cartProducts}">
+            <img alt="item-image" th:src="@{${product.imagePath}}">
+            <h5 th:text="${product.name}">Item Name</h5>
+            <h6 th:text="${'$' + product.price}">Price</h6>
+        </div>
+
+        <br>
+        <h3>Delivery Address</h3>
+        <!-- We’ll fill this from shipping fields using JS just before showing step 4 -->
+        <h4 id="confirm-address">
+            <!-- Address, City, State, Zip Code, Country -->
+        </h4>
+
+        <br>
+        <h3>Shipping Method</h3>
+        <h4 id="confirm-shipping">Ground Shipping $0</h4>
+
+        <br>
+        <h3>Card Information</h3>
+        <h4 id="confirm-card">**** **** **** 0000, Exp MM/YY</h4>
+
+        <br>
+        <h5>Subtotal: $<span id="conf-subtotal" th:text="${subtotal}">0</span></h5>
+        <h5>Tax: $<span id="conf-tax" th:text="${tax}">0</span></h5>
+        <h5>Shipping: $<span id="conf-shipping">0</span></h5>
+        <br>
+        <h5>Total: $<span id="conf-total" th:text="${totalBeforeShipping}">0</span></h5>
+
+        <!-- FINAL SUBMIT: saves Sale rows, clears cart -->
+        <button type="submit">Complete purchase</button>
+    </div>
+
+</form>
+
+<script>
+    let currentStep = 1;
+
+    function updateStepTitles(step) {
+        const titles = document.querySelectorAll('.step-title');
+        titles.forEach(t => {
+            const label = parseInt(t.getAttribute('data-step-label'));
+            if (label === step) {
+                t.style.textDecoration = 'gold';
+                t.classList.add('active');
+            } else {
+                t.style.textDecoration = 'none';
+                t.classList.remove('active');
+            }
+        });
+    }
+
+    function showStep(step) {
+        const steps = document.querySelectorAll('.checkout-step');
+        steps.forEach(div => {
+            const s = parseInt(div.getAttribute('data-step'));
+            div.style.display = (s === step) ? 'block' : 'none';
+        });
+        currentStep = step;
+        updateStepTitles(step);
+    }
+
+    // STEP 1 → STEP 2
+    function goForwardFromStep1() {
+        // if there are no items, there is no "Proceed" button at all
+        showStep(2);
+    }
+
+    // STEP 2 → STEP 3 (validate shipping)
+    function goForwardFromStep2() {
+        const step2 = document.querySelector('.checkout-step[data-step="2"]');
+        const inputs = step2.querySelectorAll('input[required], select[required]');
+        for (const input of inputs) {
+            if (!input.value || input.value.trim() === '') {
+                alert('Please fill out all shipping fields before continuing.');
+                input.focus();
+                return;
+            }
+        }
+        showStep(3);
+    }
+
+    // STEP 3 → STEP 4 (validate payment)
+    function goForwardFromStep3() {
+        const step3 = document.querySelector('.checkout-step[data-step="3"]');
+        const inputs = step3.querySelectorAll('input[required]');
+        for (const input of inputs) {
+            if (!input.value || input.value.trim() === '') {
+                alert('Please fill out all payment and billing fields before continuing.');
+                input.focus();
+                return;
+            }
+        }
+
+        // fill confirmation section with latest info
+        fillConfirmation();
+        showStep(4);
+    }
+
+    function fillConfirmation() {
+        // Delivery Address
+        const addr = document.querySelector('input[name="shipAddress"]').value;
+        const city = document.querySelector('input[name="shipCity"]').value;
+        const state = document.querySelector('input[name="shipState"]').value;
+        const zip = document.querySelector('input[name="shipZip"]').value;
+        const country = document.querySelector('input[name="shipCountry"]').value;
+
+        document.getElementById('confirm-address').innerText =
+            addr + ', ' + city + ', ' + state + ' ' + zip + ', ' + country;
+
+        // Shipping method
+        const shippingSelect = document.getElementById('shipping');
+        const methodValue = shippingSelect.value;
+        let methodText = 'Ground Shipping $0';
+        if (methodValue === 'OVERNIGHT') methodText = 'Overnight Shipping $29';
+        if (methodValue === 'THREE_DAY') methodText = '3-Day Shipping $19';
+        document.getElementById('confirm-shipping').innerText = methodText;
+
+        // Card info
+        const cardNumber = document.getElementById('card-number').value;
+        const exp = document.getElementById('card-exp').value;
+        let last4 = '0000';
+        if (cardNumber && cardNumber.length >= 4) {
+            last4 = cardNumber.slice(-4);
+        }
+        document.getElementById('confirm-card').innerText =
+            '**** **** **** ' + last4 + ', Exp ' + exp;
+
+        // Totals already computed; just ensure shipping totals are in sync
+        updateShipping(); // this will sync shipping + total values across steps
+    }
+
+    function updateShipping() {
+        const shippingSelect = document.getElementById('shipping');
+        if (!shippingSelect) return; // if step 2 not rendered (empty cart)
+
+        const method = shippingSelect.value;
+
+        const baseSubtotal = parseFloat(document.getElementById('ship-subtotal').innerText) || 0;
+        const baseTax = parseFloat(document.getElementById('ship-tax').innerText) || 0;
+
+        let shipCost = 0;
+        if (method === 'OVERNIGHT') shipCost = 29;
+        if (method === 'THREE_DAY') shipCost = 19;
+        if (method === 'GROUND') shipCost = 0;
+
+        const total = baseSubtotal + baseTax + shipCost;
+
+        // update step 2
+        document.getElementById('ship-shipping').innerText = shipCost.toFixed(2);
+        document.getElementById('ship-total').innerText = total.toFixed(2);
+
+        // step 3
+        document.getElementById('pay-shipping').innerText = shipCost.toFixed(2);
+        document.getElementById('pay-total').innerText = total.toFixed(2);
+
+        // step 4
+        document.getElementById('conf-shipping').innerText = shipCost.toFixed(2);
+        document.getElementById('conf-total').innerText = total.toFixed(2);
+        document.getElementById('conf-subtotal').innerText = baseSubtotal.toFixed(2);
+        document.getElementById('conf-tax').innerText = baseTax.toFixed(2);
+    }
+
+    // Start on step 1
+    showStep(1);
+    // Initialize shipping numbers (when cart has items)
+    updateShipping();
+</script>
+
+</body>
+</html>

@@ -74,3 +74,4 @@ public class DataInitializer {
             admin.setAdmin(true);
 
             repo.save(admin);
+        }}}
