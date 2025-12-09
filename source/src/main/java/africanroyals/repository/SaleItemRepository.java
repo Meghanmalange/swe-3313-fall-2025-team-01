@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface SaleItemRepository extends JpaRepository<SaleItem, Long> {
-    
+
     List<SaleItem> findBySaleId(Long saleId);
 }
