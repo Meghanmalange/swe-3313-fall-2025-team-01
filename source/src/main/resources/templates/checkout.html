@@ -59,8 +59,10 @@
                  th:attr="data-subtotal=${subtotal},data-tax=${tax}">
             </div>
 
-            <!-- MAIN CHECKOUT FORM (we're not submitting it anymore) -->
-            <form>
+            <!-- MAIN CHECKOUT FORM (real POST now) -->
+            <form th:action="@{/checkout/complete}"
+                  method="post"
+                  id="checkout-form">
 
                 <!-- ========== STEP 1: ITEMS (NO ITEMS) ========== -->
                 <section class="checkout-step"
@@ -448,10 +450,9 @@
                         </div>
                     </div>
 
-                    <!-- FINAL BUTTON: just navigate to the confirmation page -->
-                    <button type="button"
-                            class="btn-outline primary right"
-                            onclick="window.location.href='/complete-purchase'">
+                    <!-- FINAL BUTTON: submit form for sales report -->
+                    <button type="submit"
+                            class="btn-outline primary right">
                         COMPLETE PURCHASE
                     </button>
                 </section>

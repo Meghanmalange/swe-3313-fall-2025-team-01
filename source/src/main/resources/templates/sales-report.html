@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The African Jewelry Shop -- Sales Report</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body id="admin-sales-body">
+
+<header class="admin-catalog-header">
+
+    <!-- Hamburger menu -->
+    <button id="admin-menu-toggle"
+            class="admin-menu-button"
+            type="button"
+            aria-label="Open admin menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Title + ADMIN -->
+    <div class="admin-title-block">
+        <h1>THE AFRICAN JEWELRY SHOP</h1>
+        <h2>ADMIN</h2>
+    </div>
+
+    <!-- Blank spacer on the right -->
+    <div style="width:26px;"></div>
+</header>
+
+<main class="admin-sales-main">
+
+    <h1 class="admin-sales-title">SALES REPORT</h1>
+    <p class="admin-sales-subtitle">
+        View The African Jewelry's Shop Transactions
+    </p>
+
+    <!-- Slider that controls horizontal scroll -->
+    <div class="admin-sales-slider-row">
+        <input id="sales-scroll-range"
+               class="admin-sales-range"
+               type="range"
+               min="0"
+               max="100"
+               value="0">
+    </div>
+
+    <!-- Cards container: one card per sale -->
+    <section id="admin-sales-cards" class="admin-sales-cards">
+
+        <!-- Example when there are no sales -->
+        <p class="admin-sales-empty" th:if="${#lists.isEmpty(sales)}">
+            No sales have been recorded yet.
+        </p>
+
+        <!-- One card per sale -->
+        <article class="admin-sales-card"
+                 th:each="sale, stat : ${sales}"
+                 th:unless="${#lists.isEmpty(sales)}">
+
+            <h2 class="admin-sales-card-order"
+                th:text="'Order #' + ${stat.index + 1}">
+                Order #1
+            </h2>
+
+            <p class="admin-sales-line">
+                <span class="admin-sales-label">Name:</span>
+                <span th:text="${sale.customerName}">Jane Doe</span>
+            </p>
+
+            <p class="admin-sales-label admin-sales-items-label">
+                Items Purchase:
+            </p>
+
+            <ul class="admin-sales-items">
+                <li th:each="itemName : ${sale.itemNames}"
+                    th:text="${itemName}">
+                    Diamond Necklace
+                </li>
+            </ul>
+
+            <p class="admin-sales-line admin-sales-total">
+                <span class="admin-sales-label">Total Price:</span>
+                <span th:text="'$' + ${sale.totalPrice}">
+                    $2,120
+                </span>
+            </p>
+        </article>
+
+    </section>
+</main>
+
+<!-- Side overlay menu -->
+<div id="admin-menu-overlay" class="admin-menu-overlay">
+    <div class="admin-menu-panel">
+        <nav class="admin-menu-nav">
+            <!-- Order matches screenshot: SALES REPORT, CATALOG, ADD ITEM, SEARCH -->
+            <a th:href="@{/sales-report}" href="/sales-report">SALES REPORT</a>
+            <a th:href="@{/admin-catalog}" href="/admin-catalog">CATALOG</a>
+            <a th:href="@{/add-item}" href="/add-item">ADD ITEM</a>
+            <a th:href="@{/search}" href="/search">SEARCH</a>
+            <a th:href="@{/promote-user}" href="/promote-user">PROMOTE USER</a>
+        </nav>
+    </div>
+</div>
+
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>

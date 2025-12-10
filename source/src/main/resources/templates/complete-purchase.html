@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>The African Jewelry Shop -- Order Confirmed</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <!-- Use whatever main CSS you’re using elsewhere -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body id="complete-body">
 
 <div class="complete-hero">
 
-    <!-- left-side text content -->
     <div class="complete-content">
         <h1 class="complete-title">
             THE AFRICAN<br>
@@ -23,20 +23,16 @@
 
         <div class="complete-actions">
             <!-- continue shopping -->
-            <button
-                    class="complete-btn complete-btn-primary"
-                    type="button"
-                    th:onclick="'window.location.href=\'' + @{/catalog} + '\'''">
+            <a class="complete-btn complete-btn-primary"
+               th:href="@{/catalog}">
                 CONTINUE SHOPPING
-            </button>
+            </a>
 
             <!-- log out -->
-            <button
-                    class="complete-btn complete-btn-secondary"
-                    type="button"
-                    th:onclick="'window.location.href=\'' + @{/logout} + '\'''">
+            <a class="complete-btn complete-btn-secondary"
+               th:href="@{/login}">
                 LOG OUT
-            </button>
+            </a>
         </div>
     </div>
 </div>

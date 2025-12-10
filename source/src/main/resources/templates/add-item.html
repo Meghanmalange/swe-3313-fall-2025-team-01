@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The African Jewelry Shop -- Add Item</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body id="admin-add-body">
+
+<header class="admin-catalog-header">
+
+    <button id="admin-menu-toggle"
+            class="admin-menu-button"
+            type="button"
+            aria-label="Open admin menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="admin-title-block">
+        <h1>THE AFRICAN JEWELRY SHOP</h1>
+        <h2>ADMIN</h2>
+    </div>
+
+    <div style="width:26px;"></div>
+</header>
+
+<main class="admin-add-main">
+    <section class="admin-add-left">
+        <h1 class="admin-add-title">ADD ITEM</h1>
+
+        <p class="admin-add-subtitle">
+            Provide the item's name, price, and image to
+            sell to customers
+        </p>
+
+        <form class="admin-add-form"
+              th:action="@{/admin/add-item}"
+              method="post"
+              enctype="multipart/form-data">
+
+            <input class="admin-add-input"
+                   type="text"
+                   name="name"
+                   placeholder="Name"
+                   required>
+
+            <input class="admin-add-input"
+                   type="number"
+                   step="0.01"
+                   min="0"
+                   name="price"
+                   placeholder="Price $"
+                   required>
+
+            <p class="admin-add-upload-label">Upload Image</p>
+
+            <input id="admin-add-image"
+                   class="admin-add-file-input"
+                   type="file"
+                   name="imageFile"
+                   accept="image/*"
+                   required>
+
+            <label for="admin-add-image"
+                   class="admin-add-upload-box">
+                <span class="admin-add-upload-icon">⬆</span>
+            </label>
+
+            <button type="submit"
+                    class="admin-add-submit">
+                ADD ITEM
+            </button>
+        </form>
+    </section>
+
+    <aside class="admin-add-right">
+        <img class="admin-add-hero"
+             th:src="@{/images/african-man.png}"
+             src="/images/african-man.png"
+             alt="Man wearing layered gold jewelry">
+    </aside>
+</main>
+
+<!-- Side overlay menu (same behavior as admin catalog, order matches screenshot) -->
+<div id="admin-menu-overlay" class="admin-menu-overlay">
+    <div class="admin-menu-panel">
+        <nav class="admin-menu-nav">
+            <a th:href="@{/add-item}" href="/add-item">ADD ITEM</a>
+            <a th:href="@{/admin-catalog}" href="/admin-catalog">CATALOG</a>
+            <a th:href="@{/search}" href="/search">SEARCH</a>
+            <a th:href="@{/sales-report}" href="/sales-report">SALES REPORT</a>
+            <a th:href="@{/promote-user}" href="/promote-user">PROMOTE USER</a>
+        </nav>
+    </div>
+</div>
+
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The African Jewelry Shop -- Promote User</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body id="admin-promote-body">
+
+<header class="admin-catalog-header">
+
+    <button id="admin-menu-toggle"
+            class="admin-menu-button"
+            type="button"
+            aria-label="Open admin menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="admin-title-block">
+        <h1>THE AFRICAN JEWELRY SHOP</h1>
+        <h2>ADMIN</h2>
+    </div>
+
+    <div style="width:26px;"></div>
+</header>
+
+<main class="admin-promote-main">
+
+    <section class="admin-promote-left">
+        <h1 class="admin-promote-title">PROMOTE USER</h1>
+
+        <p class="admin-promote-subtitle">
+            Enter a customer's username or email to promote them
+            to an admin account.
+        </p>
+
+        <form class="admin-promote-search-form"
+              th:action="@{/admin/promote-user/search}"
+              method="post">
+
+            <input class="admin-promote-input"
+                   type="text"
+                   name="identifier"
+                   placeholder="Username or Email"
+                   th:value="${identifier}"
+                   required>
+
+            <button class="admin-promote-search-btn"
+                    type="submit">
+                FIND USER
+            </button>
+        </form>
+
+        <p class="admin-promote-error"
+           th:if="${searchError}"
+           th:text="${searchError}">
+            No user found with that username or email.
+        </p>
+
+        <section class="admin-promote-result"
+                 th:if="${promoteCandidate != null}">
+            <h2 class="admin-promote-result-title">User found</h2>
+
+            <p class="admin-promote-result-line">
+                <span class="admin-promote-label">Full Name:</span>
+                <span th:text="${promoteCandidate.fullName}">Jane Doe</span>
+            </p>
+            <p class="admin-promote-result-line">
+                <span class="admin-promote-label">Username:</span>
+                <span th:text="${promoteCandidate.username}">janedoe</span>
+            </p>
+            <p class="admin-promote-result-line">
+                <span class="admin-promote-label">Email:</span>
+                <span th:text="${promoteCandidate.email}">
+                    jane@example.com
+                </span>
+            </p>
+
+            <form class="admin-promote-action-form"
+                  th:action="@{/admin/promote-user/promote}"
+                  method="post">
+                <input type="hidden"
+                       name="userId"
+                       th:value="${promoteCandidate.id}">
+                <button class="admin-promote-promote-btn"
+                        type="submit">
+                    PROMOTE USER
+                </button>
+            </form>
+
+            <p class="admin-promote-success"
+               th:if="${promotionSuccess}"
+               th:text="${promotionSuccess}">
+                User has been promoted.
+            </p>
+        </section>
+    </section>
+
+    <aside class="admin-promote-right">
+        <img class="admin-promote-hero"
+             th:src="@{/images/african-children.png}"
+             src="/images/african-children.png"
+             alt="African children in gold jewelry">
+    </aside>
+</main>
+
+<div id="admin-menu-overlay" class="admin-menu-overlay">
+    <div class="admin-menu-panel">
+        <nav class="admin-menu-nav">
+            <a th:href="@{/sales-report}" href="/sales-report">
+                SALES REPORT
+            </a>
+            <a th:href="@{/admin-catalog}" href="/admin-catalog">
+                CATALOG
+            </a>
+            <a th:href="@{/add-item}" href="/add-item">
+                ADD ITEM
+            </a>
+            <a th:href="@{/search}" href="/search">
+                SEARCH
+            </a>
+
+            <a th:href="@{/promote-user}" href="/promote-user">
+                PROMOTE USER
+            </a>
+        </nav>
+    </div>
+</div>
+
+<script th:src="@{/js/app.js}"></script>
+<script>
+
+</script>
+</body>
+</html>

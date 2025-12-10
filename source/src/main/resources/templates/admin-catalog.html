@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The African Jewelry Shop -- Admin Catalog</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body id="admin-catalog-body">
+
+<!-- Toast when an item is added to cart -->
+<div th:if="${addedProductName}" id="cart-toast" class="cart-toast">
+    <span th:text="${addedProductName} + ' has been added to cart'">
+        Diamond Necklace has been added to cart
+    </span>
+</div>
+
+<!-- ADMIN HEADER -->
+<header class="admin-catalog-header">
+
+    <!-- Hamburger menu button -->
+    <button id="admin-menu-toggle"
+            class="admin-menu-button"
+            type="button"
+            aria-label="Open admin menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Title + ADMIN label -->
+    <div class="admin-title-block">
+        <h1>THE AFRICAN JEWELRY SHOP</h1>
+        <h2>ADMIN</h2>
+    </div>
+
+    <!-- Checkout link on the right -->
+    <h2 class="admin-checkout-link">
+        <a th:href="@{/checkout}" href="/checkout">CHECKOUT</a>
+    </h2>
+</header>
+
+<!-- HERO IMAGE -->
+<img class="admin-hero-image"
+     alt="African man and woman header"
+     th:src="@{/images/african-man-and-woman.png}"
+     src="/images/african-man-and-woman.png">
+
+<h4 class="admin-section-title">Shop Collection</h4>
+
+<!-- PRODUCT GRID (same behavior as user catalog) -->
+<div class="catalog-grid">
+    <div class="product-card" th:each="product : ${products}">
+
+        <img th:alt="${product.name}"
+             th:src="@{${product.imagePath}}"
+             src="/images/diamond-necklace.png">
+
+        <h5 th:text="${product.name}">Diamond Necklace</h5>
+
+        <div class="price-and-cart">
+            <h6 th:text="${'$' + product.price}">$2,000</h6>
+
+            <!-- admin can still add to cart -->
+            <form th:action="@{/cart/add}" method="post">
+                <input type="hidden" name="productId" th:value="${product.id}">
+                <button type="submit"
+                        th:disabled="${cart != null and cart.contains(product.id)}">
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- SIDE OVERLAY MENU -->
+<div id="admin-menu-overlay" class="admin-menu-overlay">
+    <div class="admin-menu-panel">
+        <nav class="admin-menu-nav">
+            <a th:href="@{/admin-catalog}" href="/admin-catalog">CATALOG</a>
+            <a th:href="@{/search}" href="/search">SEARCH</a>
+            <a th:href="@{/add-item}" href="/add-item">ADD ITEM</a>
+            <a th:href="@{/sales-report}" href="/sales-report">SALES REPORT</a>
+            <a th:href="@{/promote-user}" href="/promote-user">PROMOTE USER</a>
+        </nav>
+    </div>
+</div>
+
+<script th:src="@{/js/app.js}"></script>
+<script>
+    (function () {
+        const menuButton = document.getElementById('admin-menu-toggle');
+        const overlay = document.getElementById('admin-menu-overlay');
+
+        if (!menuButton || !overlay) return;
+
+        // open menu
+        menuButton.addEventListener('click', function () {
+            overlay.classList.add('admin-menu-overlay--open');
+        });
+
+        // click outside panel to close
+        overlay.addEventListener('click', function (event) {
+            if (event.target === overlay) {
+                overlay.classList.remove('admin-menu-overlay--open');
+            }
+        });
+
+        // close when a link is clicked
+        overlay.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                overlay.classList.remove('admin-menu-overlay--open');
+            });
+        });
+    })();
+</script>
+</body>
+</html>
