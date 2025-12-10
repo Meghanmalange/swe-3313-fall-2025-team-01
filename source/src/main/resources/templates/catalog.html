@@ -2,44 +2,64 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Catalog</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" th:href="@{/styles}" href="/styles.css">
 </head>
 <body id="catalog-body">
 
-<!-- Top Navigation -->
-<div class="catalog-header">
-    <h2><a th:href="@{/search}">Search</a></h2>
-    <h1>The African Jewelry Shop</h1>
-    <h2><a th:href="@{/checkout}">Checkout</a></h2>
+<div th:if="${addedProductName}" id="cart-toast" class="cart-toast">
+    <span th:text="${addedProductName} + ' has been added to cart'">
+        Diamond Necklace has been added to cart
+    </span>
 </div>
 
-<!-- Hero Image -->
+<div class="catalog-header">
+    <h2>
+        <a th:href="@{/search}" href="/search">Search</a>
+    </h2>
+    <h1>The African Jewelry Shop</h1>
+    <h2>
+        <a th:href="@{/checkout}" href="/checkout">Checkout</a>
+    </h2>
+</div>
+
 <img alt="African man and woman header"
-     th:src="@{/images/african-duo(2).png}">
+     th:src="@{/images/african-duo(2).png}"
+     src="/images/african-duo(2).png">
 
 <h4>Shop Collection</h4>
 
-<!-- Product Grid: 3 per row handled by CSS -->
 <div class="catalog-grid">
     <div class="product-card" th:each="product : ${products}">
+
         <img th:alt="${product.name}"
-             th:src="@{${product.imagePath}}">
+             th:src="@{${product.imagePath}}"
+             src="/images/diamond-necklace.png">
 
         <h5 th:text="${product.name}">Diamond Necklace</h5>
-        <h6 th:text="${'$' + product.price}">$2,000</h6>
 
-        <!-- Add to Cart button -->
-        <form th:action="@{/cart/add}" method="post">
-            <!-- productId now comes from product.id -->
-            <input type="hidden" name="productId" th:value="${product.id}">
+        <div class="price-and-cart">
+            <h6 th:text="${'$' + product.price}">$2,000</h6>
 
-            <button type="submit"
-                    th:text="${cart != null and cart.contains(product.id)} ? 'In Cart' : 'Add to Cart'"
-                    th:disabled="${cart != null and cart.contains(product.id)}">
-            </button>
-        </form>
+            <form th:action="@{/cart/add}" method="post">
+                <input type="hidden" name="productId" th:value="${product.id}">
+                <button type="submit"
+                        th:disabled="${cart != null and cart.contains(product.id)}">
+                </button>
+            </form>
+        </div>
     </div>
 </div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const toast = document.getElementById('cart-toast');
+        if (toast) {
+            setTimeout(function () {
+                toast.classList.add('cart-toast-hide');
+            }, 3000);
+        }
+    });
+</script>
 
 </body>
 </html>
