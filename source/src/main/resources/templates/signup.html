@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The African Jewelry Shop -- Sign up</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body id="signup-body">
+
+<div class="login-hero">
+    <div class="hero-overlay"></div>
+
+    <div class="login-container">
+
+        <!-- Back button -->
+        <button class="back-button"
+                type="button"
+                onclick="window.location.href='/index'">
+            Back to Home Page
+        </button>
+
+        <!-- Signup card -->
+        <div class="login-card">
+            <h1>Signup</h1>
+
+            <form th:action="@{/signup}" method="post">
+                <input name="email"
+                       placeholder="Email"
+                       autocomplete="off"
+                       required>
+
+                <input name="username"
+                       placeholder="Username"
+                       autocomplete="off"
+                       required>
+
+                <input name="fullName"
+                       placeholder="Full name"
+                       autocomplete="off"
+                       required>
+
+                <input name="password"
+                       type="password"
+                       placeholder="Password"
+                       autocomplete="off"
+                       required>
+
+                <p class="password-hint">
+                    Must be at least 6 characters long
+                </p>
+
+                <a th:href="@{/catalog}">
+                    <button class="login-submit" type="button">
+                        Create Account
+                    </button>
+                </a>
+            </form>
+
+            <p class="login-signup-text">
+                Already have an account?
+                <a th:href="@{/login}">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>

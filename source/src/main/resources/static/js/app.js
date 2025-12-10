@@ -1,106 +1,389 @@
-// Frontend JavaScript - calls Spring Boot REST API endpoints only
-// This file is served by Spring Boot and makes requests to Spring Boot controllers
-// API_BASE is empty string to use relative URLs (same server/port as Spring Boot)
+// code that i (meghan) made
+window.addEventListener('DOMContentLoaded', function () {
+    const toast = document.getElementById('cart-toast');
+    if (toast) {
+        setTimeout(function () {
+            toast.classList.add('cart-toast-hide');
+        }, 3000);
+    }
+});
+
+
+// API Base URL
 const API_BASE = '';
 
-// Tab management
-function showTab(tabName) {
-    // Hide all tabs
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    document.querySelectorAll('.tab-button').forEach(btn => {
-        btn.classList.remove('active');
-    });
+// Global state
+let currentView = 'admin';
+let currentUser = null;
+let cart = {
+    items: [],
+    userId: null
+};
 
-    // Show selected tab
-    document.getElementById(`${tabName}-tab`).classList.add('active');
-    event.target.classList.add('active');
+// Initialize app
+document.addEventListener('DOMContentLoaded', () => {
+    checkAuthStatus();
+    initializeCart();
+});
 
-    // Load data for the tab
-    if (tabName === 'inventory') {
-        loadInventory();
-    } else if (tabName === 'cart') {
-        loadUserCart();
-    } else if (tabName === 'sales') {
-        loadSales();
+// ============================================================================
+// AUTHENTICATION
+// ============================================================================
+
+async function checkAuthStatus() {
+    try {
+        const response = await fetch(`${API_BASE}/auth/current`);
+        if (response.ok) {
+            const user = await response.json();
+            currentUser = user;
+            onLoginSuccess(user);
+        } else {
+            // Not logged in - show auth view for customers
+            currentUser = null;
+            if (currentView === 'user') {
+                showAuthView();
+            } else {
+                // Admin view doesn't require login
+                loadCatalog();
+            }
+        }
+    } catch (error) {
+        console.error('Error checking auth status:', error);
+        loadCatalog();
     }
 }
 
-// Show message
-function showMessage(text, type = 'info') {
-    const messageEl = document.getElementById('message');
-    messageEl.textContent = text;
-    messageEl.className = `message ${type}`;
-    messageEl.style.display = 'block';
-    setTimeout(() => {
-        messageEl.style.display = 'none';
-    }, 3000);
+function showAuthView() {
+    const authView = document.getElementById('auth-view');
+    const userView = document.getElementById('user-view');
+    const adminView = document.getElementById('admin-view');
+
+    authView.style.display = 'block';
+    userView.classList.remove('active');
+    adminView.classList.remove('active');
+
+    // Hide cart and checkout buttons
+    document.getElementById('cart-btn').style.display = 'none';
+    document.getElementById('checkout-btn').style.display = 'none';
+    document.getElementById('view-toggle-btn').style.display = 'inline-block';
 }
 
-// Load inventory
-async function loadInventory() {
+function showLoginForm() {
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('signup-form').style.display = 'none';
+}
+
+function showSignupForm() {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('signup-form').style.display = 'block';
+}
+
+async function handleLogin(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+
     try {
-        const response = await fetch(`${API_BASE}/inventory`);
+        const response = await fetch(`${API_BASE}/auth/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+
         if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Failed to load inventory: ${errorText}`);
+            const error = await response.json();
+            throw new Error(error.error || 'Login failed');
         }
-        const items = await response.json();
-        
-        const inventoryList = document.getElementById('inventory-list');
-        if (!items || items.length === 0) {
-            inventoryList.innerHTML = '<p style="text-align: center; padding: 20px; color: #666;">No items available in inventory</p>';
+
+        const user = await response.json();
+        currentUser = user;
+        onLoginSuccess(user);
+        showMessage('Welcome back, ' + user.username + '!', 'success');
+    } catch (error) {
+        console.error('Login error:', error);
+        showMessage(error.message, 'error');
+    }
+}
+
+async function handleSignup(event) {
+    event.preventDefault();
+
+    const fullName = document.getElementById('signup-fullname').value;
+    const username = document.getElementById('signup-username').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+    // Validate passwords match
+    if (password !== confirmPassword) {
+        showMessage('Passwords do not match', 'error');
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/auth/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ fullName, username, email, password })
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Registration failed');
+        }
+
+        const user = await response.json();
+        currentUser = user;
+        onLoginSuccess(user);
+        showMessage('Account created successfully! Welcome, ' + user.username + '!', 'success');
+    } catch (error) {
+        console.error('Signup error:', error);
+        showMessage(error.message, 'error');
+    }
+}
+
+function onLoginSuccess(user) {
+    // Update cart with user ID
+    cart.userId = user.userId;
+    saveCart();
+
+    // Show user info in header
+    document.getElementById('logged-username').textContent = user.username;
+    document.getElementById('user-info').style.display = 'flex';
+    document.getElementById('logout-btn').style.display = 'inline-block';
+
+    // Hide auth view, show user view
+    document.getElementById('auth-view').style.display = 'none';
+    document.getElementById('user-view').classList.add('active');
+    document.getElementById('admin-view').classList.remove('active');
+
+    // Update buttons
+    document.getElementById('cart-btn').style.display = 'inline-block';
+    document.getElementById('checkout-btn').style.display = 'inline-block';
+    document.getElementById('view-toggle-btn').textContent = 'Admin View';
+    document.getElementById('view-toggle-btn').onclick = () => switchView('admin');
+    document.getElementById('header-subtitle').textContent = '';
+
+    currentView = 'user';
+
+    // Load catalog
+    loadCatalog();
+    updateCartDisplay();
+}
+
+async function logout() {
+    try {
+        await fetch(`${API_BASE}/auth/logout`, { method: 'POST' });
+
+        // Clear user state
+        currentUser = null;
+        cart = { items: [], userId: null };
+        localStorage.removeItem('africanJewelryCart');
+
+        // Hide user info
+        document.getElementById('user-info').style.display = 'none';
+        document.getElementById('logout-btn').style.display = 'none';
+
+        // Show auth view
+        showAuthView();
+        showLoginForm();
+
+        showMessage('Logged out successfully', 'success');
+    } catch (error) {
+        console.error('Logout error:', error);
+        showMessage('Logout failed', 'error');
+    }
+}
+
+// ============================================================================
+// VIEW MANAGEMENT
+// ============================================================================
+
+function switchView(view) {
+    currentView = view;
+    const userView = document.getElementById('user-view');
+    const adminView = document.getElementById('admin-view');
+    const authView = document.getElementById('auth-view');
+    const toggleBtn = document.getElementById('view-toggle-btn');
+    const cartBtn = document.getElementById('cart-btn');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const subtitle = document.getElementById('header-subtitle');
+
+    if (view === 'user') {
+        // Check if user is logged in
+        if (!currentUser) {
+            showAuthView();
             return;
         }
 
-        // Display inventory items with better formatting
-        inventoryList.innerHTML = items.map(item => {
-            // Escape HTML to prevent XSS
-            const name = escapeHtml(item.name || 'Unnamed Item');
-            const description = escapeHtml(item.description || 'No description available');
-            const price = item.price ? parseFloat(item.price).toFixed(2) : '0.00';
-            const itemId = item.id || item.itemId;
-            const isSold = item.isSold === true || item.isSold === 1;
-            
-            return `
-            <div class="item-card ${isSold ? 'sold' : ''}">
-                <h3>${name}</h3>
-                <div class="price">$${price}</div>
-                <div class="description">${description}</div>
-                <div class="item-info">
-                    <strong>Item ID:</strong> ${itemId}<br>
-                    <strong>Status:</strong> ${isSold ? '<span style="color: #f44336;">Sold Out</span>' : '<span style="color: #4caf50;">Available</span>'}
-                </div>
-                ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${name}" style="max-width: 100%; border-radius: 8px; margin-bottom: 10px; max-height: 200px; object-fit: cover;">` : ''}
-                <button onclick="addToCart(${itemId}, '${name.replace(/'/g, "\\'")}', ${price})" 
-                        ${isSold ? 'disabled' : ''}
-                        class="${isSold ? 'disabled-btn' : ''}">
-                    ${isSold ? 'Sold Out' : 'Add to Cart'}
-                </button>
-            </div>
-        `;
-        }).join('');
-    } catch (error) {
-        console.error('Error loading inventory:', error);
-        showMessage('Failed to load inventory: ' + error.message, 'error');
-        document.getElementById('inventory-list').innerHTML = 
-            `<p style="text-align: center; padding: 20px; color: #f44336;">Error loading inventory: ${error.message}</p>`;
+        authView.style.display = 'none';
+        userView.classList.add('active');
+        adminView.classList.remove('active');
+        toggleBtn.textContent = 'Admin View';
+        toggleBtn.onclick = () => switchView('admin');
+        cartBtn.style.display = 'inline-block';
+        checkoutBtn.style.display = 'inline-block';
+        subtitle.textContent = '';
+        loadCatalog();
+        updateCartDisplay();
+    } else {
+        authView.style.display = 'none';
+        adminView.classList.add('active');
+        userView.classList.remove('active');
+        toggleBtn.textContent = 'Customer View';
+        toggleBtn.onclick = () => switchView('user');
+        cartBtn.style.display = 'none';
+        checkoutBtn.style.display = 'none';
+        subtitle.textContent = 'ADMIN';
     }
 }
 
-// Helper function to escape HTML
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+function showUserTab(tabName) {
+    // Update tab buttons
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.style.display = 'none';
+    });
+
+    // Show selected tab
+    const selectedTab = document.getElementById(`${tabName}-tab`);
+    if (selectedTab) {
+        selectedTab.style.display = 'block';
+    }
+
+    // Load data if needed
+    if (tabName === 'catalog') {
+        loadCatalog();
+    } else if (tabName === 'cart') {
+        updateCartDisplay();
+    }
 }
 
-// Add to cart
-async function addToCart(itemId, name, unitPrice) {
-    const userId = document.getElementById('userId').value;
-    if (!userId) {
-        showMessage('Please enter a User ID', 'error');
+function showAdminSection(section) {
+    // Update sidebar
+    document.querySelectorAll('.sidebar-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    // Hide all sections
+    document.querySelectorAll('.admin-content').forEach(content => {
+        content.style.display = 'none';
+    });
+
+    // Show selected section
+    const sectionMap = {
+        'search': 'admin-search',
+        'add-item': 'admin-add-item',
+        'sales-report': 'admin-sales-report'
+    };
+
+    const selectedSection = document.getElementById(sectionMap[section]);
+    if (selectedSection) {
+        selectedSection.style.display = 'block';
+    }
+
+    // Load data if needed
+    if (section === 'sales-report') {
+        loadSalesReport();
+    }
+}
+
+// ============================================================================
+// CATALOG / INVENTORY
+// ============================================================================
+
+async function loadCatalog() {
+    try {
+        const response = await fetch(`${API_BASE}/inventory`);
+        if (!response.ok) throw new Error('Failed to load catalog');
+        const items = await response.json();
+
+        const grid = document.getElementById('products-grid');
+        if (!items || items.length === 0) {
+            grid.innerHTML = '<div class="empty-state"><h3>No items available</h3><p>Check back soon for new jewelry</p></div>';
+            return;
+        }
+
+        grid.innerHTML = items.map(item => createProductCard(item)).join('');
+    } catch (error) {
+        console.error('Error loading catalog:', error);
+        showMessage('Failed to load catalog', 'error');
+        document.getElementById('products-grid').innerHTML =
+            '<div class="empty-state"><h3>Error loading catalog</h3><p>Please try again later</p></div>';
+    }
+}
+
+function createProductCard(item) {
+    const isSold = item.isSold === true || item.isSold === 1;
+    const imageUrl = item.imageUrl || 'https://via.placeholder.com/400x350/1a1a1a/D4AF37?text=No+Image';
+
+    return `
+        <div class="product-card">
+            <img src="${imageUrl}" alt="${escapeHtml(item.name)}" class="product-image" 
+                 onerror="this.src='https://via.placeholder.com/400x350/1a1a1a/D4AF37?text=No+Image'">
+            <div class="product-info">
+                <h3 class="product-name">${escapeHtml(item.name)}</h3>
+                ${item.description ? `<p class="product-description">${escapeHtml(item.description)}</p>` : ''}
+                <div class="product-price">$${parseFloat(item.price).toFixed(2)}</div>
+                <span class="product-status ${isSold ? 'status-sold' : 'status-available'}">
+                    ${isSold ? 'Sold Out' : 'Available'}
+                </span>
+                <button class="btn btn-primary" style="width: 100%;" 
+                        onclick="addToCart(${item.id}, '${escapeHtml(item.name).replace(/'/g, "\\'")}', ${item.price})"
+                        ${isSold ? 'disabled' : ''}>
+                    ${isSold ? 'Sold Out' : 'Add to Cart'}
+                </button>
+            </div>
+            </div>
+        `;
+}
+
+// ============================================================================
+// CART MANAGEMENT
+// ============================================================================
+
+function initializeCart() {
+    const savedCart = localStorage.getItem('africanJewelryCart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+    }
+    updateCartCount();
+}
+
+function saveCart() {
+    localStorage.setItem('africanJewelryCart', JSON.stringify(cart));
+    updateCartCount();
+}
+
+function updateCartCount() {
+    const countEl = document.getElementById('cart-count');
+    if (countEl) {
+        countEl.textContent = cart.items.length;
+    }
+}
+
+async function addToCart(itemId, name, price) {
+    // Check if user is logged in
+    if (!currentUser) {
+        showMessage('Please log in to add items to cart', 'error');
+        showAuthView();
+        return;
+    }
+
+    // Check if item already in cart
+    if (cart.items.find(item => item.itemId === itemId)) {
+        showMessage('Item already in cart', 'info');
         return;
     }
 
@@ -111,10 +394,10 @@ async function addToCart(itemId, name, unitPrice) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                userId: parseInt(userId),
+                userId: cart.userId,
                 itemId: itemId,
                 name: name,
-                unitPrice: unitPrice
+                unitPrice: price
             })
         });
 
@@ -123,99 +406,173 @@ async function addToCart(itemId, name, unitPrice) {
             throw new Error(error);
         }
 
-        const cart = await response.json();
-        showMessage('Item added to cart!', 'success');
-        loadUserCart();
+        // Add to local cart
+        cart.items.push({
+            itemId: itemId,
+            name: name,
+            unitPrice: price
+        });
+
+        saveCart();
+        showMessage('Added to cart!', 'success');
     } catch (error) {
         console.error('Error adding to cart:', error);
-        showMessage('Failed to add item to cart', 'error');
+        showMessage('Failed to add to cart', 'error');
     }
 }
 
-// Load user cart
-async function loadUserCart() {
-    const userId = document.getElementById('userId').value;
-    if (!userId) {
-        document.getElementById('cart-items').innerHTML = '<p>Please enter a User ID</p>';
+function removeFromCart(itemId) {
+    cart.items = cart.items.filter(item => item.itemId !== itemId);
+    saveCart();
+    updateCartDisplay();
+    showMessage('Item removed from cart', 'success');
+}
+
+function showCart() {
+    switchView('user');
+    showUserTab('cart');
+}
+
+function updateCartDisplay() {
+    const cartItemsEl = document.getElementById('cart-items');
+    const proceedBtn = document.getElementById('proceed-checkout-btn');
+
+    if (cart.items.length === 0) {
+        cartItemsEl.innerHTML = '<div class="empty-state"><h3>Your cart is empty</h3><p>Add some beautiful jewelry to get started</p></div>';
+        proceedBtn.disabled = true;
+        updateCartSummary();
         return;
     }
 
-    try {
-        const response = await fetch(`${API_BASE}/cart/${userId}`);
-        if (!response.ok) throw new Error('Failed to load cart');
-        const cart = await response.json();
-        
-        const cartItems = document.getElementById('cart-items');
-        const cartSummary = document.getElementById('cart-summary');
+    proceedBtn.disabled = false;
 
-        if (!cart.items || cart.items.length === 0) {
-            cartItems.innerHTML = '<p>Cart is empty</p>';
-            cartSummary.style.display = 'none';
-            return;
-        }
-
-        cartItems.innerHTML = cart.items.map(item => `
-            <div class="cart-item">
-                <div class="cart-item-info">
-                    <h4>${item.name}</h4>
-                    <div class="price">$${item.unitPrice.toFixed(2)}</div>
-                </div>
-                <button onclick="removeFromCart(${item.itemId})">Remove</button>
+    cartItemsEl.innerHTML = cart.items.map(item => `
+        <div class="order-item">
+            <div class="order-item-details">
+                <div class="order-item-name">${escapeHtml(item.name)}</div>
+                <div class="order-item-price">$${parseFloat(item.unitPrice).toFixed(2)}</div>
+            </div>
+            <button class="btn btn-secondary" onclick="removeFromCart(${item.itemId})">Remove</button>
             </div>
         `).join('');
 
-        // Show summary
-        cartSummary.style.display = 'block';
-        const subtotal = cart.items.reduce((sum, item) => sum + parseFloat(item.unitPrice), 0);
-        document.getElementById('cart-totals').innerHTML = `
-            <div class="total-line">
-                <span>Subtotal:</span>
-                <span>$${subtotal.toFixed(2)}</span>
-            </div>
-            <div class="total-line">
-                <span>Items:</span>
-                <span>${cart.items.length}</span>
-            </div>
-        `;
-    } catch (error) {
-        console.error('Error loading cart:', error);
-        showMessage('Failed to load cart', 'error');
-        document.getElementById('cart-items').innerHTML = '<p>Error loading cart</p>';
-    }
+    updateCartSummary();
 }
 
-// Remove from cart
-async function removeFromCart(itemId) {
-    const userId = document.getElementById('userId').value;
-    if (!userId) {
-        showMessage('Please enter a User ID', 'error');
-        return;
-    }
-
-    try {
-        const response = await fetch(`${API_BASE}/cart/${userId}/items/${itemId}`, {
-            method: 'DELETE'
-        });
-
-        if (!response.ok) throw new Error('Failed to remove item');
-        
-        showMessage('Item removed from cart', 'success');
-        loadUserCart();
-    } catch (error) {
-        console.error('Error removing from cart:', error);
-        showMessage('Failed to remove item', 'error');
-    }
-}
-
-// Checkout
-async function checkout() {
-    const userId = document.getElementById('userId').value;
-    if (!userId) {
-        showMessage('Please enter a User ID', 'error');
-        return;
-    }
+function updateCartSummary() {
+    const subtotal = cart.items.reduce((sum, item) => sum + parseFloat(item.unitPrice), 0);
+    const tax = subtotal * 0.06;
 
     const shippingOption = document.getElementById('shipping-option').value;
+    let shippingCost = 0;
+    if (shippingOption === 'THREE_DAY') shippingCost = 19.00;
+    if (shippingOption === 'OVERNIGHT') shippingCost = 29.00;
+
+    const total = subtotal + tax + shippingCost;
+
+    document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+    document.getElementById('cart-tax').textContent = `$${tax.toFixed(2)}`;
+    document.getElementById('cart-shipping').textContent = `$${shippingCost.toFixed(2)}`;
+    document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+}
+
+// ============================================================================
+// CHECKOUT FLOW
+// ============================================================================
+
+function proceedToCheckout() {
+    if (!currentUser) {
+        showMessage('Please log in to proceed to checkout', 'error');
+        showAuthView();
+        return;
+    }
+
+    if (cart.items.length === 0) {
+        showMessage('Your cart is empty', 'error');
+        return;
+    }
+    showCheckout();
+}
+
+function showCheckout() {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.style.display = 'none';
+    });
+
+    // Show checkout
+    const checkoutTab = document.getElementById('checkout-tab');
+    checkoutTab.style.display = 'block';
+
+    // Populate checkout items
+    const checkoutItemsEl = document.getElementById('checkout-items');
+    checkoutItemsEl.innerHTML = cart.items.map(item => `
+        <div class="order-item">
+            <div class="order-item-details">
+                <div class="order-item-name">${escapeHtml(item.name)}</div>
+                <div class="order-item-price">$${parseFloat(item.unitPrice).toFixed(2)}</div>
+            </div>
+        </div>
+    `).join('');
+
+    // Update checkout summary
+    updateCheckoutSummary();
+
+    // Copy shipping option from cart
+    const cartShipping = document.getElementById('shipping-option').value;
+    document.getElementById('checkout-shipping-option').value = cartShipping;
+}
+
+function updateCheckoutSummary() {
+    const subtotal = cart.items.reduce((sum, item) => sum + parseFloat(item.unitPrice), 0);
+    const tax = subtotal * 0.06;
+
+    const shippingOption = document.getElementById('checkout-shipping-option')?.value || 'GROUND';
+    let shippingCost = 0;
+    if (shippingOption === 'THREE_DAY') shippingCost = 19.00;
+    if (shippingOption === 'OVERNIGHT') shippingCost = 29.00;
+
+    const total = subtotal + tax + shippingCost;
+
+    document.getElementById('checkout-summary').innerHTML = `
+        <div class="summary-line">
+            <span>Subtotal</span>
+            <span>$${subtotal.toFixed(2)}</span>
+        </div>
+        <div class="summary-line">
+            <span>Tax (6%)</span>
+            <span>$${tax.toFixed(2)}</span>
+        </div>
+        <div class="summary-line">
+            <span>Shipping (${shippingOption === 'GROUND' ? 'Ground' : shippingOption === 'THREE_DAY' ? 'Three Day' : 'Overnight'})</span>
+            <span>$${shippingCost.toFixed(2)}</span>
+        </div>
+        <div class="summary-line total">
+            <span>Total</span>
+            <span>$${total.toFixed(2)}</span>
+        </div>
+    `;
+}
+
+async function completePurchase() {
+    if (!currentUser) {
+        showMessage('Please log in to complete purchase', 'error');
+        showAuthView();
+        return;
+    }
+
+    const cardName = document.getElementById('card-name').value;
+    const cardNumber = document.getElementById('card-number').value;
+
+    if (!cardName || !cardNumber) {
+        showMessage('Please fill in all payment information', 'error');
+        return;
+    }
+
+    // Get last 4 digits of card
+    const lastFour = cardNumber.replace(/\s/g, '').slice(-4);
+
+    const shippingOption = document.getElementById('checkout-shipping-option').value;
 
     try {
         const response = await fetch(`${API_BASE}/checkout`, {
@@ -224,10 +581,10 @@ async function checkout() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                userId: parseInt(userId),
+                userId: cart.userId,
                 shippingOption: shippingOption,
-                cardHolderName: 'Test User',
-                cardLastFourDigits: '1234'
+                cardHolderName: cardName,
+                cardLastFourDigits: lastFour
             })
         });
 
@@ -237,101 +594,256 @@ async function checkout() {
         }
 
         const receipt = await response.json();
-        showMessage(`Checkout successful! Order Total: $${receipt.priceDetails.grandTotal.toFixed(2)}`, 'success');
-        
-        // Clear cart display
-        document.getElementById('cart-items').innerHTML = '<p>Cart is empty</p>';
-        document.getElementById('cart-summary').style.display = 'none';
-        
-        // Reload sales to show the new sale
-        if (document.getElementById('sales-tab').classList.contains('active')) {
-            loadSales();
-        }
+
+        // Clear cart
+        cart.items = [];
+        saveCart();
+
+        // Show confirmation
+        showConfirmation();
+
+        showMessage('Order completed successfully!', 'success');
     } catch (error) {
-        console.error('Error during checkout:', error);
+        console.error('Error completing purchase:', error);
         showMessage('Checkout failed: ' + error.message, 'error');
     }
 }
 
-// Load sales
-async function loadSales() {
+function showConfirmation() {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.style.display = 'none';
+    });
+
+    // Show confirmation
+    const confirmationTab = document.getElementById('confirmation-tab');
+    confirmationTab.style.display = 'block';
+}
+
+function continueShopping() {
+    // Reset to catalog
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.style.display = 'none';
+    });
+    document.getElementById('catalog-tab').style.display = 'block';
+
+    // Reset tabs
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    document.querySelector('[data-tab="catalog"]').classList.add('active');
+
+    // Reload catalog
+    loadCatalog();
+}
+
+// ============================================================================
+// ADMIN FUNCTIONS
+// ============================================================================
+
+async function addItem(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('item-name').value;
+    const price = parseFloat(document.getElementById('item-price').value);
+    const description = document.getElementById('item-description').value;
+    const imageUrl = document.getElementById('item-image-url').value;
+
+    if (!name || !price || price <= 0) {
+        showMessage('Please provide valid name and price', 'error');
+        return;
+    }
+
+    const item = {
+        name: name,
+        price: price,
+        description: description || null,
+        imageUrl: imageUrl || null,
+        isSold: false
+    };
+
     try {
-        const userId = document.getElementById('sales-user-id').value;
+        const response = await fetch(`${API_BASE}/admin/items`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(item)
+        });
+
+        if (!response.ok) {
+            const error = await response.text();
+            throw new Error(error);
+        }
+
+        const savedItem = await response.json();
+        showMessage('Item added successfully!', 'success');
+
+        // Reset form
+        document.getElementById('add-item-form').reset();
+        document.getElementById('upload-text').textContent = 'Click to upload or drag and drop';
+
+        // Reload catalog if in user view
+        if (currentView === 'user') {
+            loadCatalog();
+        }
+    } catch (error) {
+        console.error('Error adding item:', error);
+        showMessage('Failed to add item: ' + error.message, 'error');
+    }
+}
+
+function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            document.getElementById('item-image-url').value = e.target.result;
+            document.getElementById('upload-text').textContent = file.name;
+            showMessage('Image loaded (preview only - not uploaded)', 'info');
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+async function searchItems() {
+    const query = document.getElementById('search-query').value.toLowerCase();
+
+    if (!query) {
+        showMessage('Please enter a search term', 'error');
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/inventory`);
+        if (!response.ok) throw new Error('Failed to search items');
+        const items = await response.json();
+
+        const results = items.filter(item =>
+            item.name.toLowerCase().includes(query) ||
+            (item.description && item.description.toLowerCase().includes(query))
+        );
+
+        const resultsEl = document.getElementById('search-results');
+
+        if (results.length === 0) {
+            resultsEl.innerHTML = '<div class="empty-state"><h3>No results found</h3><p>Try a different search term</p></div>';
+            return;
+        }
+
+        resultsEl.innerHTML = `
+            <div class="products-grid">
+                ${results.map(item => createProductCard(item)).join('')}
+            </div>
+        `;
+    } catch (error) {
+        console.error('Error searching items:', error);
+        showMessage('Search failed', 'error');
+    }
+}
+
+async function loadSalesReport() {
+    const userId = document.getElementById('filter-user-id').value;
+    const resultsEl = document.getElementById('sales-report-content');
+
+    try {
         let url = `${API_BASE}/sales`;
         if (userId) {
             url = `${API_BASE}/sales/user/${userId}`;
         }
 
         const response = await fetch(url);
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Failed to load sales: ${response.status} ${errorText}`);
-        }
+        if (!response.ok) throw new Error('Failed to load sales');
         const sales = await response.json();
-        
-        const salesList = document.getElementById('sales-list');
+
         if (sales.length === 0) {
-            salesList.innerHTML = '<p>No sales found</p>';
+            resultsEl.innerHTML = '<div class="empty-state"><h3>No sales found</h3><p>No transactions match your criteria</p></div>';
             return;
         }
 
-        salesList.innerHTML = sales.map(sale => {
-            const saleDate = sale.saleDate ? new Date(sale.saleDate).toLocaleString() : 'N/A';
-            const items = sale.items || [];
-            
-            return `
-                <div class="sale-card">
-                    <h3>Sale #${sale.id}</h3>
-                    <div class="sale-info">
-                        <div class="info-item">
-                            <div class="info-label">Date</div>
-                            <div class="info-value">${saleDate}</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">User ID</div>
-                            <div class="info-value">${sale.user ? sale.user.id : 'N/A'}</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Subtotal</div>
-                            <div class="info-value">$${sale.subTotal ? sale.subTotal.toFixed(2) : '0.00'}</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Tax</div>
-                            <div class="info-value">$${sale.tax ? sale.tax.toFixed(2) : '0.00'}</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Shipping</div>
-                            <div class="info-value">$${sale.shippingCost ? sale.shippingCost.toFixed(2) : '0.00'}</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Total</div>
-                            <div class="info-value" style="color: #667eea; font-size: 1.2em;">$${sale.total.toFixed(2)}</div>
-                        </div>
-                    </div>
-                    ${items.length > 0 ? `
-                        <div class="sale-items">
-                            <h4>Items:</h4>
-                            ${items.map(item => `
-                                <div class="sale-item">
-                                    <span>${item.name || 'Unknown Item'}</span>
-                                    <span>$${item.price ? item.price.toFixed(2) : '0.00'}</span>
-                                </div>
+        resultsEl.innerHTML = `
+            <table class="sales-table">
+                <thead>
+                    <tr>
+                        <th>Sale ID</th>
+                        <th>Date</th>
+                        <th>User ID</th>
+                        <th>Items</th>
+                        <th>Subtotal</th>
+                        <th>Tax</th>
+                        <th>Shipping</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${sales.map(sale => `
+                        <tr>
+                            <td>#${sale.id}</td>
+                            <td>${new Date(sale.saleDate).toLocaleDateString()}</td>
+                            <td>${sale.user ? sale.user.id : 'N/A'}</td>
+                            <td>${sale.items ? sale.items.length : 0}</td>
+                            <td>$${sale.subTotal ? sale.subTotal.toFixed(2) : '0.00'}</td>
+                            <td>$${sale.tax ? sale.tax.toFixed(2) : '0.00'}</td>
+                            <td>$${sale.shippingCost ? sale.shippingCost.toFixed(2) : '0.00'}</td>
+                            <td style="color: var(--gold); font-weight: 700;">$${sale.total.toFixed(2)}</td>
+                        </tr>
                             `).join('')}
-                        </div>
-                    ` : ''}
-                </div>
+                </tbody>
+            </table>
             `;
-        }).join('');
     } catch (error) {
-        console.error('Error loading sales:', error);
-        showMessage('Failed to load sales: ' + error.message, 'error');
-        document.getElementById('sales-list').innerHTML = 
-            `<p style="text-align: center; padding: 20px; color: #f44336;">Error loading sales: ${error.message}</p>`;
+        console.error('Error loading sales report:', error);
+        showMessage('Failed to load sales report', 'error');
+        resultsEl.innerHTML = '<div class="empty-state"><h3>Error loading report</h3><p>Please try again</p></div>';
     }
 }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    loadInventory();
-});
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
 
+function showMessage(text, type = 'info') {
+    const messageEl = document.getElementById('message');
+    messageEl.textContent = text;
+    messageEl.className = `message ${type}`;
+    messageEl.style.display = 'block';
+
+    setTimeout(() => {
+        messageEl.style.display = 'none';
+    }, 4000);
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Format card number with spaces
+document.addEventListener('DOMContentLoaded', () => {
+    const cardNumberInput = document.getElementById('card-number');
+    if (cardNumberInput) {
+        cardNumberInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\s/g, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+    }
+
+    const cardExpiryInput = document.getElementById('card-expiry');
+    if (cardExpiryInput) {
+        cardExpiryInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2, 4);
+            }
+            e.target.value = value;
+        });
+    }
+
+    // Update checkout summary when shipping changes
+    const checkoutShippingOption = document.getElementById('checkout-shipping-option');
+    if (checkoutShippingOption) {
+        checkoutShippingOption.addEventListener('change', updateCheckoutSummary);
+    }
+});
