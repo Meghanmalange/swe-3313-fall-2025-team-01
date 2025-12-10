@@ -376,6 +376,27 @@
     }
 }
 
+#logout-btn {
+    background: transparent;
+    border: 1px solid #d1b268;
+    color: #f8f3e8;
+    text-decoration: none;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    margin-left:50%;
+    padding:20px 30px 20px 30px;
+}
+
+/* Hover */
+#logout-btn:hover {
+    background: #d1b268;
+    color: #000;
+    box-shadow: 0 0 8px #d1b268;
+}
+
+
 /* ======= SEARCH ======== */
 
 #catalog-body {
