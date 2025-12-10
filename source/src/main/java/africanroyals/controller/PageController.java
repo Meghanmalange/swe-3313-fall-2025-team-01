@@ -1,6 +1,7 @@
 package africanroyals.controller;
 
 import africanroyals.Application;
+import africanroyals.dto.CheckoutRequest;
 import africanroyals.entity.InventoryItem;
 import africanroyals.entity.Sale;
 import africanroyals.entity.User;
@@ -522,7 +523,7 @@ public class PageController {
         PriceDetails priceDetails = priceCalculator.calculate(cart, shippingOption);
 
         // Create checkout request
-        africanroyals.dto.CheckoutRequest checkoutRequest = new africanroyals.dto.CheckoutRequest();
+        CheckoutRequest checkoutRequest = new CheckoutRequest();
         checkoutRequest.setUserId(userId);
         checkoutRequest.setShippingOption(shippingOption);
         checkoutRequest.setCardHolderName(fullName);
