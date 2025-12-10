@@ -54,7 +54,7 @@ public class Sale {
     private String shippingZip;
 
     @Column(name = "Total", nullable = false)
-    private double total;
+    private Double total;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -68,7 +68,7 @@ public class Sale {
     public Sale() {
     }
 
-    public Sale(User user, LocalDateTime saleDate, double total) {
+    public Sale(User user, LocalDateTime saleDate, Double total) {
         this.user = user;
         this.saleDate = saleDate;
         this.total = total;
@@ -77,7 +77,7 @@ public class Sale {
     public Sale(User user, LocalDateTime saleDate, Double subTotal, Double tax, 
                 String shippingMethod, Double shippingCost, String shippingDetails,
                 String shippingAddress, String shippingCity, String shippingState, 
-                String shippingZip, double total) {
+                String shippingZip, Double total) {
         this.user = user;
         this.saleDate = saleDate;
         this.subTotal = subTotal;
@@ -117,7 +117,7 @@ public class Sale {
         this.user = user;
     }
 
-    public double getTotal() {
+    public Double getTotal() {
         return total;
     }
 

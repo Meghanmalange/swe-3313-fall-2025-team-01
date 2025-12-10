@@ -5,6 +5,7 @@ import africanroyals.repository.InventoryItemRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,12 +34,52 @@ public class AdminController {
                 return ResponseEntity.badRequest().body("Valid price is required");
             }
 
+            // Enforce uniqueness by name
+            if (inventoryItemRepository.findByNameIgnoreCase(item.getName().trim()).isPresent()) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Item already exists");
+            }
+
             // Set default values
             if (item.getIsSold() == null) {
                 item.setIsSold(false);
             }
 
             // Save the item
+            InventoryItem savedItem = inventoryItemRepository.save(item);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedItem);
+        } catch (Exception e) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Failed to add item: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+        }
+    }
+
+    /**
+     * Form-based add item (from add-item.html)
+     */
+    @PostMapping("/add-item")
+    public ResponseEntity<?> addInventoryItemForm(@RequestParam("name") String name,
+                                                  @RequestParam("price") Double price,
+                                                  @RequestParam(value = "imageFile", required = false) MultipartFile imageFile) {
+        try {
+            if (name == null || name.trim().isEmpty()) {
+                return ResponseEntity.badRequest().body("Item name is required");
+            }
+            if (price == null || price <= 0) {
+                return ResponseEntity.badRequest().body("Valid price is required");
+            }
+            if (inventoryItemRepository.findByNameIgnoreCase(name.trim()).isPresent()) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Item already exists");
+            }
+
+            InventoryItem item = new InventoryItem();
+            item.setName(name.trim());
+            item.setPrice(price);
+            item.setIsSold(false);
+            if (imageFile != null && !imageFile.isEmpty()) {
+                item.setImageUrl(imageFile.getOriginalFilename());
+            }
+
             InventoryItem savedItem = inventoryItemRepository.save(item);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedItem);
         } catch (Exception e) {

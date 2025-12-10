@@ -4,7 +4,9 @@ import africanroyals.entity.InventoryItem;
 import africanroyals.entity.User;
 import africanroyals.repository.InventoryItemRepository;
 import africanroyals.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,10 +14,13 @@ public class DataInitializer implements CommandLineRunner {
 
     private final InventoryItemRepository inventoryItemRepository;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public DataInitializer(InventoryItemRepository inventoryItemRepository, UserRepository userRepository) {
+    @Autowired
+    public DataInitializer(InventoryItemRepository inventoryItemRepository, UserRepository userRepository , PasswordEncoder passwordEncoder) {
         this.inventoryItemRepository = inventoryItemRepository;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -23,20 +28,51 @@ public class DataInitializer implements CommandLineRunner {
         // Initialize users if database is empty
         if (userRepository.count() == 0) {
             User user1 = new User();
-            user1.setUsername("customer");
-            user1.setEmail("customer@africanroyals.com");
             user1.setFullName("Customer User");
-            user1.setPasswordHash("password123");
+            user1.setPasswordHash(passwordEncoder.encode("password123"));
             user1.setRole("USER");
             userRepository.save(user1);
 
-            User admin = new User();
-            admin.setUsername("admin");
-            admin.setEmail("admin@africanroyals.com");
-            admin.setFullName("Admin User");
-            admin.setPasswordHash("admin123");
-            admin.setRole("ADMIN");
-            userRepository.save(admin);
+            User admin1 = new User();
+            admin1.setUsername("zclark16");
+            admin1.setEmail("zclark16@students.kennesaw.edu");
+            admin1.setFullName("Zion Clark");
+            admin1.setPasswordHash(passwordEncoder.encode("12345"));
+            admin1.setRole("ADMIN");
+            userRepository.save(admin1);
+
+            User admin2 = new User();
+            admin2.setUsername("aaliy4hslvr");
+            admin2.setEmail("auchend1@students.kennesaw.edu");
+            admin2.setFullName("Aaliyah Uchendu");
+            admin2.setPasswordHash(passwordEncoder.encode("elephant"));
+            admin2.setRole("ADMIN");
+            userRepository.save(admin2);
+
+            User admin3 = new User();
+            admin3.setUsername("demean");
+            admin3.setEmail("nmuzeren@students.kennesaw.edu");
+            admin3.setFullName("Nyasha Muzerengi");
+            admin3.setPasswordHash(passwordEncoder.encode("113333555555"));
+            admin3.setRole("ADMIN");
+            userRepository.save(admin3);
+
+            User admin4 = new User();
+            admin4.setUsername("yxngjnr");
+            admin4.setEmail("dtanyany@students.kennesaw.edu");
+            admin4.setFullName("Douglas Tanyanyiwa");
+            admin4.setPasswordHash(passwordEncoder.encode("244466666"));
+            admin4.setRole("ADMIN");
+            userRepository.save(admin4);
+
+            User admin5 = new User();
+            admin5.setUsername("megthebaddest");
+            admin5.setEmail("mmalange@students.kennesaw.edu");
+            admin5.setFullName("Meghan Malange");
+            admin5.setPasswordHash(passwordEncoder.encode("superstar4life"));
+            admin5.setRole("ADMIN");
+            userRepository.save(admin5);
+
 
             User admin2 = new User();
             admin2.setUsername("megtheebaddest");
