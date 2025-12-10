@@ -44,8 +44,9 @@
             <input class="admin-promote-input"
                    type="text"
                    name="identifier"
+                   id="user-identifier"
                    placeholder="Username or Email"
-                   th:value="${identifier}"
+                   th:value="${identifier != null ? identifier : ''}"
                    required>
 
             <button class="admin-promote-search-btn"
@@ -54,32 +55,32 @@
             </button>
         </form>
 
+        <!-- Error message: User does not exist -->
         <p class="admin-promote-error"
-           th:if="${searchError}"
+           th:if="${searchError != null && promoteCandidate == null}"
            th:text="${searchError}">
-            No user found with that username or email.
+            User does not exist
         </p>
 
+        <!-- Success message after promotion -->
+        <p class="admin-promote-success"
+           th:if="${promotionSuccess != null}"
+           th:text="${promotionSuccess}">
+            User has been promoted.
+        </p>
+
+        <!-- User found - show full name and promote button -->
         <section class="admin-promote-result"
                  th:if="${promoteCandidate != null}">
-            <h2 class="admin-promote-result-title">User found</h2>
-
+            
             <p class="admin-promote-result-line">
                 <span class="admin-promote-label">Full Name:</span>
                 <span th:text="${promoteCandidate.fullName}">Jane Doe</span>
             </p>
-            <p class="admin-promote-result-line">
-                <span class="admin-promote-label">Username:</span>
-                <span th:text="${promoteCandidate.username}">janedoe</span>
-            </p>
-            <p class="admin-promote-result-line">
-                <span class="admin-promote-label">Email:</span>
-                <span th:text="${promoteCandidate.email}">
-                    jane@example.com
-                </span>
-            </p>
 
+            <!-- Only show promote button if user is not already an admin -->
             <form class="admin-promote-action-form"
+                  th:if="${promoteCandidate.role != 'ADMIN'}"
                   th:action="@{/admin/promote-user/promote}"
                   method="post">
                 <input type="hidden"
@@ -87,14 +88,14 @@
                        th:value="${promoteCandidate.id}">
                 <button class="admin-promote-promote-btn"
                         type="submit">
-                    PROMOTE USER
+                    PROMOTE TO ADMIN
                 </button>
             </form>
 
-            <p class="admin-promote-success"
-               th:if="${promotionSuccess}"
-               th:text="${promotionSuccess}">
-                User has been promoted.
+            <!-- Show message if user is already admin -->
+            <p class="admin-promote-error"
+               th:if="${promoteCandidate.role == 'ADMIN' && searchError == null}">
+                This user is already an admin.
             </p>
         </section>
     </section>

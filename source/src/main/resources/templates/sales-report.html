@@ -55,35 +55,35 @@
             No sales have been recorded yet.
         </p>
 
-        <!-- One card per sale -->
+        <!-- One card per sale - most recent on the left -->
         <article class="admin-sales-card"
-                 th:each="sale, stat : ${sales}"
+                 th:each="sale : ${sales}"
                  th:unless="${#lists.isEmpty(sales)}">
 
             <h2 class="admin-sales-card-order"
-                th:text="'Order #' + ${stat.index + 1}">
+                th:text="'Order #' + ${sale.id}">
                 Order #1
             </h2>
 
             <p class="admin-sales-line">
                 <span class="admin-sales-label">Name:</span>
-                <span th:text="${sale.customerName}">Jane Doe</span>
+                <span th:text="${sale.user != null ? sale.user.fullName : 'N/A'}">Jane Doe</span>
             </p>
 
             <p class="admin-sales-label admin-sales-items-label">
-                Items Purchase:
+                Items Purchased:
             </p>
 
             <ul class="admin-sales-items">
-                <li th:each="itemName : ${sale.itemNames}"
-                    th:text="${itemName}">
+                <li th:each="item : ${sale.items}"
+                    th:text="${item.name}">
                     Diamond Necklace
                 </li>
             </ul>
 
             <p class="admin-sales-line admin-sales-total">
                 <span class="admin-sales-label">Total Price:</span>
-                <span th:text="'$' + ${sale.totalPrice}">
+                <span th:text="${'$' + sale.total}">
                     $2,120
                 </span>
             </p>
@@ -107,5 +107,50 @@
 </div>
 
 <script th:src="@{/js/app.js}"></script>
+<script>
+    // Initialize horizontal scroll for sales report
+    (function() {
+        const range = document.getElementById('sales-scroll-range');
+        const cards = document.getElementById('admin-sales-cards');
+        
+        if (range && cards) {
+            function updateRangeFromScroll() {
+                const maxScroll = cards.scrollWidth - cards.clientWidth;
+                if (maxScroll <= 0) {
+                    range.disabled = true;
+                    range.value = 0;
+                    range.max = 0;
+                    return;
+                }
+                range.max = 100;
+                range.disabled = false;
+                const ratio = cards.scrollLeft / maxScroll;
+                range.value = Math.round(ratio * 100);
+            }
+            
+            function updateScrollFromRange() {
+                const maxScroll = cards.scrollWidth - cards.clientWidth;
+                if (maxScroll <= 0) return;
+                const target = (range.value / 100) * maxScroll;
+                cards.scrollLeft = target;
+            }
+            
+            // Initialize on page load
+            window.addEventListener('load', function() {
+                updateRangeFromScroll();
+            });
+            
+            // Update when window resizes
+            window.addEventListener('resize', updateRangeFromScroll);
+            
+            // Sync range with scroll
+            range.addEventListener('input', updateScrollFromRange);
+            cards.addEventListener('scroll', updateRangeFromScroll);
+            
+            // Initial update
+            setTimeout(updateRangeFromScroll, 100);
+        }
+    })();
+</script>
 </body>
 </html>

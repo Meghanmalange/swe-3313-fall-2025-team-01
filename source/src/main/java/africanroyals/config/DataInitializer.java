@@ -38,89 +38,121 @@ public class DataInitializer implements CommandLineRunner {
             admin.setRole("ADMIN");
             userRepository.save(admin);
 
+            User admin2 = new User();
+            admin2.setUsername("megtheebaddest");
+            admin2.setEmail("mmalange@students.kennesaw.edu");
+            admin2.setFullName("Meghan Malange");
+            admin2.setPasswordHash("$2a$10$UBSiRWYNOYwGNECo2FBXl.hjSW9/kDH3z4g4A3kSFoLPnAR9SjILy");
+            admin2.setRole("ADMIN");
+            userRepository.save(admin2);
+
+            User admin3 = new User();
+            admin3.setUsername("yxngjnr");
+            admin3.setEmail("dtanyany@students.kennesaw.edu");
+            admin3.setFullName("Douglas Tanyanyiwa");
+            admin3.setPasswordHash("$2a$10$ckjhBajy/8Qhk50vUC7c8OHb98ndHFZa1pEshM/1R818Z2aG3SKBa");
+            admin3.setRole("ADMIN");
+            userRepository.save(admin3);
+
+            User admin4 = new User();
+            admin4.setUsername("Demean");
+            admin4.setEmail("nmuzeren@students.kennesaw.edu");
+            admin4.setFullName("Nyasha Muzerengi");
+            admin4.setPasswordHash("$2a$10$Va4gfGiREaKgv3LdBKuF0uqKyYWJc2akfWZbTPVXBz3JyIBXJumO.");
+            admin4.setRole("ADMIN");
+            userRepository.save(admin4);
+
+            User admin5= new User();
+            admin5.setUsername("zclark16");
+            admin5.setEmail("zclark16@students.kennesaw.edu");
+            admin5.setFullName("Zion Clark");
+            admin5.setPasswordHash("$2a$10$hG9uooVrYMFLjxL6M4VbYe2LiYttVeFK0WcEyw15ba/nJWowex8HW.");
+            admin5.setRole("ADMIN");
+            userRepository.save(admin5);
+
+            User admin6= new User();
+            admin6.setUsername("aaliy4hslvr");
+            admin6.setEmail("auchend1@students.kennesaw.edu");
+            admin6.setFullName("Aaliyah Uchendu");
+            admin6.setPasswordHash("$2a$10$8fDW171oWenz6p65FUq4wOIYkdrkyx3ThF9jkeKRPePYQfDNeZnJ6");
+            admin6.setRole("ADMIN");
+            userRepository.save(admin6);
+
             System.out.println("✓ Initialized users in database");
         }
 
         // Initialize inventory items if database is empty
         if (inventoryItemRepository.count() == 0) {
-            // Create sample African jewelry items
+            // Create sample African jewelry items using local images
             InventoryItem item1 = new InventoryItem(
                     "Diamond Necklace",
                     "Exquisite handcrafted diamond necklace featuring traditional African patterns and modern elegance",
                     2000.0,
-                    "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=350&fit=crop",
+                    "/images/diamond-necklace.png",
                     false
             );
 
             InventoryItem item2 = new InventoryItem(
-                    "Gold Bangle Bracelet",
-                    "Beautiful 18k gold bangle with intricate African tribal designs",
-                    1500.0,
-                    "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=350&fit=crop",
+                    "Ancient Gold Bracelet",
+                    "Vintage-inspired gold bracelet with intricate ancient African designs and patterns",
+                    1800.0,
+                    "/images/ancient-gold-bracelet.png",
                     false
             );
 
             InventoryItem item3 = new InventoryItem(
-                    "Beaded Collar Necklace",
-                    "Traditional African beaded collar necklace in vibrant colors, handmade by local artisans",
-                    350.0,
-                    "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=350&fit=crop",
+                    "Gold Bead Necklace",
+                    "Traditional African gold bead necklace, handcrafted with authentic techniques",
+                    1200.0,
+                    "/images/gold-bead-necklace.png",
                     false
             );
 
             InventoryItem item4 = new InventoryItem(
-                    "Cowrie Shell Earrings",
-                    "Elegant earrings featuring authentic cowrie shells, a symbol of wealth in African culture",
-                    180.0,
-                    "https://images.unsplash.com/photo-1535556116002-6281ff3e9f36?w=400&h=350&fit=crop",
+                    "Gold Bracelet",
+                    "Elegant 18k gold bracelet featuring classic African tribal motifs",
+                    1500.0,
+                    "/images/gold-bracelet.png",
                     false
             );
 
             InventoryItem item5 = new InventoryItem(
-                    "Bronze Cuff Bracelet",
-                    "Statement cuff bracelet in bronze with traditional engravings",
-                    450.0,
-                    "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=400&h=350&fit=crop",
+                    "Gold Necklace",
+                    "Stunning gold necklace with contemporary African design elements",
+                    2200.0,
+                    "/images/gold-necklace.png",
                     false
             );
 
             InventoryItem item6 = new InventoryItem(
-                    "Ankara Print Ring",
-                    "Modern ring featuring vibrant Ankara fabric patterns sealed in resin",
-                    120.0,
-                    "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=350&fit=crop",
+                    "Shell Earrings",
+                    "Beautiful earrings featuring authentic African shells, a symbol of natural beauty",
+                    280.0,
+                    "/images/shell-earrings.png",
                     false
             );
 
             InventoryItem item7 = new InventoryItem(
-                    "Tribal Drop Earrings",
-                    "Long drop earrings with geometric patterns inspired by African tribes",
-                    280.0,
-                    "https://images.unsplash.com/photo-1535556116002-6281ff3e9f36?w=400&h=350&fit=crop",
+                    "Stylish Black Necklace",
+                    "Modern black necklace with bold African-inspired geometric patterns",
+                    850.0,
+                    "/images/stylish-black-necklace.png",
                     false
             );
 
             InventoryItem item8 = new InventoryItem(
-                    "Vintage Amber Necklace",
-                    "Rare vintage amber necklace from West Africa, a collector's piece",
-                    3200.0,
-                    "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=350&fit=crop",
-                    true
-            );
-
-            InventoryItem item9 = new InventoryItem(
-                    "Wooden Bead Bracelet",
-                    "Natural wooden beads hand-carved with traditional African symbols",
-                    85.0,
-                    "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=350&fit=crop",
+                    "Tribal Ring",
+                    "Handcrafted tribal ring with traditional African symbols and engravings",
+                    450.0,
+                    "/images/tribal-ring.png",
                     false
             );
 
-            InventoryItem item10 = new InventoryItem(
-                    "Silver Maasai Pendant",
-                    "Authentic Maasai silver pendant with intricate beadwork",
-                    650.0,
-                    "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=350&fit=crop",
+            InventoryItem item9 = new InventoryItem(
+                    "Zimbabwe Necklace",
+                    "Authentic Zimbabwean necklace showcasing traditional craftsmanship and cultural heritage",
+                    950.0,
+                    "/images/zimbabwe-necklace.png",
                     false
             );
 
@@ -134,7 +166,6 @@ public class DataInitializer implements CommandLineRunner {
             inventoryItemRepository.save(item7);
             inventoryItemRepository.save(item8);
             inventoryItemRepository.save(item9);
-            inventoryItemRepository.save(item10);
 
             System.out.println("✓ Initialized " + inventoryItemRepository.count() + " jewelry items in database");
         } else {

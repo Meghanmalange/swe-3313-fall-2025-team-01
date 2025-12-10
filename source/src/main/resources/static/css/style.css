@@ -181,7 +181,7 @@
 }
 
 .login-signup-text a {
-    color: #ffffff;=
+    color: #ffffff;
 }
 
 .login-signup-text a:hover {
@@ -321,8 +321,11 @@
 
 .product-card img {
     width: 260px;
+    height: 260px;
     max-width: 100%;
     display: block;
+    object-fit: cover;
+    object-position: center;
 }
 
 
@@ -555,9 +558,12 @@
 
 .product-image {
     width: 260px;
+    height: 260px;
     max-width: 100%;
     display: block;
     background: #000;
+    object-fit: cover;
+    object-position: center;
 }
 
 .product-name {
@@ -649,6 +655,8 @@
 .checkout-main {
     display: flex;
     gap: 40px;
+    align-items: flex-start;
+    min-height: calc(100vh - 120px);
 }
 
 .checkout-left {
@@ -659,12 +667,18 @@
     flex: 1;
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
 }
 
 .hero-image {
     max-width: 100%;
+    width: auto;
     height: auto;
     display: block;
+    object-fit: contain;
+    object-position: bottom;
+    align-self: flex-end;
 }
 
 .checkout-steps {
@@ -795,9 +809,12 @@
 }
 
 .cart-item-image {
-    width: 140px;
-    height: auto;
+    width: 180px;
+    height: 180px;
     display: block;
+    object-fit: cover;
+    object-position: center;
+    flex-shrink: 0;
 }
 
 .remove-btn {
@@ -830,8 +847,11 @@
 }
 
 .summary-product-image {
-    width: 120px;
-    height: auto;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+    flex-shrink: 0;
 }
 
 .summary-product-name {
@@ -849,6 +869,90 @@
 
 .confirmation-items .cart-item {
     margin-bottom: 12px;
+}
+
+/* Custom Confirmation Modal - Black and Gold Theme */
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    font-family: "Georgia", "Times New Roman", serif;
+}
+
+.custom-modal-content {
+    background-color: #000;
+    border: 2px solid #d1b268;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(209, 178, 104, 0.3);
+}
+
+.custom-modal-title {
+    color: #d1b268;
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.custom-modal-message {
+    color: #f8f3e8;
+    font-size: 1rem;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.5;
+}
+
+.custom-modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.custom-modal-btn {
+    padding: 0.75rem 2rem;
+    border: 2px solid #d1b268;
+    background: transparent;
+    color: #d1b268;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    font-family: "Georgia", "Times New Roman", serif;
+}
+
+.custom-modal-btn:hover {
+    background: #d1b268;
+    color: #000;
+    transform: translateY(-1px);
+}
+
+.custom-modal-btn:active {
+    transform: translateY(0);
+}
+
+.custom-modal-confirm {
+    background: #d1b268;
+    color: #000;
+}
+
+.custom-modal-confirm:hover {
+    background: #b89d5a;
+    color: #000;
+}
+
+.custom-modal-cancel:hover {
+    background: #d1b268;
+    color: #000;
 }
 
 .form-grid {

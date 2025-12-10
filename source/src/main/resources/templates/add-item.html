@@ -36,44 +36,105 @@
             sell to customers
         </p>
 
+        <!-- Success notification -->
+        <div th:if="${itemAdded}" id="item-added-toast" class="cart-toast" style="display: block;">
+            <span th:text="${itemName != null ? itemName + ' added' : 'Item added'}">Item added</span>
+        </div>
+
+        <!-- Error message -->
+        <div th:if="${error}" class="error-message" style="color: red; margin-bottom: 1rem;">
+            <span th:text="${error}">Error message</span>
+        </div>
+
         <form class="admin-add-form"
               th:action="@{/admin/add-item}"
               method="post"
-              enctype="multipart/form-data">
+              enctype="multipart/form-data"
+              id="add-item-form">
 
             <input class="admin-add-input"
                    type="text"
                    name="name"
+                   id="item-name"
                    placeholder="Name"
                    required>
 
             <input class="admin-add-input"
-                   type="number"
-                   step="0.01"
-                   min="0"
+                   type="text"
                    name="price"
+                   id="item-price"
                    placeholder="Price $"
+                   pattern="[0-9]+(\.[0-9]{1,2})?"
+                   title="Please enter a valid number (e.g., 100 or 99.99)"
                    required>
 
             <p class="admin-add-upload-label">Upload Image</p>
 
-            <input id="admin-add-image"
-                   class="admin-add-file-input"
-                   type="file"
-                   name="imageFile"
-                   accept="image/*"
-                   required>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <input id="admin-add-image"
+                       class="admin-add-file-input"
+                       type="file"
+                       name="imageFile"
+                       accept="image/*"
+                       required
+                       onchange="previewImage(this)">
 
-            <label for="admin-add-image"
-                   class="admin-add-upload-box">
-                <span class="admin-add-upload-icon">⬆</span>
-            </label>
+                <label for="admin-add-image"
+                       class="admin-add-upload-box">
+                    <span class="admin-add-upload-icon">⬆</span>
+                </label>
+
+                <!-- Image preview -->
+                <img id="image-preview" 
+                     src="" 
+                     alt="Preview" 
+                     style="max-width: 150px; max-height: 150px; display: none; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
 
             <button type="submit"
                     class="admin-add-submit">
                 ADD ITEM
             </button>
         </form>
+
+        <script>
+            function previewImage(input) {
+                const preview = document.getElementById('image-preview');
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    preview.style.display = 'none';
+                }
+            }
+
+            // Clear form after successful submission
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('add-item-form');
+                const itemAdded = /*[[${itemAdded}]]*/ false;
+                
+                if (itemAdded) {
+                    // Clear form fields
+                    document.getElementById('item-name').value = '';
+                    document.getElementById('item-price').value = '';
+                    document.getElementById('admin-add-image').value = '';
+                    document.getElementById('image-preview').style.display = 'none';
+                    document.getElementById('image-preview').src = '';
+                    
+                    // Hide toast after 3 seconds
+                    setTimeout(function() {
+                        const toast = document.getElementById('item-added-toast');
+                        if (toast) {
+                            toast.style.display = 'none';
+                        }
+                    }, 3000);
+                }
+            });
+        </script>
     </section>
 
     <aside class="admin-add-right">

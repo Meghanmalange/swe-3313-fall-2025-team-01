@@ -110,4 +110,19 @@ public class SalesServiceImpl implements SalesService {
         });
         return sales;
     }
+    
+    @Override
+    @Transactional
+    public Sale updateSaleShippingDetails(Long saleId, String address, String city, String state, String zip, String details) {
+        Sale sale = saleRepository.findById(saleId)
+                .orElseThrow(() -> new IllegalArgumentException("Sale not found: " + saleId));
+        
+        sale.setShippingAddress(address);
+        sale.setShippingCity(city);
+        sale.setShippingState(state);
+        sale.setShippingZip(zip);
+        sale.setShippingDetails(details != null ? details : "");
+        
+        return saleRepository.save(sale);
+    }
 }

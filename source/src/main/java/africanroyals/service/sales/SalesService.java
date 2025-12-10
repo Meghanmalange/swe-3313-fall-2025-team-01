@@ -26,4 +26,9 @@ public interface SalesService {
      * Get all sales for a user
      */
     List<Sale> getSalesByUserId(Long userId);
+    
+    /**
+     * Update sale with shipping address details
+     */
+    Sale updateSaleShippingDetails(Long saleId, String address, String city, String state, String zip, String details);
 }

@@ -13,7 +13,7 @@
     <header class="checkout-header">
         <button class="btn-outline catalog-top"
                 type="button"
-                onclick="window.location.href='/catalog'">
+                th:onclick="${isAdmin} ? 'window.location.href=\'/admin-catalog\'' : 'window.location.href=\'/catalog\''">
             CATALOG
         </button>
 
@@ -26,32 +26,28 @@
 
         <section class="checkout-left">
 
-            <!-- STEP TABS -->
+            <!-- STEP TABS (Display only, not clickable) -->
             <nav class="checkout-steps">
-                <button type="button"
-                        class="step-pill active"
-                        data-step-label="1"
-                        onclick="showStep(1)">
+                <div class="step-pill active"
+                     data-step-label="1"
+                     style="cursor: default;">
                     Items
-                </button>
-                <button type="button"
-                        class="step-pill"
-                        data-step-label="2"
-                        onclick="showStep(2)">
+                </div>
+                <div class="step-pill"
+                     data-step-label="2"
+                     style="cursor: default;">
                     Shipping
-                </button>
-                <button type="button"
-                        class="step-pill"
-                        data-step-label="3"
-                        onclick="showStep(3)">
+                </div>
+                <div class="step-pill"
+                     data-step-label="3"
+                     style="cursor: default;">
                     Payment
-                </button>
-                <button type="button"
-                        class="step-pill"
-                        data-step-label="4"
-                        onclick="showStep(4)">
+                </div>
+                <div class="step-pill"
+                     data-step-label="4"
+                     style="cursor: default;">
                     Confirmation
-                </button>
+                </div>
             </nav>
 
             <!-- numeric values from backend -->
@@ -75,7 +71,7 @@
 
                     <button type="button"
                             class="btn-outline primary"
-                            onclick="window.location.href='/catalog'">
+                            th:onclick="${isAdmin} ? 'window.location.href=\'/admin-catalog\'' : 'window.location.href=\'/catalog\''">
                         CATALOG
                     </button>
                 </section>
@@ -98,10 +94,9 @@
                                     $2,000
                                 </p>
 
-                                <a class="btn-outline small remove-btn"
-                                   th:href="@{/cart/remove(productId=${product.itemId})}">
-                                    x
-                                </a>
+                                <a th:href="@{/cart/remove(productId=${product.itemId})}" 
+                                   class="btn-outline small remove-btn"
+                                   onclick="event.preventDefault(); showRemoveConfirm(this.href); return false;">x</a>
                             </div>
 
                             <img class="cart-item-image"
@@ -200,23 +195,27 @@
                     <div class="shipping-layout">
 
                         <div class="summary-block">
-                            <div class="summary-item-header"
+                            <!-- Display all cart items -->
+                            <div class="summary-items-list"
                                  th:if="${!#lists.isEmpty(cartProducts)}">
-                                <img class="summary-product-image"
-                                     th:src="@{${cartProducts[0].imagePath}}"
-                                     th:alt="${cartProducts[0].name}"
-                                     src="/images/diamond-necklace.png"
-                                     alt="Diamond Necklace">
+                                <div class="summary-item-header"
+                                     th:each="product : ${cartProducts}">
+                                    <img class="summary-product-image"
+                                         th:src="@{${product.imagePath}}"
+                                         th:alt="${product.name}"
+                                         src="/images/diamond-necklace.png"
+                                         alt="Diamond Necklace">
 
-                                <div>
-                                    <p class="summary-product-name"
-                                       th:text="${cartProducts[0].name}">
-                                        Diamond Necklace
-                                    </p>
-                                    <p class="summary-product-price"
-                                       th:text="${'$' + cartProducts[0].price}">
-                                        $2,000
-                                    </p>
+                                    <div>
+                                        <p class="summary-product-name"
+                                           th:text="${product.name}">
+                                            Diamond Necklace
+                                        </p>
+                                        <p class="summary-product-price"
+                                           th:text="${'$' + product.price}">
+                                            $2,000
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -313,23 +312,27 @@
 
                     <div class="shipping-layout">
                         <div class="summary-block">
-                            <div class="summary-item-header"
+                            <!-- Display all cart items -->
+                            <div class="summary-items-list"
                                  th:if="${!#lists.isEmpty(cartProducts)}">
-                                <img class="summary-product-image"
-                                     th:src="@{${cartProducts[0].imagePath}}"
-                                     th:alt="${cartProducts[0].name}"
-                                     src="/images/diamond-necklace.png"
-                                     alt="Diamond Necklace">
+                                <div class="summary-item-header"
+                                     th:each="product : ${cartProducts}">
+                                    <img class="summary-product-image"
+                                         th:src="@{${product.imagePath}}"
+                                         th:alt="${product.name}"
+                                         src="/images/diamond-necklace.png"
+                                         alt="Diamond Necklace">
 
-                                <div>
-                                    <p class="summary-product-name"
-                                       th:text="${cartProducts[0].name}">
-                                        Diamond Necklace
-                                    </p>
-                                    <p class="summary-product-price"
-                                       th:text="${'$' + cartProducts[0].price}">
-                                        $2,000
-                                    </p>
+                                    <div>
+                                        <p class="summary-product-name"
+                                           th:text="${product.name}">
+                                            Diamond Necklace
+                                        </p>
+                                        <p class="summary-product-price"
+                                           th:text="${'$' + product.price}">
+                                            $2,000
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -470,6 +473,62 @@
 
     </main>
 </div>
+
+<!-- Custom Confirmation Modal -->
+<div id="remove-confirm-modal" class="custom-modal">
+    <div class="custom-modal-content">
+        <h3 class="custom-modal-title">Remove Item</h3>
+        <p class="custom-modal-message">Are you sure you want to remove this item from your cart?</p>
+        <div class="custom-modal-buttons">
+            <button class="custom-modal-btn custom-modal-cancel" onclick="closeRemoveConfirm()">Cancel</button>
+            <button class="custom-modal-btn custom-modal-confirm" id="confirm-remove-btn">Remove</button>
+        </div>
+    </div>
+</div>
+
 <script th:src="@{/js/app.js}"></script>
+<script>
+    let removeUrl = null;
+    
+    function showRemoveConfirm(url) {
+        removeUrl = url;
+        const modal = document.getElementById('remove-confirm-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+        }
+    }
+    
+    function closeRemoveConfirm() {
+        const modal = document.getElementById('remove-confirm-modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+        removeUrl = null;
+    }
+    
+    function confirmRemove() {
+        if (removeUrl) {
+            window.location.href = removeUrl;
+        }
+    }
+    
+    // Set up confirm button
+    document.addEventListener('DOMContentLoaded', function() {
+        const confirmBtn = document.getElementById('confirm-remove-btn');
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', confirmRemove);
+        }
+        
+        // Close modal when clicking outside
+        const modal = document.getElementById('remove-confirm-modal');
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeRemoveConfirm();
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

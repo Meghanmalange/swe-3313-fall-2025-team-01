@@ -26,36 +26,42 @@
 
             <form th:action="@{/signup}" method="post">
                 <input name="email"
+                       type="email"
                        placeholder="Email"
-                       autocomplete="off"
-                       required>
+                       autocomplete="email"
+                       required
+                       th:value="${param.email != null ? param.email[0] : ''}">
 
                 <input name="username"
                        placeholder="Username"
-                       autocomplete="off"
-                       required>
+                       autocomplete="username"
+                       required
+                       th:value="${param.username != null ? param.username[0] : ''}">
 
                 <input name="fullName"
                        placeholder="Full name"
-                       autocomplete="off"
-                       required>
+                       autocomplete="name"
+                       required
+                       th:value="${param.fullName != null ? param.fullName[0] : ''}">
 
                 <input name="password"
                        type="password"
                        placeholder="Password"
-                       autocomplete="off"
+                       autocomplete="new-password"
                        required>
 
                 <p class="password-hint">
                     Must be at least 6 characters long
                 </p>
 
-                <a th:href="@{/catalog}">
-                    <button class="login-submit" type="button">
-                        Create Account
-                    </button>
-                </a>
+                <button class="login-submit" type="submit">
+                    Create Account
+                </button>
             </form>
+
+            <p th:if="${error}" class="login-error" th:text="${error}">
+                Error message
+            </p>
 
             <p class="login-signup-text">
                 Already have an account?

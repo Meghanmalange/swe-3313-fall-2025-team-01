@@ -22,31 +22,29 @@
 
             <form th:action="@{/login}" method="post">
                 <input name="username"
-                       placeholder="Email/Username"
-                       autocomplete="off"
-                       required>
+                       placeholder="Username"
+                       autocomplete="username"
+                       required
+                       th:value="${param.username != null ? param.username[0] : ''}">
 
                 <input name="password"
                        type="password"
                        placeholder="Password"
-                       autocomplete="off"
+                       autocomplete="current-password"
                        required>
 
-                <a th:href="@{/catalog}">
-                    <button class="login-submit" type="button">
-                        Login
-                    </button>
-                </a>
+                <button class="login-submit" type="submit">
+                    Login
+                </button>
             </form>
 
-            <p th:if="${param.error}" class="login-error">
+            <p th:if="${error}" class="login-error" th:text="${error}">
                 Invalid username or password
             </p>
 
             <p class="login-signup-text">
                 Don't have an account?
                 <a th:href="@{/signup}">Sign Up</a>
-
             </p>
         </div>
     </div>

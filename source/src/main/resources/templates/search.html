@@ -15,17 +15,17 @@
 </div>
 
 <header class="search-header">
-    <a class="nav-link" th:href="@{/catalog}">Catalog</a>
+    <a class="nav-link" th:href="${isAdmin} ? @{/admin-catalog} : @{/catalog}">Catalog</a>
     <h1 class="site-title">THE AFRICAN JEWELRY SHOP</h1>
     <a class="nav-link" th:href="@{/checkout}">Checkout</a>
 </header>
 
 <section class="catalog-search">
-    <form class="search-form" th:action="@{/catalog}" method="get">
+    <form class="search-form" th:action="@{/search}" method="get">
         <input type="text"
                name="query"
                placeholder="SEARCH FOR ITEM"
-               th:value="${param.query}">
+               th:value="${searchQuery}">
         <button type="submit" class="search-button" aria-label="Search">
             <span class="search-icon"></span>
         </button>
@@ -39,7 +39,7 @@
     <div class="product-card" th:each="product : ${products}">
 
         <img class="product-image"
-             th:src="@{${product.imagePath}}"
+             th:src="@{${product.imageUrl != null ? product.imageUrl : '/images/diamond-necklace.png'}}"
              th:alt="${product.name}"
              src="/images/diamond-necklace.png"
              alt="Diamond Necklace">
@@ -49,17 +49,24 @@
         </h2>
 
         <div class="price-and-cart">
-            <span class="product-price"
+            <!-- Show "Sold Out" if item is sold, otherwise show price -->
+            <span class="product-price sold-out" th:if="${product.isSold}">Sold Out</span>
+            <span class="product-price" 
+                  th:unless="${product.isSold}"
                   th:text="${'$' + product.price}">
                 $2,000
             </span>
 
-            <form th:action="@{/cart/add}" method="post">
+            <!-- Only show "Add to Cart" button if item is not sold -->
+            <form th:if="${!product.isSold}" th:action="@{/cart/add}" method="post">
                 <input type="hidden" name="productId" th:value="${product.id}">
+                <input type="hidden" name="fromSearch" value="true">
+                <input type="hidden" name="searchQuery" th:value="${searchQuery}">
                 <button type="submit"
-                        class="cart-toggle"
-                        th:classappend="${cart != null and cart.contains(product.id)} ? ' in-cart'">
-                    Add to cart
+                        th:disabled="${cartItemIds != null and cartItemIds.contains(product.id)}"
+                        th:class="${cartItemIds != null and cartItemIds.contains(product.id)} ? 'cart-toggle in-cart' : 'cart-toggle'">
+                    <span th:if="${cartItemIds != null and cartItemIds.contains(product.id)}">In Cart</span>
+                    <span th:unless="${cartItemIds != null and cartItemIds.contains(product.id)}">Add to Cart</span>
                 </button>
             </form>
         </div>

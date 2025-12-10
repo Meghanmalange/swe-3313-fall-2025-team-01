@@ -24,13 +24,13 @@
         <div class="complete-actions">
             <!-- continue shopping -->
             <a class="complete-btn complete-btn-primary"
-               th:href="@{/catalog}">
+               th:href="${isAdmin} ? @{/admin-catalog} : @{/catalog}">
                 CONTINUE SHOPPING
             </a>
 
             <!-- log out -->
             <a class="complete-btn complete-btn-secondary"
-               th:href="@{/login}">
+               th:href="@{/logout}">
                 LOG OUT
             </a>
         </div>
