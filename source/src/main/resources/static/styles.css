@@ -1,68 +1,452 @@
-/* Universal CSS */
-body{
-    margin:0;
-    padding:0;
-    background-color: black;
+#index-body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: "Georgia", "Times New Roman", serif;
+    color: #f8f3e8;
 }
 
-h1{
-    color: white;
-    font-family: "Playfair", "Times New Roman", serif;
 
+.hero {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: url("/images/african-man.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-h2{
-    color:#F2E8C9;
-    font-family: "Merriweather", "Verdana", sans-serif;
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
 }
 
-h3{
-    color:#F2E8C9;
-    font-family: "Playfair", "Times New Roman", serif;
-}
-
-button{
-    background-color: rgba(226, 197, 114, 0.32);
-    color:#E2C572;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-    font-family:"Montserrat","Helvetica", sans-Serif;
-    border: 2px solid #E2C572;
-    border-radius:0;
-    padding:20px;
-}
-
-label{
+.hero-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
     display: flex;
-    flex-direction: column; /* stacks children vertically */
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5rem;   /* move text away from edge */
+    max-width: 480px;
 }
 
-input{
-    color:#E2C572;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-    font-family:"Montserrat","Helvetica","Sans-Serif";
+.hero-content h1 {
+    font-size: 3.5rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-content h2 {
+    font-size: 1.25rem;
+    font-weight: normal;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+}
+
+.hero-content button {
+    align-self: flex-start;
+    padding: 0.8rem 2.5rem;
+    border: 2px solid #d1b268;
     background: transparent;
-    border: 2px solid #E2C572;
-    border-radius:0;
+    color: #d1b268;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
 }
 
-input::placeholder{
-    color:#E2C572;
-    font-style: italic;
+.hero-content button:hover {
+    background: #d1b268;
+    color: #111;
+    transform: translateY(-1px);
 }
 
-a{
-    color:#F2E8C9;
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 2rem;
+        max-width: none;
+    }
+
+    .hero-content h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.05rem;
+    }
+}
+
+/* ============================ LOGIN SCREEN =========================*/
+
+#login-body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: "Georgia", "Times New Roman", serif;
+    color: #f8f3e8;
+    background: #000;
+}
+
+.login-hero {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: url("/images/african-hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.login-container {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 4rem;
+    padding-top: 2rem;
+}
+
+.back-button {
+    align-self: flex-start;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #d1b268;
+    background: transparent;
+    color: #ffffff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    text-transform: none;
+}
+
+.back-button:hover {
+    background: rgba(209, 178, 104, 0.1);
+}
+
+.login-card {
+    margin-top: 5rem;
+    max-width: 380px;
+}
+
+.login-card h1 {
+    font-size: 3rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0 0 2rem 0;
+}
+
+.login-card input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    padding: 0.75rem 0.75rem;
+    background: transparent;
+    border: 2px solid #d1b268;
+    color: #f8f3e8;
+    font-size: 0.95rem;
+}
+
+.login-card input::placeholder {
+    color: #d1b268;
+    opacity: 0.85;
+}
+
+.login-submit {
+    width: 100%;
+    padding: 0.9rem 0;
+    margin-top: 0.5rem;
+    border: 2px solid #d1b268;
+    background: rgba(209, 178, 104, 0.35);
+    color: #f8f3e8;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.login-submit:hover {
+    background: #d1b268;
+    color: #111;
+    transform: translateY(-1px);
+}
+
+.login-error {
+    color: #ff6b6b;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.login-signup-text {
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+}
+
+.login-signup-text a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.login-signup-text a:hover {
+    color: #d1b268;
+}
+
+/* responsive tweak */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 1.5rem;
+    }
+
+    .login-card {
+        margin-top: 3rem;
+        max-width: none;
+    }
+
+    .login-card h1 {
+        font-size: 2.2rem;
+    }
+}
+
+#signup-body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: "Georgia", "Times New Roman", serif;
+    color: #f8f3e8;
+    background: #000;
+}
+
+.password-hint {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.8rem;
+    color: #d1b268;
+}
+
+/* ====== Cart Toast Overlay ====== */
+.cart-toast {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    background: rgba(15, 10, 5, 0.9);
+    color: #f8f3e8;
+    border: 1px solid #d1b268;
+    padding: 0.8rem 1.4rem;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 0.9rem;
+    z-index: 50;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.cart-toast-hide {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+/* ============= CATALOG PAGE ============= */
+
+#catalog-body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #f8f3e8;
+    font-family: "Georgia", "Times New Roman", serif;
+    position: relative;
+}
+
+.catalog-header {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.85rem;
+}
+
+.catalog-header h1 {
+    font-size: 2.4rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.catalog-header h2,
+.catalog-header h1 {
+    color: #f8f3e8;
+}
+
+.catalog-header a {
+    color: #d1b268;
+    text-decoration: none;
+}
+
+.catalog-header a:hover {
+    color: #f8f3e8;
 }
 
 
-/* Index */
+#catalog-body > img {
+    display: block;
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+}
 
-/*Login*/
-#login-button{
+
+#catalog-body > h4 {
+    margin: 0;
+    padding: 16px 60px;
+    background: #000;
+    color: #f8f3e8;
+    font-size: 1.05rem;
+}
+
+
+.catalog-grid {
+    background: #000;
+    padding: 10px 60px 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+}
+
+
+.product-card {
+    color: #f8f3e8;
+}
+
+
+.product-card img {
+    width: 260px;
+    max-width: 100%;
+    display: block;
+}
+
+
+.product-card h5 {
+    margin: 12px 0 4px 0;
+    font-size: 1rem;
+}
+
+.product-card h6 {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #d1b268;
+}
+
+.product-card form {
+    margin-top: 10px;
+}
+
+.product-card form button {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #d1b268;
+    background: transparent;
+    cursor: pointer;
+
+    text-indent: -9999px;
+    overflow: hidden;
+    padding: 0;
+}
+
+
+.product-card form button[disabled] {
+    background: #d1b268;
+    cursor: default;
+}
+
+
+@media (max-width: 768px) {
+    .catalog-header {
+        padding: 0 20px;
+    }
+
+    #catalog-body > h4,
+    .catalog-grid {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+#admin-add-item-body{
+    background: black;
+    color: #f8f3e8;
+    font-family: "Georgia", serif;
+    padding: 60px;
+}
+
+.admin-section-title {
+    text-align:center;
+    color: #d1b268;
+    letter-spacing: 0.15em;
+    margin-top: 60px;
+}
+
+.admin-form {
+    max-width: 450px;
+    margin: 40px auto;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.admin-form label {
+    display:flex;
+    flex-direction:column;
+    font-size: 0.9rem;
+    letter-spacing:0.06em;
+}
+
+.admin-form input{
+    background: transparent;
+    border: 1px solid #d1b268;
     padding: 10px;
+    color: #f8f3e8;
+    margin-top:6px;
 }
 
-/*Signup*/
-#signup-button{
-    padding: 10px;
+.gold-button{
+    background: transparent;
+    border: 1px solid #d1b268;
+    color: #d1b268;
+    padding: 12px 20px;
+    cursor:pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.gold-button:hover{
+    background:#d1b268;
+    color:black;
+}
+
+.admin-success{
+    text-align:center;
+    margin-top: 20px;
+    color:#9ad189;
 }
