@@ -1,22 +1,24 @@
 package africanroyals.service.inventory;
 
 import africanroyals.entity.InventoryItem;
-import africanroyals.jewelry.repository.InventoryItemRepository;
+import africanroyals.repository.InventoryItemRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class InventoryServiceImpl implements InventoryService {
-    private final InventoryRepository repo;
+    private final InventoryItemRepository repo;
 
-    public InventoryServiceImpl(InventoryRepository repo) {
+    public InventoryServiceImpl(InventoryItemRepository repo) {
         this.repo = repo;
     }
 
     @Override
     public List<InventoryItem> getAvailableItems() {
-        return repo.findByIsSoldFalseOrderByPriceDesc();
+        return repo.findAll();
     }
 
     @Override
@@ -25,18 +27,8 @@ public class InventoryServiceImpl implements InventoryService {
             return getAvailableItems();
         }
 
-        List<InventoryItem> byName =
-                repo.findByIsSoldFalseAndNameContainingIgnoreCaseOrderByPriceDesc(query);
-
-        List<InventoryItem> byDesc =
-                repo.findByIsSoldFalseAndDescriptionContainingIgnoreCaseOrderByPriceDesc(query);
-
-        // Combine results without duplicates
-        Set<InventoryItem> combined = new LinkedHashSet<>();
-        combined.addAll(byName);
-        combined.addAll(byDesc);
-
-        return new ArrayList<>(combined);
+        List<InventoryItem> byName = repo.searchByName(query);
+        Set<InventoryItem> combined = new LinkedHashSet<>(byName);
+        return List.copyOf(combined);
     }
 }
-

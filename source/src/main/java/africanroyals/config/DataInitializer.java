@@ -53,7 +53,6 @@ public class DataInitializer {
         };
     }
 
-
     private void seedAdmin(
             UserRepository repo,
             PasswordEncoder encoder,
@@ -74,3 +73,26 @@ public class DataInitializer {
             admin.setAdmin(true);
 
             repo.save(admin);
+        }
+    }
+
+    private void seedItem(
+            InventoryItemRepository repo,
+            String name,
+            String description,
+            BigDecimal price,
+            int quantity
+    ) {
+
+        boolean exists = repo.findByNameIgnoreCase(name).isPresent();
+        if (!exists) {
+            InventoryItem item = new InventoryItem();
+            item.setName(name);
+            item.setDescription(description);
+            item.setPrice(price);
+            item.setQuantity(quantity);
+
+            repo.save(item);
+        }
+    }
+}

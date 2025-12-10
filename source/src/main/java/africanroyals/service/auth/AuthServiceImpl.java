@@ -1,10 +1,9 @@
-package africanroyals.service.impl;
+package africanroyals.service.auth;
 
 import africanroyals.dto.LoginRequest;
 import africanroyals.dto.RegisterRequest;
-import africanroyals.model.Admin;
-import africanroyals.repository.AdminRepository;
-import africanroyals.service.AuthService;
+import africanroyals.entity.User;
+import africanroyals.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,46 +12,92 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    private final AdminRepository adminRepo;
+    private final UserRepository userRepo;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authManager;
 
-    public AuthServiceImpl(AdminRepository adminRepo,
+    public AuthServiceImpl(UserRepository userRepo,
                            PasswordEncoder passwordEncoder,
                            AuthenticationManager authManager) {
-        this.adminRepo = adminRepo;
+        this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
         this.authManager = authManager;
     }
 
     @Override
     public String login(LoginRequest request) {
+
+        String identifier = request.getIdentifier();
+        String usernameToAuth = null;
+
+        // Login with email
+        if (identifier.contains("@")) {
+            usernameToAuth = userRepo.findByEmail(identifier)
+                    .map(User::getUsername)
+                    .orElse(null);
+        }
+        // Login with username
+        else {
+            usernameToAuth = identifier;
+        }
+
+        if (usernameToAuth == null) {
+            return "INVALID EMAIL OR USERNAME";
+        }
+
         try {
             authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            request.getUsername(),
+                            usernameToAuth,
                             request.getPassword()
                     )
             );
             return "LOGIN SUCCESS";
-        } catch (Exception e) {
+        } catch (Exception ex) {
             return "INVALID CREDENTIALS";
         }
     }
 
     @Override
-    public String registerAdmin(RegisterRequest request) {
-        if (adminRepo.findByUsername(request.getUsername()).isPresent()) {
+    public String registerUser(RegisterRequest request) {
+
+        if (userRepo.findByUsername(request.getUsername()).isPresent()) {
             return "USERNAME ALREADY EXISTS";
         }
 
-        Admin newAdmin = new Admin(
-                request.getUsername(),
-                passwordEncoder.encode(request.getPassword())
-        );
+        if (userRepo.findByEmail(request.getEmail()).isPresent()) {
+            return "EMAIL ALREADY REGISTERED";
+        }
 
-        adminRepo.save(newAdmin);
+        User user = new User();
+        user.setFullName(request.getFullName());
+        user.setEmail(request.getEmail());
+        user.setUsername(request.getUsername());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setAdmin(false);
+
+        userRepo.save(user);
+        return "USER REGISTERED SUCCESSFULLY";
+    }
+
+    @Override
+    public String registerAdmin(RegisterRequest request) {
+        if (userRepo.findByUsername(request.getUsername()).isPresent()) {
+            return "USERNAME ALREADY EXISTS";
+        }
+
+        if (userRepo.findByEmail(request.getEmail()).isPresent()) {
+            return "EMAIL ALREADY REGISTERED";
+        }
+
+        User admin = new User();
+        admin.setFullName(request.getFullName());
+        admin.setEmail(request.getEmail());
+        admin.setUsername(request.getUsername());
+        admin.setPassword(passwordEncoder.encode(request.getPassword()));
+        admin.setAdmin(true);
+
+        userRepo.save(admin);
         return "ADMIN REGISTERED";
     }
 }
-

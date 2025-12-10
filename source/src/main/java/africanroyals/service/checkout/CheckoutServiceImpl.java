@@ -45,6 +45,8 @@ public class CheckoutServiceImpl implements CheckoutService {
                 new ArrayList<>(cart.getItems()),
                 priceDetails,
                 request.getShippingOption(),
+                request.getCardHolderName(),
+                request.getCardLastFourDigits(),
                 LocalDateTime.now()
         );
 
