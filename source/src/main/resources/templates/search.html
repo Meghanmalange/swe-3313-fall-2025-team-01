@@ -2,49 +2,56 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Search</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>Add Item</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
-<body id="search-body">
 
-<!-- Navigation -->
-<h2><a th:href="@{/catalog}">Catalog</a></h2>
-<h1>The African Jewelry Shop</h1>
+<body id="admin-add-item-body">
 
-<!-- If you want admin redirect, later add <a th:href="@{/admin/catalog}"> instead -->
-<h2><a th:href="@{/checkout}">Checkout</a></h2>
+<div class="admin-header">
+    <button type="button" onclick="toggleMenu()">☰</button>
+    <h1>The African Jewelry Shop</h1>
+    <h2><a th:href="@{/checkout}">Checkout</a></h2>
+</div>
 
-<br>
+<h2 class="admin-section-title">Add New Product</h2>
 
-<!-- SEARCH FORM -->
-<form th:action="@{/search}" method="get">
-    <input name="q" placeholder="Search" autocomplete="off"
-           th:value="${query}">
-    <button type="submit">Search</button>
+<form class="admin-form"
+      th:action="@{/admin/add-item}"
+      method="post">
+
+    <label>
+        Product Name
+        <input type="text" name="name" required>
+    </label>
+
+    <label>
+        Price
+        <input type="number" name="price" min="1" required>
+    </label>
+
+    <label>
+        Image Path (ex: /images/diamond-necklace.png)
+        <input type="text" name="imagePath" required>
+    </label>
+
+    <button type="submit" class="gold-button">Add Product</button>
 </form>
 
-<br>
+<p th:if="${param.success}"
+   class="admin-success">
+    Item Added Successfully
+</p>
 
-<!-- SEARCH RESULTS -->
-<div th:if="${#lists.isEmpty(results)}">
-    <p>No items found.</p>
-</div>
+<p><a th:href="@{/admin/catalog}">Back to Catalog</a></p>
 
-<div th:each="product : ${results}">
 
-    <img alt="product image"
-         th:src="@{${product.imagePath}}">
-
-    <h5 th:text="${product.name}">Diamond Necklace</h5>
-    <h6 th:text="'$' + ${product.price}">2000</h6>
-
-    <form th:action="@{/cart/add}" method="post">
-        <input type="hidden" name="productId" th:value="${product.id}">
-        <button type="submit">Add to Cart</button>
-    </form>
-
-    <br>
-</div>
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('admin-menu');
+        if(menu) menu.classList.toggle('open');
+    }
+</script>
 
 </body>
 </html>
