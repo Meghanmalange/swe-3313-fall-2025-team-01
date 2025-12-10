@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>The African Jewelry Shop -- Order Confirmed</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body id="complete-body">
+
+<div class="complete-hero">
+
+    <!-- left-side text content -->
+    <div class="complete-content">
+        <h1 class="complete-title">
+            THE AFRICAN<br>
+            JEWELRY SHOP
+        </h1>
+
+        <p class="complete-message">
+            Thank you for shopping. Your<br>
+            order is confirmed
+        </p>
+
+        <div class="complete-actions">
+            <!-- continue shopping -->
+            <button
+                    class="complete-btn complete-btn-primary"
+                    type="button"
+                    th:onclick="'window.location.href=\'' + @{/catalog} + '\'''">
+                CONTINUE SHOPPING
+            </button>
+
+            <!-- log out -->
+            <button
+                    class="complete-btn complete-btn-secondary"
+                    type="button"
+                    th:onclick="'window.location.href=\'' + @{/logout} + '\'''">
+                LOG OUT
+            </button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

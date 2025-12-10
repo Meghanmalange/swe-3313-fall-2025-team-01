@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The African Jewelry Shop -- Search</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body id="search-body">
+
+<div th:if="${addedProductName}" id="cart-toast" class="cart-toast">
+    <span th:text="${addedProductName} + ' has been added to cart'">
+        Diamond Necklace has been added to cart
+    </span>
+</div>
+
+<header class="search-header">
+    <a class="nav-link" th:href="@{/catalog}">Catalog</a>
+    <h1 class="site-title">THE AFRICAN JEWELRY SHOP</h1>
+    <a class="nav-link" th:href="@{/checkout}">Checkout</a>
+</header>
+
+<section class="catalog-search">
+    <form class="search-form" th:action="@{/catalog}" method="get">
+        <input type="text"
+               name="query"
+               placeholder="SEARCH FOR ITEM"
+               th:value="${param.query}">
+        <button type="submit" class="search-button" aria-label="Search">
+            <span class="search-icon"></span>
+        </button>
+    </form>
+</section>
+
+<div class="catalog-divider"></div>
+
+<!-- Products -->
+<section class="catalog-grid">
+    <div class="product-card" th:each="product : ${products}">
+
+        <img class="product-image"
+             th:src="@{${product.imagePath}}"
+             th:alt="${product.name}"
+             src="/images/diamond-necklace.png"
+             alt="Diamond Necklace">
+
+        <h2 class="product-name" th:text="${product.name}">
+            Diamond Necklace
+        </h2>
+
+        <div class="price-and-cart">
+            <span class="product-price"
+                  th:text="${'$' + product.price}">
+                $2,000
+            </span>
+
+            <form th:action="@{/cart/add}" method="post">
+                <input type="hidden" name="productId" th:value="${product.id}">
+                <button type="submit"
+                        class="cart-toggle"
+                        th:classappend="${cart != null and cart.contains(product.id)} ? ' in-cart'">
+                    Add to cart
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script th:src="@{/js/app.js}"></script>
+
+</body>
+</html>

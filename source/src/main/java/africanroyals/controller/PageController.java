@@ -30,4 +30,20 @@ public class PageController {
     public String showAdminCatalog() {
         return "admin-catalog";
     }
+
+    @GetMapping("/search")
+    public String showSearch() {
+        return "search";
+    }
+
+    @GetMapping("/checkout")
+    public String showCheckout() {
+        return "checkout";
+    }
+
+    // GET: show the final "order confirmed" page
+    @GetMapping("/complete-purchase")
+    public String showCompletePurchase() {
+        return "complete-purchase";   // templates/complete-purchase.html
+    }
 }

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>The African Jewelry Shop -- Checkout</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body id="checkout-body">
+
+<div class="checkout-shell">
+
+    <!-- HEADER -->
+    <header class="checkout-header">
+        <button class="btn-outline catalog-top"
+                type="button"
+                onclick="window.location.href='/catalog'">
+            CATALOG
+        </button>
+
+        <h1 class="checkout-title">
+            THE AFRICAN JEWELRY SHOP
+        </h1>
+    </header>
+
+    <main class="checkout-main">
+
+        <section class="checkout-left">
+
+            <!-- STEP TABS -->
+            <nav class="checkout-steps">
+                <button type="button"
+                        class="step-pill active"
+                        data-step-label="1"
+                        onclick="showStep(1)">
+                    Items
+                </button>
+                <button type="button"
+                        class="step-pill"
+                        data-step-label="2"
+                        onclick="showStep(2)">
+                    Shipping
+                </button>
+                <button type="button"
+                        class="step-pill"
+                        data-step-label="3"
+                        onclick="showStep(3)">
+                    Payment
+                </button>
+                <button type="button"
+                        class="step-pill"
+                        data-step-label="4"
+                        onclick="showStep(4)">
+                    Confirmation
+                </button>
+            </nav>
+
+            <!-- numeric values from backend -->
+            <div id="order-data"
+                 th:attr="data-subtotal=${subtotal},data-tax=${tax}">
+            </div>
+
+            <!-- MAIN CHECKOUT FORM (we're not submitting it anymore) -->
+            <form>
+
+                <!-- ========== STEP 1: ITEMS (NO ITEMS) ========== -->
+                <section class="checkout-step"
+                         data-step="1"
+                         th:if="${#lists.isEmpty(cartProducts)}">
+
+                    <p class="checkout-message">
+                        Must add items in order to check out
+                    </p>
+
+                    <button type="button"
+                            class="btn-outline primary"
+                            onclick="window.location.href='/catalog'">
+                        CATALOG
+                    </button>
+                </section>
+
+                <!-- ========== STEP 1: ITEMS (HAS ITEMS) ========== -->
+                <section class="checkout-step"
+                         data-step="1"
+                         th:unless="${#lists.isEmpty(cartProducts)}">
+
+                    <div class="cart-items">
+                        <div class="cart-item"
+                             th:each="product : ${cartProducts}">
+                            <div class="cart-item-info">
+                                <p class="cart-item-name"
+                                   th:text="${product.name}">
+                                    Diamond Necklace
+                                </p>
+                                <p class="cart-item-price"
+                                   th:text="${'$' + product.price}">
+                                    $2,000
+                                </p>
+
+                                <a class="btn-outline small remove-btn"
+                                   th:href="@{/cart/remove(productId=${product.itemId})}">
+                                    x
+                                </a>
+                            </div>
+
+                            <img class="cart-item-image"
+                                 th:src="@{${product.imagePath}}"
+                                 th:alt="${product.name}"
+                                 src="/images/diamond-necklace.png"
+                                 alt="Diamond Necklace">
+                        </div>
+                    </div>
+
+                    <hr class="checkout-divider">
+
+                    <div class="summary-block">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="items-subtotal"
+                                  th:text="${'$' + subtotal}">
+                                $0
+                            </span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax</span>
+                            <span id="items-tax"
+                                  th:text="${'$' + tax}">
+                                $0
+                            </span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span>TBD</span>
+                        </div>
+
+                        <hr class="summary-divider">
+
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span id="items-total"
+                                  th:text="${'$' + totalBeforeShipping}">
+                                $0
+                            </span>
+                        </div>
+                    </div>
+
+                    <button type="button"
+                            class="btn-outline primary wide"
+                            onclick="goForwardFromStep1()">
+                        PROCEED TO CHECKOUT
+                    </button>
+                </section>
+
+                <!-- ========== STEP 2: SHIPPING ========== -->
+                <section class="checkout-step"
+                         data-step="2"
+                         style="display:none;">
+
+                    <button type="button"
+                            class="link-back"
+                            onclick="showStep(1)">
+                        &lt; Previous
+                    </button>
+
+                    <h2 class="section-title">Enter Delivery Address</h2>
+
+                    <div class="form-grid">
+                        <input name="shipAddress"
+                               placeholder="ADDRESS"
+                               required>
+                        <input name="shipAdditional"
+                               placeholder="ADDITIONAL INFORMATION">
+                        <input name="shipCity"
+                               placeholder="CITY"
+                               required>
+                        <input name="shipState"
+                               placeholder="STATE"
+                               required>
+                        <input name="shipZip"
+                               placeholder="ZIP CODE"
+                               required>
+                        <input name="shipCountry"
+                               placeholder="COUNTRY/REGION"
+                               required>
+                    </div>
+
+                    <div class="select-row">
+                        <label for="shipping-method">SHIPPING METHOD</label>
+                        <select id="shipping-method"
+                                name="shippingMethod"
+                                onchange="updateShippingTotals()"
+                                required>
+                            <option value="GROUND" selected>Ground (Free)</option>
+                            <option value="THREE_DAY">3-Day (+$19)</option>
+                            <option value="OVERNIGHT">Overnight (+$29)</option>
+                        </select>
+                    </div>
+
+                    <div class="shipping-layout">
+
+                        <div class="summary-block">
+                            <div class="summary-item-header"
+                                 th:if="${!#lists.isEmpty(cartProducts)}">
+                                <img class="summary-product-image"
+                                     th:src="@{${cartProducts[0].imagePath}}"
+                                     th:alt="${cartProducts[0].name}"
+                                     src="/images/diamond-necklace.png"
+                                     alt="Diamond Necklace">
+
+                                <div>
+                                    <p class="summary-product-name"
+                                       th:text="${cartProducts[0].name}">
+                                        Diamond Necklace
+                                    </p>
+                                    <p class="summary-product-price"
+                                       th:text="${'$' + cartProducts[0].price}">
+                                        $2,000
+                                    </p>
+                                </div>
+                            </div>
+
+                            <hr class="summary-divider">
+
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="ship-subtotal"
+                                      th:text="${'$' + subtotal}">
+                                    $0
+                                </span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Tax</span>
+                                <span id="ship-tax"
+                                      th:text="${'$' + tax}">
+                                    $0
+                                </span>
+                            </div>
+                            <div class="summary-row">
+                                <span id="shipping-label">
+                                    Shipping (Ground)
+                                </span>
+                                <span id="ship-shipping">$0</span>
+                            </div>
+
+                            <hr class="summary-divider">
+
+                            <div class="summary-row summary-total">
+                                <span>Total</span>
+                                <span id="ship-total"
+                                      th:text="${'$' + totalBeforeShipping}">
+                                    $0
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button"
+                            class="btn-outline primary right"
+                            onclick="goForwardFromStep2()">
+                        CONTINUE
+                    </button>
+                </section>
+
+                <!-- ========== STEP 3: PAYMENT ========== -->
+                <section class="checkout-step"
+                         data-step="3"
+                         style="display:none;">
+
+                    <button type="button"
+                            class="link-back"
+                            onclick="showStep(2)">
+                        &lt; Previous
+                    </button>
+
+                    <h2 class="section-title">Card Information</h2>
+
+                    <div class="form-grid">
+                        <input id="card-number"
+                               placeholder="CREDIT CARD INFORMATION"
+                               required>
+                        <input id="card-name"
+                               name="fullName"
+                               placeholder="NAME OF CARDHOLDER"
+                               required>
+                        <input id="card-exp"
+                               placeholder="EXPIRATION DATE"
+                               required>
+                        <input id="card-cvv"
+                               placeholder="SECURITY CODE"
+                               required>
+                    </div>
+
+                    <h2 class="section-title">Billing Address</h2>
+
+                    <div class="form-grid">
+                        <input name="billAddress"
+                               placeholder="ADDRESS"
+                               required>
+                        <input name="billCity"
+                               placeholder="CITY"
+                               required>
+                        <input name="billState"
+                               placeholder="STATE"
+                               required>
+                        <input name="billZip"
+                               placeholder="ZIP CODE"
+                               required>
+                        <input name="billCountry"
+                               placeholder="COUNTRY/REGION"
+                               required>
+                    </div>
+
+                    <div class="shipping-layout">
+                        <div class="summary-block">
+                            <div class="summary-item-header"
+                                 th:if="${!#lists.isEmpty(cartProducts)}">
+                                <img class="summary-product-image"
+                                     th:src="@{${cartProducts[0].imagePath}}"
+                                     th:alt="${cartProducts[0].name}"
+                                     src="/images/diamond-necklace.png"
+                                     alt="Diamond Necklace">
+
+                                <div>
+                                    <p class="summary-product-name"
+                                       th:text="${cartProducts[0].name}">
+                                        Diamond Necklace
+                                    </p>
+                                    <p class="summary-product-price"
+                                       th:text="${'$' + cartProducts[0].price}">
+                                        $2,000
+                                    </p>
+                                </div>
+                            </div>
+
+                            <hr class="summary-divider">
+
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="pay-subtotal"
+                                      th:text="${'$' + subtotal}">
+                                    $0
+                                </span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Tax</span>
+                                <span id="pay-tax"
+                                      th:text="${'$' + tax}">
+                                    $0
+                                </span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Shipping (Ground)</span>
+                                <span id="pay-shipping">$0</span>
+                            </div>
+
+                            <hr class="summary-divider">
+
+                            <div class="summary-row summary-total">
+                                <span>Total</span>
+                                <span id="pay-total"
+                                      th:text="${'$' + totalBeforeShipping}">
+                                    $0
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button"
+                            class="btn-outline primary right"
+                            onclick="goForwardFromStep3()">
+                        CONTINUE
+                    </button>
+                </section>
+
+                <!-- ========== STEP 4: CONFIRMATION ========== -->
+                <section class="checkout-step"
+                         data-step="4"
+                         style="display:none;">
+
+                    <button type="button"
+                            class="link-back"
+                            onclick="showStep(3)">
+                        &lt; Previous
+                    </button>
+
+                    <h2 class="section-title">Items</h2>
+
+                    <div class="confirmation-items">
+                        <div class="cart-item"
+                             th:each="product : ${cartProducts}">
+                            <div class="cart-item-info">
+                                <p class="cart-item-name"
+                                   th:text="${product.name}">
+                                    Diamond Necklace
+                                </p>
+                                <p class="cart-item-price"
+                                   th:text="${'$' + product.price}">
+                                    $2,000
+                                </p>
+                            </div>
+
+                            <img class="cart-item-image"
+                                 th:src="@{${product.imagePath}}"
+                                 th:alt="${product.name}"
+                                 src="/images/diamond-necklace.png"
+                                 alt="Diamond Necklace">
+                        </div>
+                    </div>
+
+                    <hr class="checkout-divider">
+
+                    <h2 class="section-title">Delivery Address</h2>
+                    <p id="confirm-address"></p>
+
+                    <h2 class="section-title">Shipping Method</h2>
+                    <p id="confirm-shipping-label">Ground Shipping $0</p>
+
+                    <h2 class="section-title">Card Information</h2>
+                    <p id="confirm-card">**** **** **** 0000</p>
+
+                    <div class="summary-block confirm-summary">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="conf-subtotal"
+                                  th:text="${'$' + subtotal}">
+                                $0
+                            </span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax</span>
+                            <span id="conf-tax"
+                                  th:text="${'$' + tax}">
+                                $0
+                            </span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping (Ground)</span>
+                            <span id="conf-shipping">$0</span>
+                        </div>
+
+                        <hr class="summary-divider">
+
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span id="conf-total"
+                                  th:text="${'$' + totalBeforeShipping}">
+                                $0
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- FINAL BUTTON: just navigate to the confirmation page -->
+                    <button type="button"
+                            class="btn-outline primary right"
+                            onclick="window.location.href='/complete-purchase'">
+                        COMPLETE PURCHASE
+                    </button>
+                </section>
+
+            </form>
+        </section>
+
+        <!-- RIGHT SIDE: HERO IMAGE -->
+        <aside class="checkout-right">
+            <img class="hero-image"
+                 th:src="@{/images/african-woman.png}"
+                 src="/images/african-woman.png"
+                 alt="Woman wearing African jewelry">
+        </aside>
+
+    </main>
+</div>
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>
