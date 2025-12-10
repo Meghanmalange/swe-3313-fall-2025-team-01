@@ -1,6 +1,7 @@
-package com.africanroyals.service.inventory;
+package africanroyals.service.inventory;
 
-import com.africanroyals.entity.InventoryItem;
+import africanroyals.entity.InventoryItem;
+
 import java.util.List;
 
 public interface InventoryService {

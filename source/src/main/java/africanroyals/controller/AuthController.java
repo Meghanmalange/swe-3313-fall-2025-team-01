@@ -2,7 +2,7 @@ package africanroyals.controller;
 
 import africanroyals.dto.LoginRequest;
 import africanroyals.dto.RegisterRequest;
-import africanroyals.service.AuthService;
+import africanroyals.service.auth.AuthService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

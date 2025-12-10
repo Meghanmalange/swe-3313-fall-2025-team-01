@@ -14,6 +14,8 @@ public class Receipt {
     private List<CartItem> items;
     private PriceDetails priceDetails;
     private ShippingOption shippingOption;
+    private String cardHolderName;
+    private String cardLastFourDigits;
     private LocalDateTime createdAt;
 
     public Receipt() {
@@ -24,12 +26,16 @@ public class Receipt {
                    List<CartItem> items,
                    PriceDetails priceDetails,
                    ShippingOption shippingOption,
+                   String cardHolderName,
+                   String cardLastFourDigits,
                    LocalDateTime createdAt) {
         this.orderId = orderId;
         this.userId = userId;
         this.items = items;
         this.priceDetails = priceDetails;
         this.shippingOption = shippingOption;
+        this.cardHolderName = cardHolderName;
+        this.cardLastFourDigits = cardLastFourDigits;
         this.createdAt = createdAt;
     }
 
@@ -73,6 +79,22 @@ public class Receipt {
 
     public void setShippingOption(ShippingOption shippingOption) {
         this.shippingOption = shippingOption;
+    }
+
+    public String getCardHolderName() {
+        return cardHolderName;
+    }
+
+    public void setCardHolderName(String cardHolderName) {
+        this.cardHolderName = cardHolderName;
+    }
+
+    public String getCardLastFourDigits() {
+        return cardLastFourDigits;
+    }
+
+    public void setCardLastFourDigits(String cardLastFourDigits) {
+        this.cardLastFourDigits = cardLastFourDigits;
     }
 
     public LocalDateTime getCreatedAt() {

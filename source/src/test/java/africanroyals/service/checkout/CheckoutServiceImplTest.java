@@ -74,7 +74,8 @@ public class CheckoutServiceImplTest {
         assertEquals(1, receipt.getItems().size(), "Receipt should contain one purchased item");
         assertEquals(priceDetails.getGrandTotal(), receipt.getPriceDetails().getGrandTotal(),
                 "Grand total on receipt should match PriceDetails");
-        //assertEquals("1234", receipt.getCardLastFourDigits(), "Last four digits should be copied from request");
+        assertEquals("1234", receipt.getCardLastFourDigits(), "Last four digits should be copied from request");
+        assertEquals("Nyasha Muzerengi", receipt.getCardHolderName(), "Card holder name should be preserved");
         assertEquals(ShippingOption.GROUND, receipt.getShippingOption(), "Shipping option should match request");
     }
 }
