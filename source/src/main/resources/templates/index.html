@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The African Jewelry Shop</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Header -->
+        <header>
+        <div>
+            <h1 class="site-title">The African Jewelry Shop</h1>
+            <div class="site-subtitle">Admin</div>
+        </div>
+        <div class="header-actions">
+            <button class="btn btn-secondary" onclick="switchView('user')" id="view-toggle-btn">
+                Customer View
+            </button>
+            <button class="btn cart-badge" onclick="showCart()" id="cart-btn" style="display: none;">
+                Cart
+                <span class="badge-count" id="cart-count">0</span>
+            </button>
+            <button class="btn btn-secondary" onclick="showCheckout()" id="checkout-btn" style="display: none;">
+                Checkout
+            </button>
+            </div>
+        </header>
+
+    <!-- User View -->
+    <div id="user-view" class="view-container">
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="showUserTab('catalog')" data-tab="catalog">
+                Catalog
+            </button>
+            <button class="nav-tab" onclick="showUserTab('cart')" data-tab="cart">
+                Shopping Cart
+            </button>
+        </nav>
+
+        <div class="container">
+            <!-- Catalog Tab -->
+            <div id="catalog-tab" class="tab-content active">
+                <h2 class="section-title">Available Items</h2>
+                <div id="products-grid" class="products-grid">
+                    <div class="loading">Loading catalog...</div>
+                </div>
+        </div>
+
+        <!-- Cart Tab -->
+            <div id="cart-tab" class="tab-content" style="display: none;">
+                <div class="checkout-grid">
+                    <div class="checkout-main">
+                        <h2 class="section-title">Your Cart</h2>
+                        <div id="cart-items">
+                            <div class="empty-state">
+                                <h3>Your cart is empty</h3>
+                                <p>Add some beautiful jewelry to get started</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-sidebar">
+                        <h3 class="section-title">Order Summary</h3>
+                        <div id="cart-summary">
+                            <div class="summary-line">
+                                <span>Subtotal</span>
+                                <span id="cart-subtotal">$0.00</span>
+                            </div>
+                            <div class="summary-line">
+                                <span>Tax (6%)</span>
+                                <span id="cart-tax">$0.00</span>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="form-label">Shipping Method</label>
+                                <select id="shipping-option" class="form-input" onchange="updateCartSummary()">
+                                    <option value="GROUND">Ground Shipping - $0</option>
+                                    <option value="THREE_DAY">Three Day - $19.00</option>
+                                    <option value="OVERNIGHT">Overnight - $29.00</option>
+                                </select>
+                            </div>
+                            <div class="summary-line">
+                                <span>Shipping</span>
+                                <span id="cart-shipping">$0.00</span>
+                            </div>
+                            <div class="summary-line total">
+                                <span>Total</span>
+                                <span id="cart-total">$0.00</span>
+                            </div>
+                            <button class="btn btn-primary mt-3" style="width: 100%;" onclick="proceedToCheckout()" id="proceed-checkout-btn" disabled>
+                                Proceed to Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checkout Tab -->
+            <div id="checkout-tab" class="tab-content" style="display: none;">
+                <div class="checkout-container">
+                    <div class="checkout-progress">
+                        <div class="progress-step active">Items</div>
+                        <div class="progress-step active">Shipping</div>
+                        <div class="progress-step active">Payment</div>
+                        <div class="progress-step active">Confirmation</div>
+                    </div>
+
+                    <div class="checkout-grid">
+                        <div class="checkout-main">
+                            <h2 class="section-title">Items</h2>
+                            <div id="checkout-items"></div>
+
+                            <h2 class="section-title mt-3">Delivery Address</h2>
+                            <div class="form-group">
+                                <label class="form-label">Street Address</label>
+                                <input type="text" class="form-input" id="address-street" value="123 Apple Street">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">City, State, ZIP</label>
+                                <input type="text" class="form-input" id="address-city" value="Kennesaw GA, 30144, USA">
+                            </div>
+
+                            <h2 class="section-title mt-3">Shipping Method</h2>
+                            <div class="form-group">
+                                <select id="checkout-shipping-option" class="form-input">
+                                    <option value="GROUND">Ground Shipping - $0</option>
+                                    <option value="THREE_DAY">Three Day - $19.00</option>
+                                    <option value="OVERNIGHT">Overnight - $29.00</option>
+                    </select>
+                            </div>
+
+                            <h2 class="section-title mt-3">Card Information</h2>
+                            <div class="form-group">
+                                <label class="form-label">Cardholder Name</label>
+                                <input type="text" class="form-input" id="card-name" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Card Number</label>
+                                <input type="text" class="form-input" id="card-number" placeholder="**** **** **** 7280" maxlength="19">
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div class="form-group">
+                                    <label class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-input" id="card-expiry" placeholder="09/28" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">CVV</label>
+                                    <input type="text" class="form-input" id="card-cvv" placeholder="***" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="checkout-sidebar">
+                            <h3 class="section-title">Order Summary</h3>
+                            <div id="checkout-summary"></div>
+                            <button class="btn btn-primary mt-3" style="width: 100%;" onclick="completePurchase()">
+                                Complete Purchase
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confirmation Tab -->
+            <div id="confirmation-tab" class="tab-content" style="display: none;">
+                <div class="confirmation-container">
+                    <h1>The African Jewelry Shop</h1>
+                    <p class="confirmation-message">Thank you for shopping. Your order is confirmed</p>
+                    <div class="confirmation-actions">
+                        <button class="btn btn-primary" onclick="continueShopping()">Continue Shopping</button>
+                        <button class="btn btn-secondary" onclick="window.location.reload()">Log Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin View -->
+    <div id="admin-view" class="view-container active">
+        <div class="container">
+            <div class="admin-layout">
+                <!-- Sidebar -->
+                <aside class="admin-sidebar">
+                    <h3>Catalog</h3>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-item" onclick="showAdminSection('search')">Search</li>
+                        <li class="sidebar-item active" onclick="showAdminSection('add-item')">Add Item</li>
+                        <li class="sidebar-item" onclick="showAdminSection('sales-report')">Sales Report</li>
+                    </ul>
+                </aside>
+
+                <!-- Main Content -->
+                <main>
+                    <!-- Search Section -->
+                    <section id="admin-search" class="admin-content" style="display: none;">
+                        <h2 class="section-title">Search Items</h2>
+                        <div class="form-group">
+                            <input type="text" class="form-input" id="search-query" placeholder="Search by name or description">
+                        </div>
+                        <button class="btn btn-primary" onclick="searchItems()">Search</button>
+                        <div id="search-results" class="mt-3"></div>
+                    </section>
+
+                    <!-- Add Item Section -->
+                    <section id="admin-add-item" class="admin-content">
+                        <h2 class="section-title">Add Item</h2>
+                        <p style="color: var(--text-muted); margin-bottom: 30px;">
+                            Provide the item's name, price, and image to sell to customers
+                        </p>
+
+                        <form id="add-item-form" onsubmit="addItem(event)">
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-input" id="item-name" placeholder="Diamond Necklace" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Price $</label>
+                                <input type="number" class="form-input" id="item-price" placeholder="2000" step="0.01" min="0" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Description (Optional)</label>
+                                <textarea class="form-input" id="item-description" placeholder="Beautiful handcrafted necklace..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Upload Image</label>
+                                <div class="image-upload" onclick="document.getElementById('item-image').click()">
+                                    <svg class="upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    <p id="upload-text">Click to upload or drag and drop</p>
+                                    <input type="file" id="item-image" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                                </div>
+                                <input type="text" class="form-input mt-2" id="item-image-url" placeholder="Or enter image URL">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px; font-size: 1.1em;">
+                                Add Item
+                            </button>
+                        </form>
+                    </section>
+
+                    <!-- Sales Report Section -->
+                    <section id="admin-sales-report" class="admin-content" style="display: none;">
+                        <h2 class="section-title">Sales Report</h2>
+                        <div class="form-group">
+                            <label class="form-label">Filter by User ID (Optional)</label>
+                            <input type="number" class="form-input" id="filter-user-id" placeholder="All users">
+                        </div>
+                        <button class="btn btn-primary" onclick="loadSalesReport()">Load Report</button>
+                        <div id="sales-report-content" class="mt-3">
+                            <div class="loading">Click "Load Report" to view sales</div>
+            </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Toast -->
+    <div id="message" class="message"></div>
+
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>
