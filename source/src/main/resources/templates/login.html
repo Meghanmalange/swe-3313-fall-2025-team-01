@@ -3,23 +3,49 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login Screen</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body id="login-body">
 
-<button onclick="window.location.href='index.html'">Back to Home Page</button>
-<h1>Login</h1>
-<form th:action="@{/login}" method="post">
-    <input name="username" placeholder="Email/Username" autocomplete="off">
-    <input name="password" type="password" placeholder="Password" autocomplete="off">
+<div class="login-hero">
+    <div class="hero-overlay"></div>
 
-    <button type="submit">Login</button>
-</form>
+    <div class="login-container">
 
-<!-- Error Message -->
-<p th:if="${param.error}" style="color:red">Invalid username or password</p>
+        <button class="back-button"
+                type="button"
+                onclick="window.location.href='/index'">
+            Back to Home Page
+        </button>
 
-<h3>Don't have an account? <a href="signup.html">Sign up</a></h3>
+        <div class="login-card">
+            <h1>Login</h1>
+
+            <form th:action="@{/login}" method="post">
+                <input name="username"
+                       placeholder="Email/Username"
+                       autocomplete="off">
+
+                <input name="password"
+                       type="password"
+                       placeholder="Password"
+                       autocomplete="off">
+
+                <button class="login-submit" type="submit">Login</button>
+            </form>
+
+            <p th:if="${param.error}" class="login-error">
+                Invalid username or password
+            </p>
+
+            <p class="login-signup-text">
+                Don't have an account?
+                <a th:href="@{/signup}">Sign Up</a>
+
+            </p>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
