@@ -3,25 +3,64 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Signup Screen</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body id="signup-body">
 
-<button onclick="window.location.href='index.html'">Back to Home Page</button>
+<div class="login-hero">
+    <div class="hero-overlay"></div>
 
-<h1>Sign Up</h1>
+    <div class="login-container">
 
-<form th:action="@{/signup}" method="post">
+        <!-- Back button -->
+        <button class="back-button"
+                type="button"
+                onclick="window.location.href='/'">
+            Back to Home Page
+        </button>
 
-    <input name="email" placeholder="Email" autocomplete="off" required>
-    <input name="username" placeholder="Username" autocomplete="off" required>
-    <input name="fullName" placeholder="Full name" autocomplete="off" required>
-    <input name="password" type="password" placeholder="Password" autocomplete="off" required>
+        <!-- Signup card -->
+        <div class="login-card">
+            <h1>Signup</h1>
 
-    <button type="submit">Sign Up</button>
-</form>
+            <form th:action="@{/signup}" method="post">
+                <input name="email"
+                       placeholder="Email"
+                       autocomplete="off"
+                       required>
 
-<h3>Already have an account? <a href="login.html">Login</a></h3>
+                <input name="username"
+                       placeholder="Username"
+                       autocomplete="off"
+                       required>
+
+                <input name="fullName"
+                       placeholder="Full name"
+                       autocomplete="off"
+                       required>
+
+                <input name="password"
+                       type="password"
+                       placeholder="Password"
+                       autocomplete="off"
+                       required>
+
+                <p class="password-hint">
+                    Must be at least 6 characters long
+                </p>
+
+                <button class="login-submit" type="submit">
+                    Create Account
+                </button>
+            </form>
+
+            <p class="login-signup-text">
+                Already have an account?
+                <a th:href="@{/login}">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
