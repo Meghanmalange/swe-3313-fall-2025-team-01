@@ -144,3 +144,44 @@ Having gathered our requirements and creating a user interface design, we create
 
 For detailed information on each aspect of these technical design elements click here:
 - [Technical Design](./technical-design/README.md)
+
+# 🛍️ Application implementation
+
+This repository contains the complete implementation of our Software Engineering final project.  
+The project fulfills the requirements described in our **Technical Design Documentation** and the **UI Design Prototype**.
+
+---
+
+## 🚀 Core Features Implemented
+- Login + Self Registration (single login screen)
+- Inventory Listing + Search
+- Add to Shopping Cart
+- Remove from Shopping Cart
+- Checkout + Receipt Simulation
+- Purchased items persist after application restart
+- Administrator Sales Report
+
+---
+
+## 📚 Documentation
+
+| Section | Folder |
+|--------|--------|
+| Requirements | `/requirements` |
+| UI Prototype | `/User Interface Design` |
+| Technical Design | `/Technical Design` |
+| ERD/Data Plan | `/Technical Design/ERD` |
+
+---
+
+## 🧰 Tech Stack
+- Java 23
+- Spring Boot
+- SQLite Database
+- Maven Build System
+
+---
+
+## 📦 Implementation & Run Instructions
+Detailed instructions to **build, run, and test** the application are located here:
+
