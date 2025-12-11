@@ -229,7 +229,5 @@ mvn spring-boot:run
 4.6 M1/M2/M3/M4 Architecture Issues
 Ensure you are using a JDK built for ARM64 (the Temurin link provided above automatically detects Apple Silicon).
 
-# Jewelry Store Presentation
-- Video 1: https://www.loom.com/share/1bf78ee79ec34572b4e3234ddd1f2ce1
-- Video 2: https://www.loom.com/share/26038e77fa9c4f3b8cbd2690e2fbb3ae
+
 
