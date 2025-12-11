@@ -145,6 +145,12 @@ Having gathered our requirements and creating a user interface design, we create
 For detailed information on each aspect of these technical design elements click here:
 - [Technical Design](./technical-design/README.md)
 
+# Implementation
+Having gone through the semester planning, gathering requirements and creating a technical design for our project, we concluded with the Implementation phase of the web application. We have created an implementation README that walks through how to clone our repository and set up the project locally on your machine.
+
+You can view the Implementation Set Up here:
+- [Implementation](./implementation/README.md)
+
 # Jewelry Store Final Presentation
 - Video 1: https://www.loom.com/share/1bf78ee79ec34572b4e3234ddd1f2ce1
 - Video 2: https://www.loom.com/share/26038e77fa9c4f3b8cbd2690e2fbb3ae
