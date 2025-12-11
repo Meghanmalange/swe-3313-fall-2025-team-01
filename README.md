@@ -144,3 +144,7 @@ Having gathered our requirements and creating a user interface design, we create
 
 For detailed information on each aspect of these technical design elements click here:
 - [Technical Design](./technical-design/README.md)
+
+# Jewelry Store Final Presentation
+- Video 1: https://www.loom.com/share/1bf78ee79ec34572b4e3234ddd1f2ce1
+- Video 2: https://www.loom.com/share/26038e77fa9c4f3b8cbd2690e2fbb3ae
