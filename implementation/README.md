@@ -6,7 +6,7 @@ Download Java 21 (Temurin/JDK):
 https://adoptium.net/temurin/releases/?version=21
 
 Steps to install:
-- Download the macOS .pkg installer for Java 21.
+- Download the Java 21 installer compatiple with your device.
 - Run the installer → click Continue → Install.
 - Verify installation in terminal:
   
@@ -19,7 +19,7 @@ openjdk version "21.x.x" ...
 ```
 
 ## Install Maven
-macOS already includes the required system tools, so installation is simple.
+Mac users: macOS already includes the required system tools, so installation is simple.
 
 Download Maven:
 https://maven.apache.org/download.cgi
